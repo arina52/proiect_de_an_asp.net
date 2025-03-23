@@ -1,0 +1,57 @@
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Yoga Studio Template">
+    <meta name="keywords" content="Yoga, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Culinary Connect | by A&D</title>
+    <link rel="shortcut icon" href="~/Content/Images/181786.png" type="image/x-icon">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+
+    @Styles.Render("~/bundles/bootstrap/css")
+    @Styles.Render("~/bundles/fontawesome/css")
+    @Styles.Render("~/bundles/niceselect/css")
+    @Styles.Render("~/bundles/slicknav/css")
+    @Styles.Render("~/bundles/style/css")
+
+</head>
+
+<body>
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <header class="header-section-other">
+        @Html.Partial("_Header")
+    </header>
+
+    <div class="hero-search set-bg" data-setbg=@Url.Content("~/Content/Images/search-bg.jpg")>
+        @Html.Partial("_Search")
+    </div>
+    <main>
+        @RenderBody()
+    </main>
+    <footer class="footer-section">
+        @Html.Partial("_Footer")
+    </footer>
+    <div class="search-model">
+        @Html.Partial("_SearchModel")
+    </div>
+
+        @Scripts.Render("~/bundles/jquery3.3.1/js")
+        @Scripts.Render("~/bundles/slicknav/js")
+        @Scripts.Render("~/bundles/niceselect/js")
+        @Scripts.Render("~/bundles/mixitup/js")
+        @Scripts.Render("~/bundles/main/js")
+        @Scripts.Render("~/bundles/bootstrap/js")
+
+</body>
+    
+</html>
