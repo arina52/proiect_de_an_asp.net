@@ -1,4 +1,6 @@
-﻿using System;
+﻿using culinaryConnect.BusinessLogic.Core;
+using culinaryConnect.BusinessLogic.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +10,17 @@ namespace culinaryConnect.Web.Controllers
 {
     public class RecipesController : Controller
     {
-        // GET: Recipes
+
+        private readonly IRecipeService _recipeService;
+        public RecipesController()
+        {
+            _recipeService = new RecipeService(); 
+        }
+
         public ActionResult Index()
         {
-            return View();
+            var recipes = _recipeService.GetAllRecipes();
+            return View(recipes);
         }
     }
 }

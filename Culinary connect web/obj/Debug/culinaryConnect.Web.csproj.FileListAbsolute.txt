@@ -59,3 +59,7 @@ D:\uni an2\proiect de an\Solution1\Culinary connect web\bin\System.Web.WebPages.
 D:\uni an2\proiect de an\Solution1\Culinary connect web\bin\System.Web.WebPages.Deployment.xml
 D:\uni an2\proiect de an\Solution1\Culinary connect web\bin\System.Web.WebPages.Razor.xml
 D:\uni an2\proiect de an\Solution1\Culinary connect web\obj\Debug\culinary.1E3EAC2F.Up2Date
+D:\uni an2\proiect de an\Solution1\Culinary connect web\bin\culinaryConnect.BusinessLogic.dll
+D:\uni an2\proiect de an\Solution1\Culinary connect web\bin\culinaryConnect.Domain.dll
+D:\uni an2\proiect de an\Solution1\Culinary connect web\bin\culinaryConnect.BusinessLogic.pdb
+D:\uni an2\proiect de an\Solution1\Culinary connect web\bin\culinaryConnect.Domain.pdb

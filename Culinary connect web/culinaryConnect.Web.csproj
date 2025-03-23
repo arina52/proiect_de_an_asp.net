@@ -200,6 +200,16 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\culinaryConnect.BusinessLogic\culinaryConnect.BusinessLogic.csproj">
+      <Project>{7b67ecef-9595-4255-a09a-231a52e3219a}</Project>
+      <Name>culinaryConnect.BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\culinaryConnect.Domain\culinaryConnect.Domain.csproj">
+      <Project>{9a49c22b-d48d-4a76-85ef-9a3bef9f7af6}</Project>
+      <Name>culinaryConnect.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

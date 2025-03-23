@@ -5,6 +5,12 @@ VisualStudioVersion = 17.13.35825.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "culinaryConnect.Web", "Culinary connect web\culinaryConnect.Web.csproj", "{194C8AA0-705F-45C0-B2AD-0750BB3032DE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "culinaryConnect.BusinessLogic", "culinaryConnect.BusinessLogic\culinaryConnect.BusinessLogic.csproj", "{7B67ECEF-9595-4255-A09A-231A52E3219A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "culinaryConnect.Domain", "culinaryConnect.Domain\culinaryConnect.Domain.csproj", "{9A49C22B-D48D-4A76-85EF-9A3BEF9F7AF6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "culinaryConnect.Helpers", "culinaryConnect.Helpers\culinaryConnect.Helpers.csproj", "{8C04D687-7141-4042-BBF7-28DF2D5B0FBA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{194C8AA0-705F-45C0-B2AD-0750BB3032DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{194C8AA0-705F-45C0-B2AD-0750BB3032DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{194C8AA0-705F-45C0-B2AD-0750BB3032DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B67ECEF-9595-4255-A09A-231A52E3219A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B67ECEF-9595-4255-A09A-231A52E3219A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B67ECEF-9595-4255-A09A-231A52E3219A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B67ECEF-9595-4255-A09A-231A52E3219A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A49C22B-D48D-4A76-85EF-9A3BEF9F7AF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A49C22B-D48D-4A76-85EF-9A3BEF9F7AF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A49C22B-D48D-4A76-85EF-9A3BEF9F7AF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A49C22B-D48D-4A76-85EF-9A3BEF9F7AF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C04D687-7141-4042-BBF7-28DF2D5B0FBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C04D687-7141-4042-BBF7-28DF2D5B0FBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C04D687-7141-4042-BBF7-28DF2D5B0FBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C04D687-7141-4042-BBF7-28DF2D5B0FBA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
