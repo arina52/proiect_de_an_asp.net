@@ -189,6 +189,8 @@
     <Content Include="Views\Recipes\Index.cshtml" />
     <Content Include="Views\Shared\_SearchModel.cshtml" />
     <Content Include="Views\Home\AboutMe.cshtml" />
+    <Content Include="Views\Shared\_LayoutHome.cshtml" />
+    <Content Include="Views\Shared\_HeaderHome.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

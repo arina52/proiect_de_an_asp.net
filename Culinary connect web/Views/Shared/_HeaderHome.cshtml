@@ -1,22 +1,23 @@
-﻿    <div class="container-fluid">
+﻿    <div class="container">
         <div class="logo">
-            <a href="./index.html"><img src="~/Content/Images/small-logo.png" class="small-logo" alt=""></a>
+            <a href="./index.html" class="logo"><img src="~/Content/Images/logo.png" class="img-fluid" alt=""></a>
         </div>
         <div class="nav-menu">
             <nav class="main-menu mobile-menu">
                 <ul>
-                    <li><a href=@Url.Action("Index", "Home")>Acasă</a></li>
+                    <li><a href="#">Acasă</a></li>
                     <li>
                         <a href="#">Pagini</a>
                         <ul class="sub-menu">
                             <li><a href=@Url.Action("AboutMe", "Home")>Despre noi</a></li>
                             <li><a href=@Url.Action("Index", "Recipes")>Rețete</a></li>
-                            <li><a href="recipe.html">Exemplu de rețetă</a></li>
                             <li><a href="blog.html">Blog</a></li>
                             <li><a href="contact.html">Trimiteți o rețetă</a></li>
                         </ul>
                     </li>
-                    <li><a href="contact.html">Trimiteți o rețetă</a></li>
+
+                    <li><a href="login.html">Logare</a></li>
+
                 </ul>
             </nav>
             <div class="nav-right search-switch">

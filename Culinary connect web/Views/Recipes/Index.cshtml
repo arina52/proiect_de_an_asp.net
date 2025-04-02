@@ -71,7 +71,7 @@
                 @foreach (var recipe in Model)
                 {
                     <div class="cfr-small-item">
-                        <a href="#"><img src=@Url.Content("~/Content/Images/cat-feature/small-" + recipe.Id +".jpg") alt=""></a>
+                        <a href="#"><img src=@Url.Content("~/Content/Images/cat-feature/small-" + recipe.Id +".jpg") alt="@recipe.Title"></a>
                         <div class="cfr-small-text">
                             <div class="cat-name">@recipe.Category</div>
                             <h6> @recipe.Title </h6>
