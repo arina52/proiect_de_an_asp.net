@@ -7,3 +7,12 @@ D:\uni an2\proiect de an\Solution1\culinaryConnect.Domain\obj\Debug\culinaryConn
 D:\uni an2\proiect de an\Solution1\culinaryConnect.Domain\obj\Debug\culinary.9588B1AE.Up2Date
 D:\uni an2\proiect de an\Solution1\culinaryConnect.Domain\obj\Debug\culinaryConnect.Domain.dll
 D:\uni an2\proiect de an\Solution1\culinaryConnect.Domain\obj\Debug\culinaryConnect.Domain.pdb
+D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.Domain\bin\Debug\culinaryConnect.Domain.dll
+D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.Domain\bin\Debug\culinaryConnect.Domain.pdb
+D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.Domain\bin\Debug\culinaryConnect.Helpers.dll
+D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.Domain\bin\Debug\culinaryConnect.Helpers.pdb
+D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.Domain\obj\Debug\culinaryConnect.Domain.csproj.AssemblyReference.cache
+D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.Domain\obj\Debug\culinaryConnect.Domain.csproj.CoreCompileInputs.cache
+D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.Domain\obj\Debug\culinary.9588B1AE.Up2Date
+D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.Domain\obj\Debug\culinaryConnect.Domain.dll
+D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.Domain\obj\Debug\culinaryConnect.Domain.pdb

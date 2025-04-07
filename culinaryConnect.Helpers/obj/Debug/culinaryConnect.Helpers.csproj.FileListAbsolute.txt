@@ -4,3 +4,9 @@ D:\uni an2\proiect de an\Solution1\culinaryConnect.Helpers\obj\Debug\culinaryCon
 D:\uni an2\proiect de an\Solution1\culinaryConnect.Helpers\obj\Debug\culinaryConnect.Helpers.csproj.CoreCompileInputs.cache
 D:\uni an2\proiect de an\Solution1\culinaryConnect.Helpers\obj\Debug\culinaryConnect.Helpers.dll
 D:\uni an2\proiect de an\Solution1\culinaryConnect.Helpers\obj\Debug\culinaryConnect.Helpers.pdb
+D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.Helpers\bin\Debug\culinaryConnect.Helpers.dll
+D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.Helpers\bin\Debug\culinaryConnect.Helpers.pdb
+D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.Helpers\obj\Debug\culinaryConnect.Helpers.csproj.AssemblyReference.cache
+D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.Helpers\obj\Debug\culinaryConnect.Helpers.csproj.CoreCompileInputs.cache
+D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.Helpers\obj\Debug\culinaryConnect.Helpers.dll
+D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.Helpers\obj\Debug\culinaryConnect.Helpers.pdb

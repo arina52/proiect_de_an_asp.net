@@ -1,0 +1,41 @@
+﻿@model culinaryConnect.Domain.Entities.User.UserLoginModel
+
+@{
+    Layout = "~/Views/Shared/layouts/_EmptyLayout.cshtml";
+}
+
+div class="bg-light">
+<div class="container vh-100 d-flex justify-content-center align-items-center">
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h3 class="text-center mb-4">Login</h3>
+
+                @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+                {
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Enter email", required = "required" })
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Enter password", required = "required" })
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                }
+
+                @if (ViewBag.ErrorMessage != null)
+                {
+                    <div class="alert alert-danger mt-3">@ViewBag.ErrorMessage</div>
+                }
+
+                <!-- Sign Up Option -->
+                <p class="text-center mt-3">
+                    Don't have an account?
+                    <a href="@Url.Action("Index", "Signup")" class="text-primary">Sign up</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

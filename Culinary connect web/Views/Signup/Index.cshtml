@@ -1,0 +1,38 @@
+﻿@{ 
+    Layout = "~/Views/Shared/layouts/_EmptyLayout.cshtml";
+}
+
+<div class="bg-white">
+    <div class="container vh-100 d-flex justify-content-center align-items-center">
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h3 class="text-center mb-4">Sign Up</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" placeholder="Enter email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" class="form-control" placeholder="Enter password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm-password">Confirm Password</label>
+                            <input type="password" id="confirm-password" class="form-control" placeholder="Confirm password" required>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-block">Sign Up</button>
+                        <!-- Already have an account? -->
+                        <p class="text-center mt-3">
+                            Already have an account?
+                            <a href="@Url.Action("index", "login")" class="text-primary">Login</a>
+                        </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
