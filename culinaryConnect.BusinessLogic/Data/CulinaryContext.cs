@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
-using culinaryConnect.BusinessLogic.Models.User;
-using culinaryConnect.BusinessLogic.Seed;
+using culinaryConnect.BusinessLogic.Models.UserDB;
+using culinaryConnect.BusinessLogic.Models.AdminDB;
 
 namespace culinaryConnect.BusinessLogic.Data
 {
@@ -8,10 +8,10 @@ namespace culinaryConnect.BusinessLogic.Data
     {
         public CulinaryContext() : base("name=CulinaryContext")
         {
-            Database.SetInitializer(new DbInitializer()); // Register the initializer
         }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<UserDB> Users { get; set; }
+        public DbSet<AdminDB> Admins { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

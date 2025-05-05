@@ -63,6 +63,8 @@ D:\uni an2\proiect de an\Solution1\Culinary connect web\bin\culinaryConnect.Busi
 D:\uni an2\proiect de an\Solution1\Culinary connect web\bin\culinaryConnect.Domain.dll
 D:\uni an2\proiect de an\Solution1\Culinary connect web\bin\culinaryConnect.BusinessLogic.pdb
 D:\uni an2\proiect de an\Solution1\Culinary connect web\bin\culinaryConnect.Domain.pdb
+D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\obj\Debug\culinaryConnect.Web.csproj.AssemblyReference.cache
+D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\obj\Debug\culinaryConnect.Web.csproj.CoreCompileInputs.cache
 D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\bin\Culinary connect web.dll.config
 D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\bin\Culinary connect web.dll
 D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\bin\Culinary connect web.pdb
@@ -100,6 +102,8 @@ D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\bin\roslyn
 D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\bin\Antlr3.Runtime.dll
 D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\bin\culinaryConnect.BusinessLogic.dll
 D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\bin\culinaryConnect.Domain.dll
+D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\bin\EntityFramework.dll
+D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\bin\EntityFramework.SqlServer.dll
 D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\bin\Microsoft.Web.Infrastructure.dll
 D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\bin\Newtonsoft.Json.dll
@@ -112,8 +116,11 @@ D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\bin\System
 D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\bin\System.Web.WebPages.Razor.dll
 D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\bin\WebGrease.dll
 D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\bin\culinaryConnect.BusinessLogic.pdb
+D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\bin\culinaryConnect.BusinessLogic.dll.config
 D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\bin\culinaryConnect.Domain.pdb
 D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\bin\Antlr3.Runtime.pdb
+D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\bin\EntityFramework.xml
+D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\bin\EntityFramework.SqlServer.xml
 D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\bin\Newtonsoft.Json.xml
 D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\bin\System.Web.Helpers.xml
@@ -123,13 +130,6 @@ D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\bin\System
 D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\bin\System.Web.WebPages.xml
 D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\bin\System.Web.WebPages.Deployment.xml
 D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\bin\System.Web.WebPages.Razor.xml
-D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\obj\Debug\culinaryConnect.Web.csproj.AssemblyReference.cache
-D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\obj\Debug\culinaryConnect.Web.csproj.CoreCompileInputs.cache
 D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\obj\Debug\culinary.1E3EAC2F.Up2Date
 D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\obj\Debug\Culinary connect web.dll
 D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\obj\Debug\Culinary connect web.pdb
-D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\bin\EntityFramework.dll
-D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\bin\culinaryConnect.BusinessLogic.dll.config
-D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\bin\EntityFramework.xml
-D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\bin\EntityFramework.SqlServer.dll
-D:\twproject\arina project\proiect_de_an_asp.net\Culinary connect web\bin\EntityFramework.SqlServer.xml

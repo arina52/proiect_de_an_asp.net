@@ -41,9 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Account\User.cs" />
+    <Compile Include="Entities\Admin\Admin.cs" />
+    <Compile Include="Entities\Admin\AdminWraper.cs" />
     <Compile Include="Entities\Recipe\RecipeDetails.cs" />
     <Compile Include="Entities\User\User.cs" />
     <Compile Include="Entities\User\UserLoginModel.cs" />
+    <Compile Include="Entities\User\UserRegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

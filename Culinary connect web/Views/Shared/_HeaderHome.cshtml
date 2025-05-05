@@ -9,14 +9,14 @@
                     <li>
                         <a href="#">Pagini</a>
                         <ul class="sub-menu">
-                            <li><a href=@Url.Action("AboutMe", "Home")>Despre noi</a></li>
-                            <li><a href=@Url.Action("Index", "Recipes")>Rețete</a></li>
+                            <li><a href=@Url.Action("aboutMe", "home")>Despre noi</a></li>
+                            <li><a href=@Url.Action("index", "recipes")>Rețete</a></li>
                             <li><a href="blog.html">Blog</a></li>
                             <li><a href="contact.html">Trimiteți o rețetă</a></li>
                         </ul>
                     </li>
 
-                    <li><a href="login.html">Logare</a></li>
+                    <li><a href="@Url.Action("index", "login")">Logare</a></li>
 
                 </ul>
             </nav>

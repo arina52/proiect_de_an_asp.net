@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace culinaryConnect.BusinessLogic.Models.User
+namespace culinaryConnect.BusinessLogic.Models.UserDB
 {
-    public class User
+    public class UserDB
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -13,14 +13,14 @@ namespace culinaryConnect.BusinessLogic.Models.User
 
         [Required]
         [StringLength(100)]
-        public string Name { get; set; }
+        public string UserName { get; set; } = string.Empty;
 
         [Required]
         [StringLength(100)]
-        public string Email { get; set; }
+        public string UserEmail { get; set; } = string.Empty;
 
         [Required]
         [StringLength(100)]
-        public string Password { get; set; }
+        public string PasswordHash { get; set; } = string.Empty;
     }
 }

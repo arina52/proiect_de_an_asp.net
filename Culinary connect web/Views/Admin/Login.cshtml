@@ -1,25 +1,22 @@
-﻿@model culinaryConnect.Domain.Entities.User.UserLoginModel
+﻿@model culinaryConnect.Domain.Entities.Admin.Admin
+@{ Layout = "~/Views/Shared/layouts/_EmptyLayout.cshtml"; }
 
-@{
-    Layout = "~/Views/Shared/layouts/_EmptyLayout.cshtml";
-}
-
-<div class="bg-light">
+<div class="bg-dark">
     <div class="container vh-100 d-flex justify-content-center align-items-center">
         <div class="col-md-4">
             <div class="card shadow-sm">
                 <div class="card-body">
                     <h3 class="text-center mb-4">Login</h3>
 
-                    @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+                    @using (Html.BeginForm("LoginRequest", "admin", FormMethod.Post))
                     {
                         <div class="form-group">
                             <label for="email">Email</label>
-                            @Html.TextBoxFor(m => m.UserEmail, new { @class = "form-control", placeholder = "Enter email", required = "required" })
+                            @Html.TextBoxFor(m => m.AdminEmail, new { @class = "form-control", placeholder = "Enter email", required = "required" })
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            @Html.PasswordFor(m => m.UserPassword, new { @class = "form-control", placeholder = "Enter password", required = "required" })
+                            @Html.PasswordFor(m => m.AdminPassword, new { @class = "form-control", placeholder = "Enter password", required = "required" })
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Login</button>
                     }
@@ -28,12 +25,6 @@
                     {
                         <div class="alert alert-danger mt-3">@ViewBag.ErrorMessage</div>
                     }
-
-                    <!-- Sign Up Option -->
-                    <p class="text-center mt-3">
-                        Don't have an account?
-                        <a href="@Url.Action("index", "signup")" class="text-primary">Sign up</a>
-                    </p>
                 </div>
             </div>
         </div>

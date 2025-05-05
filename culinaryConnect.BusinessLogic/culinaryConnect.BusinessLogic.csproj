@@ -53,20 +53,10 @@
   <ItemGroup>
     <Compile Include="Core\RecipeService.cs" />
     <Compile Include="Data\CulinaryContext.cs" />
-    <Compile Include="Migrations\202504022328287_InitialCreate.cs" />
-    <Compile Include="Migrations\202504022328287_InitialCreate.Designer.cs">
-      <DependentUpon>202504022328287_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202504031116005_MigrationName.cs" />
-    <Compile Include="Migrations\202504031116005_MigrationName.Designer.cs">
-      <DependentUpon>202504031116005_MigrationName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202504031153430_removesurname.cs" />
-    <Compile Include="Migrations\202504031153430_removesurname.Designer.cs">
-      <DependentUpon>202504031153430_removesurname.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\AdminDB.cs" />
+    <Compile Include="Models\LoginUser.cs" />
+    <Compile Include="Models\RegisterUser.cs" />
+    <Compile Include="Models\UserDB.cs" />
     <Compile Include="Interfaces\IRecipeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Seed\DbInitializer.cs" />
@@ -84,17 +74,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202504022328287_InitialCreate.resx">
-      <DependentUpon>202504022328287_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202504031116005_MigrationName.resx">
-      <DependentUpon>202504031116005_MigrationName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202504031153430_removesurname.resx">
-      <DependentUpon>202504031153430_removesurname.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

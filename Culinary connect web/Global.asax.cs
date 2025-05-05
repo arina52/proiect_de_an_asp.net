@@ -16,8 +16,8 @@ namespace culinaryConnect.Web
             // Code that runs on application startup
            AreaRegistration.RegisterAllAreas();
            RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundle(BundleTable.Bundles);
-            Database.SetInitializer(new DbInitializer());
+           BundleConfig.RegisterBundle(BundleTable.Bundles);
+           Database.SetInitializer(new DbInitializer());
         }
     }
 }
