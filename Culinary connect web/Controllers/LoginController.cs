@@ -1,0 +1,49 @@
+﻿using culinaryConnect.BusinessLogic.Data;
+using culinaryConnect.Domain.Entities.User;
+using System.Linq;
+using System.Web.Mvc;
+using System.Web.Helpers;
+
+namespace Culinary_connect_web.Controllers
+{
+    public class LoginController : Controller
+    {
+
+        private readonly CulinaryContext _context = new CulinaryContext();
+
+        [HttpGet]
+        public ActionResult Index() { 
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(UserLoginModel model)
+        {
+            if (ModelState.IsValid) {
+                var passwordSalted = model.UserPassword + "tralalero";
+                var hashedPassword = Crypto.SHA256(passwordSalted);
+                var user = _context.Users.FirstOrDefault(u => u.UserEmail == model.UserEmail && u.PasswordHash == hashedPassword);
+            
+                if (user != null)
+                {
+                    Session["UserID"] = user.Id;
+                    Session["UserName"] = user.UserName;
+
+                    return RedirectToActionPermanent("index", "home");
+                } else
+                {
+                    ViewBag.ErrorMessage = "Invalid email or password.";
+                    return View("index", model);
+                }
+            }
+            ViewBag.ErrorMessage = "There is something wrong with the input";
+            return View("index", model);
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction("index", "login");
+        }
+    }
+}

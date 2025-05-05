@@ -9,3 +9,24 @@ D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\obj\Debug\culin
 D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\obj\Debug\culinary.F9CE4B44.Up2Date
 D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\obj\Debug\culinaryConnect.BusinessLogic.dll
 D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\obj\Debug\culinaryConnect.BusinessLogic.pdb
+D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\bin\Debug\culinaryConnect.BusinessLogic.dll.config
+D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\bin\Debug\culinaryConnect.BusinessLogic.dll
+D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\bin\Debug\culinaryConnect.BusinessLogic.pdb
+D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\bin\Debug\culinaryConnect.Domain.dll
+D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\bin\Debug\culinaryConnect.Helpers.dll
+D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\bin\Debug\EntityFramework.dll
+D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\bin\Debug\EntityFramework.SqlServer.dll
+D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\bin\Debug\culinaryConnect.Domain.pdb
+D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\bin\Debug\culinaryConnect.Helpers.pdb
+D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\bin\Debug\EntityFramework.xml
+D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\bin\Debug\EntityFramework.SqlServer.xml
+D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\obj\Debug\culinaryConnect.BusinessLogic.csproj.AssemblyReference.cache
+D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\obj\Debug\culinaryConnect.BusinessLogic.csproj.CoreCompileInputs.cache
+D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\obj\Debug\culinary.F9CE4B44.Up2Date
+D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\obj\Debug\culinaryConnect.BusinessLogic.dll
+D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\obj\Debug\culinaryConnect.BusinessLogic.pdb
+D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\culinaryConnect.BusinessLogic.dll.config
+D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\EntityFramework.dll
+D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\EntityFramework.SqlServer.dll
+D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\EntityFramework.xml
+D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\EntityFramework.SqlServer.xml

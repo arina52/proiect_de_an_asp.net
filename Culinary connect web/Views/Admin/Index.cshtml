@@ -1,0 +1,15 @@
+﻿@model culinaryConnect.Domain.Entities.Admin.AdminWraper
+@{ Layout = "~/Views/Shared/layouts/_EmptyLayout.cshtml"; }
+<div>
+    @if (Model != null && Model.Users != null && Model.Users.Count > 0) {
+       foreach (var user in Model.Users)
+            {
+                <div>
+                    @user.Email
+                </div>
+            }
+    } else
+    {
+        <div>there are no users, do something about that</div>
+    }
+</div>

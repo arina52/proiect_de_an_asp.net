@@ -1,13 +1,11 @@
-﻿using culinaryConnect.Web.App_Start;
+﻿using culinaryConnect.BusinessLogic.Seed;
+using culinaryConnect.Web.App_Start;
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Data.Entity;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using System.Web.Security;
-using System.Web.SessionState;
 
 namespace culinaryConnect.Web
 {
@@ -18,7 +16,8 @@ namespace culinaryConnect.Web
             // Code that runs on application startup
            AreaRegistration.RegisterAllAreas();
            RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundle(BundleTable.Bundles);
+           BundleConfig.RegisterBundle(BundleTable.Bundles);
+           Database.SetInitializer(new DbInitializer());
         }
     }
 }
