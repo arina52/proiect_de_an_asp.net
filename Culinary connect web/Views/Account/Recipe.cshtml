@@ -1,0 +1,50 @@
+﻿@model culinaryConnect.Domain.Entities.Recipe.RecipeDetails
+@{ 
+    Layout = "~/Views/Shared/layouts/_EmptyLayout.cshtml";
+}
+
+    <!-- Recipe Submission Form Section Begin -->
+    <div class="container mt-5">
+        <h2 class="text-center mb-4" style="font-weight: 700;">Trimiteți o rețetă</h2>
+        @using (Html.BeginForm("AddRecipe", "account", FormMethod.Post, new {@class="recipe-form"} ))
+        {
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Title, "Numele rețetei")
+                        @Html.TextBoxFor(m => m.Title, new {@class = "form-control", placeholder = "Introduceți numele rețetei"})
+                        @Html.ValidationMessageFor(m => m.Title)
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.CategoryID, "Categorie")
+                        @Html.DropDownListFor(m => m.CategoryID, new List<SelectListItem> {
+                        new SelectListItem { Value = "", Text = "Selectați o categorie" },
+                        new SelectListItem { Value = "Vegan", Text = "Vegan" },
+                        new SelectListItem { Value = "Non-Vegan", Text = "Non-Vegan" },
+                        new SelectListItem { Value = "Dessert", Text = "Desert" },
+                        new SelectListItem { Value = "Appetizer", Text = "Aperitiv" }
+                        }, new { @class = "form-control" })
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Description, "Descriere")
+                @Html.TextAreaFor(m => m.Description, new {@class = "form-control", rows=8, placeholder="Introduceți descrierea rețetei"})
+                @Html.ValidationMessageFor(m => m.Description)
+            </div>
+
+            @*<div class="form-group">
+                <label for="recipe-image">Imaginea rețetei</label>
+                <input type="file" id="recipe-image" class="form-control-file" required>
+            </div>*@
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block">Trimiteți rețetă</button>
+            </div>
+        }
+    </div>
+    <!-- Recipe Submission Form Section End -->
