@@ -16,7 +16,14 @@
                         </ul>
                     </li>
 
-                    <li><a href="@Url.Action("index", "login")">Logare</a></li>
+                    @if (Session["UserID"] != null)
+                    {
+                        <li><a href="@Url.Action("index", "account")">Cont</a></li>
+                    }
+                    else
+                    {
+                        <li><a href="@Url.Action("index", "login")">Logare</a></li>
+                    }
 
                 </ul>
             </nav>

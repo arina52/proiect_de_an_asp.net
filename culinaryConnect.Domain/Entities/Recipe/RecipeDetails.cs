@@ -12,6 +12,6 @@ namespace culinaryConnect.Domain.Entities.Recipe
         public string Title { get; set; }
         //public string Image { get; set; }
         public string Description { get; set; }
-        public int CategoryID { get; set; }
+        public string CategoryID { get; set; }
     }
 }

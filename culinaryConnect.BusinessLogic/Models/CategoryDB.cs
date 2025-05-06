@@ -15,6 +15,6 @@ namespace culinaryConnect.BusinessLogic.Models
         public string Title { get; set; }
 
         [Required]
-        public List<RecipeDB> Recipies { get; set; }
+        public List<string> Recipies { get; set; }
     }
 }

@@ -46,6 +46,7 @@
     <Compile Include="Entities\Admin\AdminWraper.cs" />
     <Compile Include="Entities\Category\Category.cs" />
     <Compile Include="Entities\Recipe\RecipeDetails.cs" />
+    <Compile Include="Entities\Recipe\RecipesPageModel.cs" />
     <Compile Include="Entities\User\User.cs" />
     <Compile Include="Entities\User\UserLoginModel.cs" />
     <Compile Include="Entities\User\UserRegisterModel.cs" />
