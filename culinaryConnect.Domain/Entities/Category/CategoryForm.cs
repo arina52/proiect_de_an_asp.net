@@ -8,6 +8,6 @@ namespace culinaryConnect.Domain.Entities.Category
 {
     public class CategoryForm
     {
-        public string Title;
+        public string Title { get; set; }
     }
 }

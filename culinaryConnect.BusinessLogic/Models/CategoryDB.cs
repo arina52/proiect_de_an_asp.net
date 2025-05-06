@@ -14,7 +14,6 @@ namespace culinaryConnect.BusinessLogic.Models
         [StringLength(100)]
         public string Title { get; set; }
 
-        [Required]
         public List<string> Recipies { get; set; }
     }
 }

@@ -8,8 +8,8 @@ namespace culinaryConnect.Domain.Entities.Category
 {
     public class Category
     {
-        public int Id;
-        public string Title;
-        public List<string> RecipesID;
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public List<string> RecipesID { get; set; }
     }
 }
