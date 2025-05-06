@@ -45,6 +45,8 @@
     <Compile Include="Entities\Admin\Admin.cs" />
     <Compile Include="Entities\Admin\AdminWraper.cs" />
     <Compile Include="Entities\Category\Category.cs" />
+    <Compile Include="Entities\Category\CategoryForm.cs" />
+    <Compile Include="Entities\Category\CategoryPageModel.cs" />
     <Compile Include="Entities\Recipe\RecipeDetails.cs" />
     <Compile Include="Entities\Recipe\RecipesPageModel.cs" />
     <Compile Include="Entities\User\User.cs" />

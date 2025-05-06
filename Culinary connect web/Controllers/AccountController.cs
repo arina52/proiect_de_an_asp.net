@@ -44,6 +44,11 @@ namespace Culinary_connect_web.Controllers
             return View(model);
         }
 
+        public ActionResult Recipe()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult AddRecipe(RecipesPageModel model)
         {

@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Category";
+    Layout = "~/Views/Shared/layouts/_EmptyLayout.cshtml";
+}
+
+@model culinaryConnect.Domain.Entities.Category.CategoryPageModel
+@{
+    Layout = "~/Views/Shared/layouts/_EmptyLayout.cshtml";
+}
+
+<!-- Category Creation Form Section Begin -->
+<div class="container mt-5">
+    <h2 class="text-center mb-4" style="font-weight: 700;">Creați o categorie nouă</h2>
+    @using (Html.BeginForm("AddCategory", "admin", FormMethod.Post, new { @class = "category-form" }))
+    {
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.FormCategory.Title, "Numele categoriei")
+                    @Html.TextBoxFor(m => m.FormCategory.Title, new { @class = "form-control", placeholder = "Introduceți numele categoriei" })
+                    @Html.ValidationMessageFor(m => m.FormCategory.Title)
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success btn-block">Adăugați categorie</button>
+                </div>
+            </div>
+        </div>
+    }
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div>
+            @ViewBag.ErrorMessage
+        </div>
+    }
+</div>
+<!-- Category Creation Form Section End -->
+<!-- Category List Table -->
+@if (Model != null && Model.Categories != null && Model.Categories.Count > 0)
+{
+    <div class="container mt-5">
+        <h3 class="mb-4" style="font-weight: 600;">Categorii existente</h3>
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Titlu</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var category in Model.Categories)
+                {
+                    <tr>
+                        <td>@category.Id</td>
+                        <td>@category.Title</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

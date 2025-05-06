@@ -5,6 +5,8 @@ using System.Web.Mvc;
 using culinaryConnect.BusinessLogic.Data;
 using culinaryConnect.Domain.Entities.Admin;
 using culinaryConnect.Web.Services.AdminService;
+using culinaryConnect.Domain.Entities.Category;
+using culinaryConnect.BusinessLogic.Models;
 
 namespace Culinary_connect_web.Controllers
 {
@@ -62,6 +64,60 @@ namespace Culinary_connect_web.Controllers
 
             ViewBag.ErrorMessage = "Login failed";
             return View("login");
+        }
+
+        public ActionResult Category()
+        {
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("login");
+            }
+
+            var categories = _context.Categories.ToList().Select(c => new Category
+            {
+                Id = c.Id,
+                Title = c.Title,
+                RecipesID = c.Recipies
+            }).ToList();
+
+            var model = new CategoryPageModel
+            {
+                FormCategory = new CategoryForm(),
+                Categories = categories
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult AddCategory(CategoryPageModel model)
+        {
+            if (Session["AdminID"]==null)
+            {
+                return RedirectToAction("login");
+            }
+            if (!ModelState.IsValid)
+            {
+                ViewBag.ErrorMessage = "Model not valid";
+                return View("category", model);
+            }
+
+            var category = model.FormCategory;
+
+            if (string.IsNullOrEmpty(category.Title))
+            {
+                ViewBag.ErrorMessage = "Title is empty";
+                return View("category", model);
+            }
+            var categoryDB = new CategoryDB{ Title = category.Title };
+
+            _context.Categories.Add(categoryDB);
+            _context.SaveChanges();
+
+            model.FormCategory = new CategoryForm();
+
+            TempData["Success"] = "Category created successfully!";
+            return RedirectToAction("category", "admin", model);
         }
     }
 }
