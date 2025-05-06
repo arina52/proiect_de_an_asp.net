@@ -33,6 +33,20 @@
           "SelectedChildIndex": 10,
           "Children": [
             {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Recipes.cshtml",
+              "DocumentMoniker": "D:\\twproject\\proiect_de_an_asp.net\\Culinary connect web\\Views\\Account\\Recipes.cshtml",
+              "RelativeDocumentMoniker": "Culinary connect web\\Views\\Account\\Recipes.cshtml",
+              "ToolTip": "D:\\twproject\\proiect_de_an_asp.net\\Culinary connect web\\Views\\Account\\Recipes.cshtml",
+              "RelativeToolTip": "Culinary connect web\\Views\\Account\\Recipes.cshtml",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAADoAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-05T21:03:34.153Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
@@ -70,27 +84,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Recipes.cshtml",
-              "DocumentMoniker": "D:\\twproject\\proiect_de_an_asp.net\\Culinary connect web\\Views\\Account\\Recipes.cshtml",
-              "RelativeDocumentMoniker": "Culinary connect web\\Views\\Account\\Recipes.cshtml",
-              "ToolTip": "D:\\twproject\\proiect_de_an_asp.net\\Culinary connect web\\Views\\Account\\Recipes.cshtml",
-              "RelativeToolTip": "Culinary connect web\\Views\\Account\\Recipes.cshtml",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAADoAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-05T21:03:34.153Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "RouteConfig.cs",
               "DocumentMoniker": "D:\\twproject\\proiect_de_an_asp.net\\Culinary connect web\\App_Start\\RouteConfig.cs",
               "RelativeDocumentMoniker": "Culinary connect web\\App_Start\\RouteConfig.cs",
               "ToolTip": "D:\\twproject\\proiect_de_an_asp.net\\Culinary connect web\\App_Start\\RouteConfig.cs",
               "RelativeToolTip": "Culinary connect web\\App_Start\\RouteConfig.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-05T22:20:41.403Z",
               "EditorCaption": ""
