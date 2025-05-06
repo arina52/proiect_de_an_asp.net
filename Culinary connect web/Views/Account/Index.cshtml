@@ -1,5 +1,42 @@
-﻿@{ Layout = "~/Views/Shared/layouts/_EmptyLayout.cshtml"; }
+﻿@{
+    Layout = "~/Views/Shared/layouts/_EmptyLayout.cshtml";
 
-<div>
-    this is the account page
+    // Dummy user data
+    var userName = "Laur";
+    var userEmail = "laur@example.com";
+    var userPhone = "+1234567890";
+    var userInitial = userName?.FirstOrDefault().ToString().ToUpper();
+}
+
+<div class="bg-dark vh-100 d-flex justify-content-center align-items-center">
+    <div class="container" style="max-width: 400px; margin: auto;">
+        <div class="row card text-center mb-2 p-4">
+            <div class="mx-auto rounded-circle bg-primary text-white d-flex justify-content-center align-items-center"
+                 style="width: 80px; height: 80px; font-size: 2rem;">
+                @userInitial
+            </div>
+            <div class="mt-4">
+                <h5 class="mb-1">@userName</h5>
+                <p class="mb-1 text-muted">@userEmail</p>
+                <p class="mb-0 text-muted">@userPhone</p>
+            </div>
+        </div>
+        <div class="container-fluid p-0">
+            <div class="row mb-2 p-0">
+                <div class="col mr-2 p-0">
+                    <a href="@Url.Action("recipes", "account")" class="d-block rounded-sm bg-white w-full text-center text-black-50 py-2">Vezi retete</a>
+                </div>
+                <div class="col ml-2 p-0 ">
+                    <a href="@Url.Action("recipes", "account")" class="d-block rounded-sm bg-white w-full text-center text-black-50 py-2">Iesi din cont</a>
+                </div>
+            </div>
+            <div class="row p-0">
+                <div class="col p-0">
+                    <a href="@Url.Action("favorites", "account")" class="d-block rounded-sm bg-white w-full text-center text-black-50 py-2">
+                        Favorite
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

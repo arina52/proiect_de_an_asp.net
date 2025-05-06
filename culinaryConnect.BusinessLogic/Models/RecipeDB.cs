@@ -18,7 +18,6 @@ namespace culinaryConnect.BusinessLogic.Models
         public string Description { get; set; } = string.Empty;
 
         [Required]
-        [StringLength(100)]
-        public int CategoryID { get; set; }
+        public string CategoryID { get; set; }
     }
 }

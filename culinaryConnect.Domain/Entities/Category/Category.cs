@@ -10,6 +10,6 @@ namespace culinaryConnect.Domain.Entities.Category
     {
         public int Id;
         public string Title;
-        public List<int> RecipesID;
+        public List<string> RecipesID;
     }
 }

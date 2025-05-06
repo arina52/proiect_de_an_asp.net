@@ -1,0 +1,65 @@
+﻿@model culinaryConnect.Domain.Entities.Recipe.RecipesPageModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<div class="container mb-4">
+    <!-- Button to trigger modal -->
+    <button class="btn btn-primary" data-toggle="modal" data-target="#addRecipeModal">
+        Add Recipe
+    </button>
+
+    <!-- Modal structure -->
+    <div class="modal fade" id="addRecipeModal" tabindex="-1" role="dialog" aria-labelledby="addRecipeLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add a New Recipe</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="add-recipe-modal-body">
+                    @using (Html.BeginForm("AddRecipe", "account", FormMethod.Post))
+                    {
+                        <div class="form-group">
+                            <label for="recipe-title">Title</label>
+                            @Html.TextBoxFor(m => m.RecipeForm.Title, new {@class = "form-control", id = "recipe-title", required = "required"})
+                        </div>
+                        <div class="form-group">
+                            <label for="recipe-description">Description</label>
+                            @Html.TextAreaFor(m => m.RecipeForm.Description, new { @class = "form-control", id = "recipe-description", required = "required" })
+                        </div>
+                        <button type="submit" class="btn btn-success mt-2">Save Recipe</button>
+                    }
+
+                    @if (ViewBag.ErrorMessage != null)
+                    {
+                        <div class="alert alert-danger mt-3">@ViewBag.ErrorMessage</div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    @if (Model != null && Model.RecipeList != null && Model.RecipeList.Count > 0)
+    {
+        foreach (var recipe in Model.RecipeList)
+        {
+            <div class="card p-2">
+                <div class="mb-2">
+                    <h4 class="mb-2 font-weight-bold">@recipe.Title</h4>
+                    <div>
+                        @recipe.Description
+                    </div>
+                </div>
+                <a class="w-25" href="@Url.Action(recipe.Id.ToString(), "recipe")">
+                    Check the recipe
+                </a>
+            </div>
+        }
+    }
+</div>

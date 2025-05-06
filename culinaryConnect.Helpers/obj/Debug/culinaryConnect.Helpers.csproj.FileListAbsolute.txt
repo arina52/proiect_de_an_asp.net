@@ -10,3 +10,9 @@ D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.Helpers\obj\Deb
 D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.Helpers\obj\Debug\culinaryConnect.Helpers.csproj.CoreCompileInputs.cache
 D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.Helpers\obj\Debug\culinaryConnect.Helpers.dll
 D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.Helpers\obj\Debug\culinaryConnect.Helpers.pdb
+D:\twproject\proiect_de_an_asp.net\culinaryConnect.Helpers\bin\Debug\culinaryConnect.Helpers.dll
+D:\twproject\proiect_de_an_asp.net\culinaryConnect.Helpers\bin\Debug\culinaryConnect.Helpers.pdb
+D:\twproject\proiect_de_an_asp.net\culinaryConnect.Helpers\obj\Debug\culinaryConnect.Helpers.csproj.AssemblyReference.cache
+D:\twproject\proiect_de_an_asp.net\culinaryConnect.Helpers\obj\Debug\culinaryConnect.Helpers.csproj.CoreCompileInputs.cache
+D:\twproject\proiect_de_an_asp.net\culinaryConnect.Helpers\obj\Debug\culinaryConnect.Helpers.dll
+D:\twproject\proiect_de_an_asp.net\culinaryConnect.Helpers\obj\Debug\culinaryConnect.Helpers.pdb

@@ -11,9 +11,9 @@
             {
                 <div class="col-lg-4 col-sm-6">
                     <div class="recipe-item">
-                        <a href="#"><img src="@Url.Content("~/Content/Images/recipe/" + recipe.Image)" alt=""></a>
+                        @*<a href="#"><img src="@Url.Content("~/Content/Images/recipe/" + recipe.Image)" alt=""></a>*@
                         <div class="ri-text">
-                            <div class="cat-name">@recipe.Category</div>
+                            <div class="cat-name">@recipe.CategoryID</div>
                             <a href="#">
                                 <h4>@recipe.Title</h4>
                             </a>
@@ -52,11 +52,11 @@
                 @foreach (var recipe in Model.Skip(3))
                 {
                     <div class="cfr-item">
-                        <div class="cfr-item-img set-bg" data-setbg="@Url.Content("~/Content/Images/cat-feature/"+recipe.Image)">
+                        @*<div class="cfr-item-img set-bg" data-setbg="@Url.Content("~/Content/Images/cat-feature/"+recipe.Image)">
                             <i class="fa fa-plus"></i>
-                        </div>
+                        </div>*@
                         <div class="cfr-item-text">
-                            <div class="cat-name">@recipe.Category</div>
+                            <div class="cat-name">@recipe.CategoryID</div>
                             <a href="#">
                                 <h4>@recipe.Title</h4>
                             </a>
@@ -71,9 +71,9 @@
                 @foreach (var recipe in Model)
                 {
                     <div class="cfr-small-item">
-                        <a href="#"><img src=@Url.Content("~/Content/Images/cat-feature/small-" + recipe.Id +".jpg") alt="@recipe.Title"></a>
+                        @*<a href="#"><img src=@Url.Content("~/Content/Images/cat-feature/small-" + recipe.Id +".jpg") alt="@recipe.Title"></a>*@
                         <div class="cfr-small-text">
-                            <div class="cat-name">@recipe.Category</div>
+                            <div class="cat-name">@recipe.CategoryID</div>
                             <h6> @recipe.Title </h6>
                         </div>
                     </div>
