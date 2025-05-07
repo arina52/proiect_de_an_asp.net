@@ -15,11 +15,13 @@
                 </div>
             </div>
             <div class="col-lg-6 offset-lg-1">
-                <form action="#" class="subscribe-form">
-                    <h3>Abonați-vă la buletinul nostru informativ</h3>
-                    <input type="email" placeholder="E-mail">
-                    <button type="submit">Abonează-te</button>
-                </form>
+                @using (Html.BeginForm("SubscribeNews", "Home", FormMethod.Post)){ 
+                    <div class="subscribe-form">
+                        <h3>Abonați-vă la buletinul nostru informativ</h3>
+                        <input type="email" name="email" placeholder="E-mail">
+                        <button type="submit">Abonează-te</button>
+                    </div>
+                }
                 <div class="social-links">
                     <a href="#"><i class="fa fa-instagram"></i><span>Instagram</span></a>
                     <a href="#"><i class="fa fa-pinterest"></i><span>Pinterest</span></a>

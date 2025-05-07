@@ -11,7 +11,7 @@ namespace culinaryConnect.BusinessLogic.Models.UserDB
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required]
+        
         [StringLength(100)]
         public string UserName { get; set; } = string.Empty;
 
@@ -19,8 +19,9 @@ namespace culinaryConnect.BusinessLogic.Models.UserDB
         [StringLength(100)]
         public string UserEmail { get; set; } = string.Empty;
 
-        [Required]
         [StringLength(100)]
         public string PasswordHash { get; set; } = string.Empty;
+
+        public bool SubscribedToNews { get; set; } = false;
     }
 }

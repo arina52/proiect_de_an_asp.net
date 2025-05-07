@@ -32,7 +32,21 @@ namespace Culinary_connect_web.Controllers
                     return RedirectToActionPermanent("index", "home");
                 } else
                 {
-                    ViewBag.ErrorMessage = "Invalid email or password.";
+                    var isThereUserWithEmail = _context.Users.FirstOrDefault(u => u.UserEmail == model.UserEmail);
+                    if (isThereUserWithEmail != null)
+                    {
+                        if(isThereUserWithEmail.PasswordHash != null)
+                        {
+                            ViewBag.ErrorMessage = "Invalid password.";
+                            return View("index", model);
+                        }
+                        else
+                        {
+                            ViewBag.ErrorMessage = "Go create an account.";
+                            return View("index", model);
+                        }
+                    }
+                    ViewBag.ErrorMessage = "No such user! Go create account";
                     return View("index", model);
                 }
             }

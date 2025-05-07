@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
+using System;
+using culinaryConnect.Domain.Entities.Recipe;
 namespace culinaryConnect.BusinessLogic.Models
 {
     public class RecipeDB
@@ -19,5 +21,15 @@ namespace culinaryConnect.BusinessLogic.Models
 
         [Required]
         public string CategoryID { get; set; }
+
+        [Required]
+        public DateTime CreatedDate { get; set; }
+
+        [Required]
+        public Status Status { get; set; }
+
+        [Required]
+        // can be both user and admin
+        public string AuthorID { get; set; }
     }
 }

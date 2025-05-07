@@ -12,5 +12,7 @@ namespace culinaryConnect.Domain.Entities.User
         public string Name { get; set; }
         public string Email { get; set; }
 
+        public bool SubscribedNews { get; set; }
+
     }
 }

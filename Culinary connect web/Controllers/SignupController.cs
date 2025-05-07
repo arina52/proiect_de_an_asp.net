@@ -22,19 +22,27 @@ public class SignupController : Controller
             ViewBag.ErrorMessage = "The input model is invalid";
             return View("Index", model);
         }
+        const string salt = "tralalero";
+        var hashedPassword = Crypto.SHA256(model.UserPassword + salt);
 
         // Check if user already exists
-        var userExists = _context.Users.Any(u => u.UserEmail == model.UserEmail);
-        if (userExists)
+        var user = _context.Users.FirstOrDefault(u => u.UserEmail == model.UserEmail);
+        if (user != null)
         {
-            ViewBag.ErrorMessage = "User already exists.";
-            return View("index", model);
+            if (user.PasswordHash != null) { 
+                ViewBag.ErrorMessage = "User already exists.";
+                return View("index", model);
+            }
+            else
+            {
+                user.PasswordHash = hashedPassword;
+                user.UserName = model.UserEmail;
+
+                _context.SaveChanges();
+                TempData["Success"] = "Account created successfully!";
+                return RedirectToAction("index", "login");
+            }
         }
-
-        const string salt = "tralalero";
-
-        // Hash the password
-        var hashedPassword = Crypto.SHA256(model.UserPassword + salt);
 
         var newUser = new UserDB
         {

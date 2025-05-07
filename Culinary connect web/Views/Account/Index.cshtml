@@ -26,9 +26,12 @@
                 <div class="col mr-2 p-0">
                     <a href="@Url.Action("recipes", "account")" class="d-block rounded-sm bg-white w-full text-center text-black-50 py-2">Vezi retete</a>
                 </div>
-                <div class="col ml-2 p-0 ">
-                    <a href="@Url.Action("recipes", "account")" class="d-block rounded-sm bg-white w-full text-center text-black-50 py-2">Iesi din cont</a>
-                </div>
+                @using (Html.BeginForm("logout", "login", FormMethod.Post))
+                {
+                    <div class="col ml-2 p-0 ">
+                        <button type="submit" class="d-block rounded-sm bg-white w-full text-center text-black-50 py-2">Iesi din cont</button>
+                    </div>
+                }
             </div>
             <div class="row p-0">
                 <div class="col p-0">
