@@ -7,6 +7,7 @@ using culinaryConnect.Domain.Entities.Admin;
 using culinaryConnect.Web.Services.AdminService;
 using culinaryConnect.Domain.Entities.Category;
 using culinaryConnect.BusinessLogic.Models;
+using System.Data.Entity.Migrations;
 
 namespace Culinary_connect_web.Controllers
 {
@@ -92,7 +93,7 @@ namespace Culinary_connect_web.Controllers
         [HttpPost]
         public ActionResult AddCategory(CategoryPageModel model)
         {
-            if (Session["AdminID"]==null)
+            if (Session["AdminID"] == null)
             {
                 return RedirectToAction("login");
             }
@@ -118,6 +119,52 @@ namespace Culinary_connect_web.Controllers
 
             TempData["Success"] = "Category created successfully!";
             return RedirectToAction("category", "admin", model);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteCategory(int ID)
+        {
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("login");
+            }
+
+            var category = _context.Categories.FirstOrDefault(c => c.Id == ID);
+
+            if(category == null)
+            {
+                ViewBag.ErrorMessage = "No category was found";
+                return View("category");
+            }
+
+            _context.Categories.Remove(category);
+            _context.SaveChanges();
+
+            TempData["Success"] = "Category deleted successfully!";
+            return RedirectToAction("category", "admin");
+        }
+
+        [HttpPost]
+        public ActionResult UpdateCategory(int ID, string newTitle)
+        {
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("login");
+            }
+
+            var category = _context.Categories.FirstOrDefault(c => c.Id == ID);
+
+            if (category == null)
+            {
+                ViewBag.ErrorMessage = "No category was found";
+                return View("category");
+            }
+
+            category.Title = newTitle;
+            _context.SaveChanges();
+
+            TempData["Success"] = "Category updated successfully!";
+            return RedirectToAction("category", "admin");
         }
     }
 }
