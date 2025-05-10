@@ -130,8 +130,8 @@ ol {
 }
 
 .spad {
-	padding-top: 100px;
-	padding-bottom: 100px;
+	padding-top: 50px;
+	padding-bottom: 50px;
 }
 
 .text-white h1,
@@ -1452,7 +1452,7 @@ ol {
 
 .recipe-top .recipe-title {
 	text-align: center;
-	margin-bottom: 90px;
+	margin-bottom: 10px;
 }
 
 .recipe-top .recipe-title span {

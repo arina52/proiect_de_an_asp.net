@@ -16,7 +16,7 @@ namespace Culinary_connect_web.Controllers
         // GET: Recipe
         public ActionResult Index(int id)
         {
-            var recipeDB = _context.Recipes.FirstOrDefault(x => x.Id == id);
+            var recipeDB = _context.Recipes.Include("AboutRecipe").FirstOrDefault(r => r.Id == id);
 
 
             if (recipeDB == null) {

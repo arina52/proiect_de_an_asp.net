@@ -1,8 +1,77 @@
-﻿@model culinaryConnect.Domain.Entities.Recipe.RecipeDetails
-
-<div class="container">
-    <h2>@Model.Title</h2>
-    <div>
-        @Model.Description
+﻿<section class="single-page-recipe spad">
+    <div class="recipe-top">
+        <div class="container-fluid">
+            <div class="recipe-title">
+                <span>~ @Model.AboutRecipe.Ingredients.Split(new[] { "###" }, StringSplitOptions.None).Length ingrediente / @Model.AboutRecipe.CookingTime</span>
+                <h2>@Model.Title</h2>
+            </div>
+            <img src=@Url.Content("~/Content/Images/recipe/"+ Model.ImagePath) alt="@Model.Title" class="d-block mx-auto img-fluid" />
+        </div>
     </div>
-</div>
+
+    <div class="container">
+        <div class="row">
+            <!-- Left column: Ingredients -->
+            <div class="col-lg-5">
+                <div class="ingredients-item">
+                    <div class="intro-item">
+                        <img src=@Url.Content("~/Content/Images/recipe/"+ Model.ImagePath) alt="Intro" />
+                        <h2>@Model.Title</h2>
+                        <div class="rating">
+                            <i class="fa fa-star"></i><i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i><i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="reviews">5.0 din 1 recenzie</div>
+                        <div class="recipe-time">
+                            <ul>
+                                <li>Timp de pregătire: <span>@Model.AboutRecipe.CookingTime</span></li>
+                               
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="ingredient-list">
+                        <div class="recipe-btn">
+                            <a href="#" class="black-btn">Salvează rețeta</a>
+                        </div>
+
+                        <div class="list-item">
+                            <h5>Ingrediente</h5>
+                            <ul>
+                                @foreach (var ingredient in Model.AboutRecipe.Ingredients.Split(new[] { "###" }, StringSplitOptions.None))
+                                {
+                                    <li>@ingredient</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right column: Description & Instructions -->
+            <div class="col-lg-7">
+                <div class="recipe-right">
+                    <div class="recipe-desc">
+                        <h3>Descriere</h3>
+                        <p>@Model.AboutRecipe.Description</p>
+                    </div>
+
+                    <div class="instruction-list">
+                        <h3>Instrucțiuni</h3>
+                        <ul>
+                            @{ int i = 1; }
+                            @foreach (var instruction in Model.AboutRecipe.Instructions.Split(new[] { "###" }, StringSplitOptions.None))
+                            {
+                                <li>
+                                    <span>@i.</span> @instruction
+                                </li>
+                                i++;
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
