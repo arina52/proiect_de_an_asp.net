@@ -1,4 +1,5 @@
 ﻿using culinaryConnect.BusinessLogic.Data;
+using culinaryConnect.BusinessLogic.Models;
 using culinaryConnect.Domain.Entities.Recipe;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,14 @@ namespace Culinary_connect_web.Controllers
             var recipePage = new RecipeDetails { 
                 Id = recipeDB.Id,
                 Title = recipeDB.Title,
-                Description = recipeDB.Description,
+                ImagePath = recipeDB.ImagePath,
+                AboutRecipe = new RecipeAbout
+                {
+                    Description = recipeDB.AboutRecipe.Description,
+                    CookingTime = recipeDB.AboutRecipe.CookingTime,
+                    Instructions = recipeDB.AboutRecipe.Instructions,
+                    Ingredients = recipeDB.AboutRecipe.Ingredients
+                },
                 CategoryID = recipeDB.CategoryID
             };
 

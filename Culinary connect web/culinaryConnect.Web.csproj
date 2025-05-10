@@ -114,6 +114,8 @@
     <Content Include="Content\Images\cat-feature\big-2.jpg" />
     <Content Include="Content\Images\cat-feature\big-3.jpg" />
     <Content Include="Content\Images\cat-feature\big-4.jpg" />
+    <Content Include="Content\Images\cat-feature\big-5.jpg" />
+    <Content Include="Content\Images\cat-feature\big-6.jpg" />
     <Content Include="Content\Images\cat-feature\small-1.jpg" />
     <Content Include="Content\Images\cat-feature\small-2.jpg" />
     <Content Include="Content\Images\cat-feature\small-3.jpg" />
@@ -180,6 +182,7 @@
     <Compile Include="Controllers\RecipesController.cs" />
     <Compile Include="Controllers\SignupController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="DTO\RecipesListDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

@@ -55,6 +55,7 @@
     <Compile Include="Data\CulinaryContext.cs" />
     <Compile Include="Models\AdminDB.cs" />
     <Compile Include="Models\CategoryDB.cs" />
+    <Compile Include="Models\RecipeAboutDB.cs" />
     <Compile Include="Models\RecipeDB.cs" />
     <Compile Include="Models\LoginUser.cs" />
     <Compile Include="Models\RegisterUser.cs" />

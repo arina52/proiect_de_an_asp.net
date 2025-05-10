@@ -35,7 +35,14 @@ namespace Culinary_connect_web.Controllers
                 {
                     Id = r.Id,
                     Title = r.Title,
-                    Description = r.Description,
+                    ImagePath = r.ImagePath,
+                    AboutRecipe = new RecipeAbout
+                    {
+                        Description = r.AboutRecipe.Description,
+                        CookingTime = r.AboutRecipe.CookingTime,
+                        Instructions = r.AboutRecipe.Instructions,
+                        Ingredients = r.AboutRecipe.Ingredients
+                    },
                     CategoryID = r.CategoryID ?? null
                 }).ToList()
 
@@ -63,7 +70,7 @@ namespace Culinary_connect_web.Controllers
 
             var recipe = model.RecipeForm;
 
-            if (string.IsNullOrWhiteSpace(recipe.Title) || string.IsNullOrWhiteSpace(recipe.Description) ){
+            if (string.IsNullOrWhiteSpace(recipe.Title) || string.IsNullOrWhiteSpace(recipe.AboutRecipe.Description) ){
                 ViewBag.ErrorMessage = "Title and Description are required";
                 return View("recipes", model);
             }
@@ -71,7 +78,13 @@ namespace Culinary_connect_web.Controllers
             var newRecipe = new RecipeDB
             {
                 Title = recipe.Title,
-                Description = recipe.Description,
+                AboutRecipe = new RecipeAboutDB
+                {
+                    Description = recipe.AboutRecipe.Description,
+                    CookingTime = recipe.AboutRecipe.CookingTime,
+                    Instructions = recipe.AboutRecipe.Instructions,
+                    Ingredients = recipe.AboutRecipe.Ingredients
+                },
                 CategoryID = recipe.CategoryID ?? "-1",
             };
 
