@@ -16,11 +16,15 @@ namespace culinaryConnect.BusinessLogic.Models
         public string Title { get; set; } = string.Empty;
 
         [Required]
-        [StringLength(100)]
-        public string Description { get; set; } = string.Empty;
+        public int AboutRecipeID { get; set; }
 
+        [ForeignKey("AboutRecipeID")]
+        public RecipeAboutDB AboutRecipe { get; set; }
         [Required]
         public string CategoryID { get; set; }
+
+        [Required]
+        public string ImagePath { get; set; } = string.Empty;
 
         [Required]
         public DateTime CreatedDate { get; set; }
