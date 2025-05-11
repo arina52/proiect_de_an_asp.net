@@ -1,15 +1,9 @@
 ﻿@model culinaryConnect.Domain.Entities.Admin.AdminWraper
-@{ Layout = "~/Views/Shared/layouts/_EmptyLayout.cshtml"; }
-<div>
-    @if (Model != null && Model.Users != null && Model.Users.Count > 0) {
-       foreach (var user in Model.Users)
-            {
-                <div>
-                    @user.Email
-                </div>
-            }
-    } else
-    {
-        <div>there are no users, do something about that</div>
-    }
-</div>
+@{
+    Layout = "~/Views/Shared/layouts/_AdminLayout.cshtml";
+}
+
+<!-- Include Bootstrap CSS (if not already included in your layout) -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<div>this is admin</div>

@@ -1,0 +1,96 @@
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Culinary Connect Admin">
+    <meta name="keywords" content="Admin, Culinary, Dashboard, HTML">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Culinary Connect Admin | by A&D</title>
+    <link rel="shortcut icon" href="~/Content/Images/181786.png" type="image/x-icon">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap" rel="stylesheet">
+
+    <!-- CSS Bundles -->
+    @Styles.Render("~/bundles/bootstrap/css")
+    @Styles.Render("~/bundles/fontawesome/css")
+    @Styles.Render("~/bundles/niceselect/css")
+    @Styles.Render("~/bundles/slicknav/css")
+    @Styles.Render("~/bundles/style/css")
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .sidebar {
+            min-height: 100vh;
+            background-color: #2A4759;
+            color: white;
+            padding-top: 20px;
+        }
+
+            .sidebar a, .sidebar button {
+                color: white;
+                text-decoration: none;
+                padding: 12px 20px;
+                display: block;
+                transition: background-color 0.3s;
+            }
+
+            .sidebar button{
+               background-color: transparent;
+               border: none;
+               width: 100%;
+               text-align:left;
+            }
+
+                .sidebar a:hover, .sidebar button:hover {
+                    background-color: #F79B72;
+                }
+
+            .sidebar h4 {
+                padding: 0 20px 20px;
+            }
+
+        .dashboard-content {
+            padding: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-3 col-lg-2 sidebar">
+                <h4>Culinary Admin</h4>
+                <a href="@Url.Action("index")">Dashboard</a>
+                <a href="@Url.Action("users")">Users</a>
+                <a href="@Url.Action("recipes")">Recipes</a>
+                <a href="@Url.Action("settings")">Settings</a>
+                <a href="@Url.Action("reports")">Reports</a>
+                @using (Html.BeginForm("Logout", "admin", FormMethod.Post))
+                {
+                    <button type="submit">Logout</button>
+                }
+            </nav>
+
+            <!-- Main Content -->
+            <main class="col-md-9 col-lg-10 dashboard-content">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+    <!-- JS Bundles -->
+    @Scripts.Render("~/bundles/jquery3.3.1/js")
+    @Scripts.Render("~/bundles/slicknav/js")
+    @Scripts.Render("~/bundles/niceselect/js")
+    @Scripts.Render("~/bundles/mixitup/js")
+    @Scripts.Render("~/bundles/main/js")
+    @Scripts.Render("~/bundles/bootstrap/js")
+</body>
+</html>
