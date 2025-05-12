@@ -6,7 +6,6 @@ using culinaryConnect.BusinessLogic.Data;
 using culinaryConnect.BusinessLogic.Models.UserDB;
 using culinaryConnect.Domain.Entities.Admin;
 using culinaryConnect.Web.Services.AdminService;
-using culinaryConnect.Domain.Entities.Category;
 using culinaryConnect.BusinessLogic.Models;
 using culinaryConnect.Domain.Entities.User;
 using culinaryConnect.Domain.Entities.Recipe;
@@ -15,6 +14,8 @@ using culinaryConnect.Domain.Entities.Recipe.AdminRecipe;
 using culinaryConnect.Web.Services;
 using System.Web;
 using System.IO;
+using culinaryConnect.Domain.Entities.CategoryModels.AdminCategories;
+using culinaryConnect.Domain.Entities.CategoryModels.AdminCategory;
 
 namespace Culinary_connect_web.Controllers
 {
@@ -167,7 +168,7 @@ namespace Culinary_connect_web.Controllers
         }
 
 
-        public ActionResult Category()
+        public ActionResult Categories()
         {
             if (Session["AdminID"] == null)
             {
@@ -181,10 +182,31 @@ namespace Culinary_connect_web.Controllers
                 RecipesID = c.Recipies
             }).ToList();
 
-            var model = new CategoryPageModel
+            var model = new CategoriesPageModel
             {
-                FormCategory = new CategoryForm(),
+                FormCategory = new CategoriesForm(),
                 Categories = categories
+            };
+
+            return View(model);
+        }
+
+        public ActionResult Category(int id)
+        {
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("login");
+            }
+
+            var category = _context.Categories.FirstOrDefault(c => c.Id == id);
+            if(category == null)
+            {
+                return RedirectToAction("categories");
+            }
+
+            var model = new Category { 
+                Id = category.Id,
+                Title = category.Title
             };
 
             return View(model);
@@ -426,7 +448,7 @@ namespace Culinary_connect_web.Controllers
 
         // Category
         [HttpPost]
-        public ActionResult AddCategory(CategoryPageModel model)
+        public ActionResult AddCategory(CategoriesPageModel model)
         {
             if (Session["AdminID"] == null)
             {
@@ -450,7 +472,7 @@ namespace Culinary_connect_web.Controllers
             _context.Categories.Add(categoryDB);
             _context.SaveChanges();
 
-            model.FormCategory = new CategoryForm();
+            model.FormCategory = new CategoriesForm();
 
             TempData["Success"] = "Category created successfully!";
             return RedirectToAction("category", "admin", model);
@@ -499,7 +521,7 @@ namespace Culinary_connect_web.Controllers
             _context.SaveChanges();
 
             TempData["Success"] = "Category updated successfully!";
-            return RedirectToAction("category", "admin");
+            return RedirectToAction("category", new {id = category.Id});
         }
     }
 }

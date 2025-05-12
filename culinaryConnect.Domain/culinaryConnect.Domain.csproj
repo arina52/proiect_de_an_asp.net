@@ -44,9 +44,10 @@
     <Compile Include="Entities\Account\User.cs" />
     <Compile Include="Entities\Admin\Admin.cs" />
     <Compile Include="Entities\Admin\AdminWraper.cs" />
-    <Compile Include="Entities\Category\Category.cs" />
-    <Compile Include="Entities\Category\CategoryForm.cs" />
-    <Compile Include="Entities\Category\CategoryPageModel.cs" />
+    <Compile Include="Entities\CategoryModels\AdminCategory\Category.cs" />
+    <Compile Include="Entities\CategoryModels\AdminCategories\CategoriesForm.cs" />
+    <Compile Include="Entities\CategoryModels\AdminCategories\CategoriesPageModel.cs" />
+    <Compile Include="Entities\CategoryModels\AdminCategory\CategoryAdminPageModel.cs" />
     <Compile Include="Entities\Recipe\AdminRecipes\RecipesAdmin.cs" />
     <Compile Include="Entities\Recipe\AdminRecipes\RecipesCreateAdminModel.cs" />
     <Compile Include="Entities\Recipe\AdminRecipes\RecipesDeleteAdminModel.cs" />

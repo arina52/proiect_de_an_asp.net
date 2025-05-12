@@ -1,90 +1,85 @@
-﻿
+﻿@model culinaryConnect.Domain.Entities.CategoryModels.AdminCategory.Category
 @{
-    ViewBag.Title = "Category";
-    Layout = "~/Views/Shared/layouts/_EmptyLayout.cshtml";
+    ViewBag.Title = "Detalii Categorie";
+    Layout = "~/Views/Shared/layouts/_AdminLayout.cshtml";
 }
 
-@model culinaryConnect.Domain.Entities.Category.CategoryPageModel
-@{
-    Layout = "~/Views/Shared/layouts/_EmptyLayout.cshtml";
-}
-
-<!-- Category Creation Form Section Begin -->
 <div class="container mt-5">
-    <h2 class="text-center mb-4" style="font-weight: 700;">Creați o categorie nouă</h2>
-    @using (Html.BeginForm("AddCategory", "admin", FormMethod.Post, new { @class = "category-form" }))
-    {
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(m => m.FormCategory.Title, "Numele categoriei")
-                    @Html.TextBoxFor(m => m.FormCategory.Title, new { @class = "form-control", placeholder = "Introduceți numele categoriei" })
-                    @Html.ValidationMessageFor(m => m.FormCategory.Title)
-                </div>
+    <h2 class="text-center fw-bold mb-4">Detalii Categorie</h2>
 
-                <div class="form-group">
-                    <button type="submit" class="btn btn-success btn-block">Adăugați categorie</button>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h5 class="card-title fw-semibold mb-3">Informații generale</h5>
+
+                    <!-- ID -->
+                    <div class="mb-3">
+                        <label class="form-label">ID</label>
+                        <input type="text" class="form-control" value="@Model.Id" disabled />
+                    </div>
+
+                    <!-- Title -->
+                    @using (Html.BeginForm("UpdateCategory", "Admin", FormMethod.Post))
+                    {
+                        @Html.Hidden("ID", Model.Id)
+                        <div class="mb-3">
+                            <label class="form-label">Titlu</label>
+                            <input id="categoryTitle" type="text" name="newTitle" value="@Model.Title" class="form-control" />
+                        </div>
+                        <button id="submitBtn" type="submit" class="btn btn-success" disabled>Salvează modificările</button>
+                    }
+                </div>
+            </div>
+
+            <!-- Recipes ID list -->
+            @if (Model.RecipesID != null && Model.RecipesID.Any())
+            {
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title fw-semibold mb-3">Rețete asociate</h5>
+                        <ul class="list-group list-group-flush">
+                            @foreach (var recipeId in Model.RecipesID)
+                            {
+                                <li class="list-group-item">ID Rețetă: @recipeId</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- Delete Column -->
+        <div class="col-md-4">
+            <div class="card shadow-sm border-danger">
+                <div class="card-body">
+                    <h5 class="card-title text-danger fw-bold">Șterge categoria</h5>
+                    @using (Html.BeginForm("DeleteCategory", "Admin", FormMethod.Post, new { onsubmit = "return confirm('Sigur doriți să ștergeți această categorie?');" }))
+                    {
+                        @Html.Hidden("ID", Model.Id)
+                        <button type="submit" class="btn btn-outline-danger w-100">
+                            <i class="fa fa-trash"></i> Șterge Categorie
+                        </button>
+                    }
                 </div>
             </div>
         </div>
-    }
-    @if (ViewBag.ErrorMessage != null)
-    {
-        <div>
-            @ViewBag.ErrorMessage
-        </div>
-    }
-</div>
-<!-- Category Creation Form Section End -->
-<!-- Category List Table -->
-@if (Model != null && Model.Categories != null && Model.Categories.Count > 0)
-{
-    <div class="container mt-5">
-        <h3 class="mb-4 fw-semibold">Categorii existente</h3>
-
-        <table class="table table-hover table-bordered">
-            <thead class="table-dark text-center">
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Titlu</th>
-                    <th scope="col" style="width: 160px;">Acțiuni</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var category in Model.Categories)
-                {
-                    <tr>
-                        <td class="align-middle text-center">@category.Id</td>
-                        <td class="align-middle">@category.Title</td>
-                        <td>
-                            <div class="d-flex flex-column gap-1">
-                                <!-- Delete Button -->
-                                <div class="mb-2">
-                                    @using (Html.BeginForm("DeleteCategory", "Admin", FormMethod.Post, new { onsubmit = "return confirm('Sigur doriți să ștergeți această categorie?');" }))
-                                    {
-                                        @Html.Hidden("ID", category.Id)
-                                        <button type="submit" class="btn btn-outline-danger btn-sm w-100">
-                                            <i class="bi bi-trash"></i> Șterge
-                                        </button>
-                                    }
-                                </div>
-
-                                <!-- Update Form -->
-                                @using (Html.BeginForm("UpdateCategory", "Admin", FormMethod.Post, new { onsubmit = "return confirm('Sigur doriți să actualizați această categorie?');" }))
-                                {
-                                    <div class="input-group input-group-sm">
-                                        @Html.Hidden("ID", category.Id)
-                                        <input type="text" name="newTitle" class="form-control form-control-sm mr-1" value="@category.Title" />
-                                        <button type="submit" class="btn btn-outline-secondary">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                    </div>
-                                }
-                            </div>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
     </div>
-}
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const titleInput = document.getElementById('categoryTitle');
+    const submitBtn = document.getElementById('submitBtn');
+
+    const originalTitle = titleInput.value;
+
+    function checkForChanges() {
+        const titleChanged = titleInput.value !== originalTitle;
+
+        submitBtn.disabled = !titleChanged;
+    }
+
+    titleInput.addEventListener('input', checkForChanges);
+});
+</script>

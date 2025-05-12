@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace culinaryConnect.Domain.Entities.Category
+namespace culinaryConnect.Domain.Entities.CategoryModels.AdminCategory
 {
     public class Category
     {
