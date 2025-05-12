@@ -39,9 +39,9 @@ Potrivește gustul cu sare, piper și, dacă vrei, adaugă puțin ghimbir ras.##
 Pentru o textură mai bogată, adaugă smântâna și mai dă supa un clocot.###
 Servește cu crutoane sau semințe de dovleac prăjite deasupra."
                 },
-                CategoryID = "1",
+                CategoryID = 1,
                 CreatedDate = new System.DateTime(2025, 5, 5),
-                AuthorID = "1",
+                AuthorID = 1,
                 ImagePath = "recipe-1.jpg"
             },
                  new RecipeDB
@@ -54,9 +54,9 @@ Servește cu crutoane sau semințe de dovleac prăjite deasupra."
             Description = "O prăjitură pufoasă și aromată, perfectă pentru deserturi ușoare sau gustări de după-amiază.",
             Instructions = @"Preîncălzește cuptorul la 180°C.###Bate ouăle cu zahărul până se deschid la culoare.###Adaugă untul topit și esența de vanilie.###Încorporează făina amestecată cu praful de copt.###Adaugă afinele la final, amestecând ușor.###Toarnă compoziția într-o tavă tapetată cu hârtie de copt.###Coace 35-40 minute.###Lasă la răcit și pudrează cu zahăr."
         },
-        CategoryID = "2",
+        CategoryID = 2,
         CreatedDate = new DateTime(2025, 5, 9),
-        AuthorID = "1",
+        AuthorID = 1,
         ImagePath = "recipe-2.jpg"
     },
     new RecipeDB
@@ -69,9 +69,9 @@ Servește cu crutoane sau semințe de dovleac prăjite deasupra."
             Description = "Un preparat suculent și aromat, ideal pentru mesele consistente de prânz sau cină.",
             Instructions = @"Condimentează steak-urile cu sare, piper și cimbru.###Prăjește-le 4-5 minute pe fiecare parte.###Într-o altă tigaie, călește ceapa în ulei 10 minute.###Adaugă zahărul brun și oțetul balsamic.###Gătește până ceapa devine moale și caramelizată.###Servește steak-ul cu ceapa deasupra."
         },
-        CategoryID = "3",
+        CategoryID = 3,
         CreatedDate = new DateTime(2025, 5, 9),
-        AuthorID = "1",
+        AuthorID = 1,
         ImagePath = "recipe-3.jpg"
     },
     new RecipeDB
@@ -84,9 +84,9 @@ Servește cu crutoane sau semințe de dovleac prăjite deasupra."
             Description = "O pizza făcută în casă, cu blat crocant și toppinguri după pofta inimii.",
             Instructions = @"Amestecă făina cu drojdia, apa și uleiul.###Frământă și lasă aluatul la dospit 1 oră.###Întinde aluatul într-o tavă unsă.###Adaugă sosul de roșii, brânza și restul ingredientelor.###Coace la 200°C timp de 15-20 de minute.###Servește caldă."
         },
-        CategoryID = "4",
+        CategoryID = 4,
         CreatedDate = new DateTime(2025, 5, 9),
-        AuthorID = "1",
+        AuthorID = 1,
         ImagePath = "recipe-4.jpg"
     },
     new RecipeDB
@@ -99,9 +99,9 @@ Servește cu crutoane sau semințe de dovleac prăjite deasupra."
             Description = "O rețetă sănătoasă și rapidă, bogată în omega-3 și vitamine.",
             Instructions = @"Așază fileurile de somon într-o tavă.###Condimentează cu sare, piper, rozmarin și stropește cu zeamă de lămâie.###Taie legumele felii subțiri și amestecă-le cu ulei și condimente.###Pune legumele lângă somon.###Coace totul la 180°C timp de 25-30 minute."
         },
-        CategoryID = "3",
+        CategoryID = 3,
         CreatedDate = new DateTime(2025, 5, 9),
-        AuthorID = "1",
+        AuthorID = 1,
         ImagePath = "recipe-5.jpg"
     },
     new RecipeDB
@@ -114,9 +114,9 @@ Servește cu crutoane sau semințe de dovleac prăjite deasupra."
             Description = "Clătite fine și aromate, servite cu zmeură proaspătă și frișcă – perfecte pentru mic dejun sau desert.",
             Instructions = @"Amestecă ouăle, laptele, făina, zahărul și sarea.###Lasă aluatul la odihnit 10 minute.###Prăjește clătitele în tigaie unsă cu unt.###Umple-le cu zmeură și, opțional, frișcă.###Rulează și servește imediat."
         },
-        CategoryID = "2",
+        CategoryID = 2,
         CreatedDate = new DateTime(2025, 5, 9),
-        AuthorID = "1",
+        AuthorID = 1,
         ImagePath = "recipe-6.jpg"
     }
             });

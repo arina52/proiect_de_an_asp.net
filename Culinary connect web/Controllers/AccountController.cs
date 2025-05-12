@@ -31,7 +31,7 @@ namespace Culinary_connect_web.Controllers
                 return RedirectToAction("index", "login");
             var model = new RecipesPageModel { 
                 RecipeForm = new RecipeDetails(),
-                RecipeList = _context.Recipes.ToList().Select(r => new RecipeDetails
+                RecipeList = _context.Recipes.Include("AboutRecipe").ToList().Select(r => new RecipeDetails
                 {
                     Id = r.Id,
                     Title = r.Title,
@@ -43,7 +43,7 @@ namespace Culinary_connect_web.Controllers
                         Instructions = r.AboutRecipe.Instructions,
                         Ingredients = r.AboutRecipe.Ingredients
                     },
-                    CategoryID = r.CategoryID ?? null
+                    CategoryID = r.CategoryID
                 }).ToList()
 
             };
@@ -75,6 +75,12 @@ namespace Culinary_connect_web.Controllers
                 return View("recipes", model);
             }
 
+            var categoryId = -1;
+            if(recipe.CategoryID != null)
+            {
+                categoryId = recipe.CategoryID;
+            }
+
             var newRecipe = new RecipeDB
             {
                 Title = recipe.Title,
@@ -85,7 +91,7 @@ namespace Culinary_connect_web.Controllers
                     Instructions = recipe.AboutRecipe.Instructions,
                     Ingredients = recipe.AboutRecipe.Ingredients
                 },
-                CategoryID = recipe.CategoryID ?? "-1",
+                CategoryID = categoryId,
             };
 
             _context.Recipes.Add(newRecipe);

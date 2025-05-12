@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace culinaryConnect.Domain.Entities.Category
+namespace culinaryConnect.Domain.Entities.Recipe.AdminRecipe
 {
-    public class Category
+    public class RecipeUpdateAdminModel
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public List<int> RecipesID { get; set; }
+
+        public string Status { get; set; }
     }
 }

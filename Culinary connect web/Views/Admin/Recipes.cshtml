@@ -1,8 +1,60 @@
-﻿
+﻿@model culinaryConnect.Domain.Entities.Recipe.AdminRecipes.RecipesAdminPageModel
 @{
     ViewBag.Title = "Recipes";
     Layout = "~/Views/Shared/layouts/_AdminLayout.cshtml";
 }
 
-<h2>Recipes</h2>
+<h2 class="mb-4">Recipes</h2>
 
+@if (Model != null && Model.Recipes != null && Model.Recipes.Count > 0)
+{
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered shadow-sm">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Created Date</th>
+                    <th>Status</th>
+                    <th>Change status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var recipe in Model.Recipes)
+                {
+                    <tr>
+                        <td>@recipe.Id</td>
+                        <td>
+                            <a href="@Url.Action("recipe/" + recipe.Id)">
+                                <img src="@(!string.IsNullOrEmpty(recipe.ImagePath) ? Url.Content("~/Content/Images/recipe/" + recipe.ImagePath) : Url.Content("~/Content/Images/placeholder.png"))" alt="Recipe Image" style="width: 60px; height: 60px; object-fit: cover;" class="rounded-sm" />
+                            </a>
+                        </td>
+                        <td>@recipe.Title</td>
+                        <td>@recipe.CreatedDate</td>
+                        <td>
+                            <span class="badge @(recipe.Status == "Active" ? "badge-success" : "badge-warning")">
+                                @recipe.Status
+                            </span>
+                        </td>
+                        <td>
+                            @using (Html.BeginForm("UpdateStatusRecipe", "Admin", FormMethod.Post))
+                            {
+                                @Html.Hidden("Id", recipe.Id)
+                                <select name="NewStatus" class="form-control form-control-sm mb-2">
+                                    <option value="Pending" @(recipe.Status == "Pending" ? "selected" : "")>Pending</option>
+                                    <option value="Active" @(recipe.Status == "Active" ? "selected" : "")>Active</option>
+                                </select>
+                                <button type="submit" class="btn btn-sm btn-outline-primary w-100">Update</button>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="alert alert-info">There are no recipes to display.</div>
+}

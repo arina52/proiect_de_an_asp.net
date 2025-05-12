@@ -12,7 +12,7 @@ namespace culinaryConnect.BusinessLogic.Core
     {
         private List<RecipeDetails> _recipes = new List<RecipeDetails>
             {
-                new RecipeDetails { Id = 1, Title = "Supa crema de morcovi", CategoryID = "1" }               
+                new RecipeDetails { Id = 1, Title = "Supa crema de morcovi", CategoryID = 1 }               
             };
         public IEnumerable<RecipeDetails> GetAllRecipes()
         {

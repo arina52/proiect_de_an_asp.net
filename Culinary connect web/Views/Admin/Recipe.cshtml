@@ -1,0 +1,182 @@
+﻿@model culinaryConnect.Domain.Entities.Recipe.AdminRecipe.RecipeAdminPageModel
+
+@{
+    ViewBag.Title = "Recipe Details";
+    Layout = "~/Views/Shared/layouts/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <h2 class="mb-4">Recipe Details</h2>
+    @if (Model != null)
+    {
+        <div class="row">
+            <!-- Left column: Details -->
+            <div class="col-md-8">
+                @using (Html.BeginForm("EditRecipe", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", id = "editRecipeForm" }))
+                {
+                    <input type="hidden" value="@Model.RecipeInfo.Id" name="RecipeUpdate.Id" />
+
+                    <div class="form-group">
+                        <label>Title</label>
+                        @Html.TextBoxFor(m => m.RecipeUpdate.Title, new { @class = "form-control", id = "recipeTitle" })
+                    </div>
+
+                    <div class="form-group">
+                        <label>Status</label>
+                        @Html.DropDownListFor(m => m.RecipeUpdate.Status,
+                            new SelectList(new[] { "Pending", "Active" }, Model.RecipeInfo.Status),
+                            new { @class = "form-control", id = "recipeStatus" })
+                    </div>
+
+                    <div class="form-group">
+                        <label>Created Date</label>
+                        <input type="text" class="form-control" value="@Model.RecipeInfo.CreatedDate" disabled />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Author</label>
+                        <input type="text" class="form-control" value="@Model.RecipeInfo.Author" disabled />
+                    </div>
+
+                    if (Model.RecipeInfo.Category != null)
+                    {
+                        <div class="form-group">
+                            <label>Category</label>
+                            <input type="text" class="form-control" value="@Model.RecipeInfo.Category" disabled />
+                        </div>
+                    }
+
+                    <div class="form-group">
+                        <label>Upload New Image</label>
+                        <input type="file" name="RecipeImage" class="form-control-file" id="recipeImage" />
+                    </div>
+
+                    <button type="submit" class="btn btn-success" id="submitBtn" disabled>Save Changes</button>
+
+                    if (Model.RecipeInfo.AboutObject != null)
+                    {
+                        <div class="mt-5">
+                            <div class="card shadow-sm">
+                                <div class="card-header bg-light">
+                                    <h5 class="mb-0">Recipe Details</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+
+                                        @if (Model.RecipeInfo.AboutObject.CookingTime != null)
+                                        {
+                                            <div class="col-md-6 mb-3">
+                                                <strong>Cooking Time:</strong>
+                                                <div class="text-muted">@Model.RecipeInfo.AboutObject.CookingTime</div>
+                                            </div>
+                                        }
+
+                                        @if (Model.RecipeInfo.AboutObject.Description != null)
+                                        {
+                                            <div class="col-md-12 mb-3">
+                                                <strong>Description:</strong>
+                                                <p class="text-muted">@Model.RecipeInfo.AboutObject.Description</p>
+                                            </div>
+                                        }
+
+                                        @if (Model.RecipeInfo.AboutObject.Ingredients != null)
+                                        {
+                                            <div class="col-md-6 mb-3">
+                                                <strong>Ingredients:</strong>
+                                                <ul class="list-group list-group-flush">
+                                                    @foreach (var ingredient in Model.RecipeInfo.AboutObject.Ingredients.Split(new[] { "###" }, StringSplitOptions.None))
+                                                    {
+                                                        <li class="list-group-item">@ingredient</li>
+                                                    }
+                                                </ul>
+                                            </div>
+                                        }
+
+                                        @if (Model.RecipeInfo.AboutObject.Instructions != null)
+                                        {
+                                            <div class="col-md-6 mb-3">
+                                                <strong>Instructions:</strong>
+                                                <ol class="list-group list-group-numbered">
+                                                    @foreach (var instruction in Model.RecipeInfo.AboutObject.Instructions.Split(new[] { "###" }, StringSplitOptions.None))
+                                                    {
+                                                        <li class="list-group-item">@instruction</li>
+                                                    }
+                                                </ol>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                }
+            </div>
+
+            <!-- Right column: Image + Actions -->
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <img src="@Url.Content("~/Content/Images/recipe/" + (string.IsNullOrEmpty(Model.RecipeInfo.ImagePath) ? "placeholder.png" : Model.RecipeInfo.ImagePath))"
+                         alt="Recipe Image"
+                         class="card-img-top"
+                         style="object-fit: cover; height: 200px;" />
+
+                    <div class="card-body text-center">
+                        <p class="card-text">
+                            <span class="badge @(Model.RecipeInfo.Status == "Active" ? "badge-success" : "badge-warning")">@Model.RecipeInfo.Status.ToString()</span>
+                        </p>
+
+                        @using (Html.BeginForm("DeleteRecipe", "Admin", FormMethod.Post, new { onsubmit = "return confirm('Are you sure you want to delete this recipe?');" }))
+                        {
+                            <input type="hidden" value="@Model.RecipeInfo.Id" name="RecipeDelete.Id" />
+                            <button type="submit" class="btn btn-outline-danger btn-block">Delete Recipe</button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div>There is something wrong with the model</div>
+        if (ViewBag.ErrorMessage != null)
+        {
+            <div>@ViewBag.ErrorMessage</div>
+        }
+    }
+
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div>
+            @ViewBag.ErrorMessage
+        </div>
+    }
+</div>
+
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('editRecipeForm');
+    const titleInput = document.getElementById('recipeTitle');
+    const statusSelect = document.getElementById('recipeStatus');
+    const fileInput = document.getElementById('recipeImage');
+    const submitBtn = document.getElementById('submitBtn');
+
+    const originalTitle = titleInput.value;
+    const originalStatus = statusSelect.value;
+
+    function checkForChanges() {
+        const titleChanged = titleInput.value !== originalTitle;
+        const statusChanged = statusSelect.value !== originalStatus;
+        const imageSelected = fileInput.files.length > 0;
+
+        submitBtn.disabled = !(titleChanged || statusChanged || imageSelected);
+    }
+
+    titleInput.addEventListener('input', checkForChanges);
+    statusSelect.addEventListener('change', checkForChanges);
+    fileInput.addEventListener('change', checkForChanges);
+});
+</script>

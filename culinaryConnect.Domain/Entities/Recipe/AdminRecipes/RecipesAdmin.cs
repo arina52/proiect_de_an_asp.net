@@ -4,15 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace culinaryConnect.Domain.Entities.Recipe
+namespace culinaryConnect.Domain.Entities.Recipe.AdminRecipes
 {
-    public class RecipeDetails
+    public class RecipesAdmin
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public RecipeAbout AboutRecipe { get; set; }
-        public int CategoryID { get; set; }
         public string ImagePath { get; set; }
-
+        public string CreatedDate { get; set; }
+        public string Status { get; set; }
     }
 }

@@ -8,8 +8,13 @@ using culinaryConnect.Domain.Entities.Admin;
 using culinaryConnect.Web.Services.AdminService;
 using culinaryConnect.Domain.Entities.Category;
 using culinaryConnect.BusinessLogic.Models;
-using System.Data.Entity.Migrations;
 using culinaryConnect.Domain.Entities.User;
+using culinaryConnect.Domain.Entities.Recipe;
+using culinaryConnect.Domain.Entities.Recipe.AdminRecipes;
+using culinaryConnect.Domain.Entities.Recipe.AdminRecipe;
+using culinaryConnect.Web.Services;
+using System.Web;
+using System.IO;
 
 namespace Culinary_connect_web.Controllers
 {
@@ -65,9 +70,90 @@ namespace Culinary_connect_web.Controllers
             return View(model);
         }
 
-        public ActionResult Recipes()
+        public ActionResult Recipes(RecipesAdminPageModel model)
         {
-            return View();
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("login");
+            }
+
+            var recipes = _context.Recipes.ToList().Select(r => new RecipesAdmin
+            {
+                Id = r.Id,
+                Title = r.Title,
+                Status = r.Status.ToString(),
+                ImagePath = r.ImagePath,
+                CreatedDate = r.CreatedDate.ToShortDateString(),
+            }).ToList();
+
+            model.Recipes = recipes;
+            return View(model);
+        }
+
+        public ActionResult Recipe(int Id)
+        {
+            var recipe = _context.Recipes.Include("AboutRecipe").FirstOrDefault(r => r.Id == Id);
+
+            if(recipe == null)
+            {
+                ViewBag.ErrorMessage = "There is no such recipe";
+                return View();
+            }
+            var recipeAdmin = new RecipeAdmin
+            {
+                Id = recipe.Id,
+                Title = recipe.Title,
+                AboutObject = new RecipeAbout
+                {
+                    CookingTime = recipe.AboutRecipe.CookingTime,
+                    Description = recipe.AboutRecipe.Description,
+                    Ingredients = recipe.AboutRecipe.Ingredients,
+                    Instructions = recipe.AboutRecipe.Instructions,
+                },
+                CreatedDate = recipe.CreatedDate.ToShortDateString(),
+                ImagePath = recipe.ImagePath,
+                Status = recipe.Status.ToString(),
+            };
+
+            var recipeAuthorUser = _context.Users.FirstOrDefault(u => u.Id == recipe.AuthorID);
+            if(recipeAuthorUser == null)
+            {
+                var recipeAuthorAdmin = _context.Admins.FirstOrDefault(a => a.Id == recipe.AuthorID);
+                if(recipeAuthorAdmin != null)
+                {
+                    recipeAdmin.Author = recipeAuthorAdmin.AdminEmail;
+                } else
+                {
+                    recipeAdmin.Author = null;
+                }
+                recipeAdmin.Author = null;
+            } else
+            {
+                recipeAdmin.Author = recipeAuthorUser.UserEmail;
+            }
+
+            if(recipe.CategoryID != null)
+            {
+                var recipeCategory = _context.Categories.FirstOrDefault(c => c.Id == recipe.CategoryID);
+                if(recipeCategory != null)
+                {
+                    recipeAdmin.Category = recipeCategory.Title;
+                }
+            }
+
+
+            var model = new RecipeAdminPageModel
+            {
+                RecipeInfo = recipeAdmin,
+                RecipeDelete = new RecipeDeleteAdminModel(),
+                RecipeUpdate = new RecipeUpdateAdminModel
+                {
+                    Id = recipe.Id,
+                    Status = recipe.Status.ToString(),
+                    Title = recipe.Title
+                }
+            };
+            return View(model);
         }
 
         public ActionResult Settings()
@@ -106,6 +192,8 @@ namespace Culinary_connect_web.Controllers
 
 
         // Functions
+
+        // Login
         [HttpPost]
         public ActionResult Logout() {
             Session["AdminID"] = null;
@@ -139,6 +227,114 @@ namespace Culinary_connect_web.Controllers
             return View("login");
         }
 
+        //#####################################################
+        //#####################################################
+
+        // Recipe
+        [HttpPost]
+        public ActionResult CreateRecipe(RecipesAdminPageModel model)
+        {
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("login");
+            }
+
+            return View();
+        }
+
+        public ActionResult EditRecipe(RecipeAdminPageModel model, HttpPostedFileBase RecipeImage)
+        {
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("login");
+            }
+
+            var editModel = model.RecipeUpdate;
+            if(editModel == null)
+            {
+                return RedirectToAction("recipes");
+            }
+
+            var recipe = _context.Recipes.FirstOrDefault(r => r.Id == editModel.Id);
+            if(recipe == null)
+            {
+                ViewBag.ErrorMessage = "there is no such recipe";
+                model.RecipeUpdate = new RecipeUpdateAdminModel
+                {
+                    Id = model.RecipeInfo.Id,
+                    Status = model.RecipeInfo.Status,
+                    Title = model.RecipeInfo.Title
+                };
+                return View("recipe", new { id = editModel.Id });
+            }
+
+            if(editModel.Status == "Active")
+            {
+                recipe.Status = Status.Active;
+            } else
+            {
+                recipe.Status = Status.Pending;
+            }
+
+            recipe.Title = editModel.Title;
+            if(RecipeImage != null && RecipeImage.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(RecipeImage.FileName);
+                var path = Server.MapPath("~/Content/Images/recipe/" + fileName);
+                RecipeImage.SaveAs(path);
+
+                recipe.ImagePath = fileName;
+            }
+
+            _context.SaveChanges();
+            return RedirectToAction("recipe", new {id = editModel.Id});
+        }
+
+        public ActionResult DeleteRecipe(RecipeAdminPageModel model)
+        {
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("login");
+            }
+
+            var deleteModel = model.RecipeDelete;
+            var recipeToDelete = _context.Recipes.FirstOrDefault(r => r.Id == deleteModel.Id);
+            if(recipeToDelete == null)
+            {
+                return RedirectToAction("recipes");
+            }
+
+            _context.Recipes.Remove(recipeToDelete);
+            _context.SaveChanges();
+
+            return RedirectToAction("recipes");
+        }
+
+
+        public ActionResult UpdateStatusRecipe(int Id, string NewStatus)
+        {
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("login");
+            }
+
+            var recipe = _context.Recipes.FirstOrDefault(r => r.Id == Id);
+            if (recipe != null)
+            {
+                if(Enum.TryParse(NewStatus, out Status statusEnum))
+                {
+                    recipe.Status = statusEnum;
+                    _context.SaveChanges();
+                }
+            }
+
+            return RedirectToAction("recipes");
+        }
+
+        //#####################################################
+        //#####################################################
+
+        // Users
         [HttpPost]
         public ActionResult CreateUser(UsersPageModel model)
         {
@@ -225,7 +421,10 @@ namespace Culinary_connect_web.Controllers
             return RedirectToAction("users");
         }
 
+        //#####################################################
+        //#####################################################
 
+        // Category
         [HttpPost]
         public ActionResult AddCategory(CategoryPageModel model)
         {

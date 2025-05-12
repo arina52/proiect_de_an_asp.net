@@ -47,7 +47,16 @@
     <Compile Include="Entities\Category\Category.cs" />
     <Compile Include="Entities\Category\CategoryForm.cs" />
     <Compile Include="Entities\Category\CategoryPageModel.cs" />
+    <Compile Include="Entities\Recipe\AdminRecipes\RecipesAdmin.cs" />
+    <Compile Include="Entities\Recipe\AdminRecipes\RecipesCreateAdminModel.cs" />
+    <Compile Include="Entities\Recipe\AdminRecipes\RecipesDeleteAdminModel.cs" />
+    <Compile Include="Entities\Recipe\AdminRecipes\RecipesUpdateAdminModel.cs" />
+    <Compile Include="Entities\Recipe\AdminRecipe\RecipeAdmin.cs" />
+    <Compile Include="Entities\Recipe\AdminRecipe\RecipeAdminPageModel.cs" />
+    <Compile Include="Entities\Recipe\AdminRecipe\RecipeDeleteAdminModel.cs" />
+    <Compile Include="Entities\Recipe\AdminRecipe\RecipeUpdateAdminModel.cs" />
     <Compile Include="Entities\Recipe\RecipeAbout.cs" />
+    <Compile Include="Entities\Recipe\AdminRecipes\RecipesAdminPageModel.cs" />
     <Compile Include="Entities\Recipe\Status.cs" />
     <Compile Include="Entities\Recipe\RecipeDetails.cs" />
     <Compile Include="Entities\Recipe\RecipesPageModel.cs" />

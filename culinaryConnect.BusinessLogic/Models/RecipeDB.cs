@@ -21,7 +21,7 @@ namespace culinaryConnect.BusinessLogic.Models
         [ForeignKey("AboutRecipeID")]
         public RecipeAboutDB AboutRecipe { get; set; }
         [Required]
-        public string CategoryID { get; set; }
+        public int CategoryID { get; set; }
 
         [Required]
         public string ImagePath { get; set; } = string.Empty;
@@ -34,6 +34,6 @@ namespace culinaryConnect.BusinessLogic.Models
 
         [Required]
         // can be both user and admin
-        public string AuthorID { get; set; }
+        public int AuthorID { get; set; }
     }
 }
