@@ -91,8 +91,14 @@ namespace Culinary_connect_web.Controllers
             return View(model);
         }
 
+
         public ActionResult Recipe(int Id)
         {
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("login");
+            }
+
             var recipe = _context.Recipes.Include("AboutRecipe").FirstOrDefault(r => r.Id == Id);
 
             if(recipe == null)
@@ -127,7 +133,6 @@ namespace Culinary_connect_web.Controllers
                 {
                     recipeAdmin.Author = null;
                 }
-                recipeAdmin.Author = null;
             } else
             {
                 recipeAdmin.Author = recipeAuthorUser.UserEmail;
@@ -138,10 +143,20 @@ namespace Culinary_connect_web.Controllers
                 var recipeCategory = _context.Categories.FirstOrDefault(c => c.Id == recipe.CategoryID);
                 if(recipeCategory != null)
                 {
-                    recipeAdmin.Category = recipeCategory.Title;
+                    recipeAdmin.Category = new CategoryRecipeDb { 
+                        Id = recipeCategory.Id,
+                        Name = recipeCategory.Title
+                    };
                 }
-            }
+            } 
+            // get the list of all the categories to choose from
+            var categories = _context.Categories.ToList().Select(c => new CategoryRecipeDb
+            {
+                Id = c.Id,
+                Name = c.Title,
+            }).ToList();
 
+            recipeAdmin.CategoryDbList = categories;
 
             var model = new RecipeAdminPageModel
             {
@@ -254,14 +269,47 @@ namespace Culinary_connect_web.Controllers
 
         // Recipe
         [HttpPost]
-        public ActionResult CreateRecipe(RecipesAdminPageModel model)
+        public ActionResult CreateRecipe(RecipesAdminPageModel model, HttpPostedFileBase RecipeImage)
         {
             if (Session["AdminID"] == null)
             {
                 return RedirectToAction("login");
             }
 
-            return View();
+            var recipeCreateModel = model.RecipeCreateAdminModel;
+
+            var recipeAboutToCreate = new RecipeAboutDB
+            {
+                CookingTime = recipeCreateModel.RecipeAbout.CookingTime,
+                Description = recipeCreateModel.RecipeAbout.Description,
+                Ingredients = recipeCreateModel.RecipeAbout.Ingredients != null ? string.Join("###", recipeCreateModel.RecipeAbout.Ingredients) : null,
+                Instructions = recipeCreateModel.RecipeAbout.Instructions != null ? string.Join("###", recipeCreateModel.RecipeAbout.Instructions) : null,
+            };
+
+            _context.RecipesAboutDb.Add(recipeAboutToCreate);
+
+            var recipeToCreate = new RecipeDB
+            {
+                Title = recipeCreateModel.Title,
+                AboutRecipeID = recipeAboutToCreate.Id,
+                CreatedDate = DateTime.Now,
+                Status = Status.Pending,
+                AuthorID = Session["AdminID"] != null ? Convert.ToInt32(Session["AdminID"]) : 0
+            };
+
+            if (RecipeImage != null && RecipeImage.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(RecipeImage.FileName);
+                var path = Server.MapPath("~/Content/Images/recipe/" + fileName);
+                RecipeImage.SaveAs(path);
+
+                recipeToCreate.ImagePath = fileName;
+            }
+
+            _context.Recipes.Add(recipeToCreate);
+            _context.SaveChanges();
+
+            return RedirectToAction("recipes");
         }
 
         public ActionResult EditRecipe(RecipeAdminPageModel model, HttpPostedFileBase RecipeImage)
@@ -299,6 +347,11 @@ namespace Culinary_connect_web.Controllers
             }
 
             recipe.Title = editModel.Title;
+            if(editModel.CategoryDbId != null)
+            {
+                recipe.CategoryID = editModel.CategoryDbId;
+            }
+
             if(RecipeImage != null && RecipeImage.ContentLength > 0)
             {
                 var fileName = Path.GetFileName(RecipeImage.FileName);
@@ -475,7 +528,7 @@ namespace Culinary_connect_web.Controllers
             model.FormCategory = new CategoriesForm();
 
             TempData["Success"] = "Category created successfully!";
-            return RedirectToAction("category", "admin", model);
+            return RedirectToAction("categories");
         }
 
         [HttpPost]

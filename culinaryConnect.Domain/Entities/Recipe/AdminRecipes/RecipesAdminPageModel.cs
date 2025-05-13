@@ -1,4 +1,5 @@
-﻿using culinaryConnect.Domain.Entities.Recipe.AdminRecipes;
+﻿using culinaryConnect.Domain.Entities.Recipe.AdminRecipe;
+using culinaryConnect.Domain.Entities.Recipe.AdminRecipes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,7 @@ namespace culinaryConnect.Domain.Entities.Recipe.AdminRecipes
         public List<RecipesAdmin> Recipes { get; set; }
 
         public Status UpdateStatus { get; set; }
+
+        public RecipeCreateAdminModel RecipeCreateAdminModel { get; set; }
     }
 }

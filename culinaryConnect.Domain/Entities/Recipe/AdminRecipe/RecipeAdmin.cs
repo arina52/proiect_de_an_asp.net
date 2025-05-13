@@ -15,7 +15,9 @@ namespace culinaryConnect.Domain.Entities.Recipe.AdminRecipe
 
         public string ImagePath { get; set; }
 
-        public string Category { get; set; }
+        public CategoryRecipeDb Category { get; set; }
+
+        public List<CategoryRecipeDb> CategoryDbList { get; set; }
 
         public string CreatedDate { get; set; }
 

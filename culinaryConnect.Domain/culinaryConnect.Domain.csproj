@@ -49,11 +49,13 @@
     <Compile Include="Entities\CategoryModels\AdminCategories\CategoriesPageModel.cs" />
     <Compile Include="Entities\CategoryModels\AdminCategory\CategoryAdminPageModel.cs" />
     <Compile Include="Entities\Recipe\AdminRecipes\RecipesAdmin.cs" />
-    <Compile Include="Entities\Recipe\AdminRecipes\RecipesCreateAdminModel.cs" />
     <Compile Include="Entities\Recipe\AdminRecipes\RecipesDeleteAdminModel.cs" />
     <Compile Include="Entities\Recipe\AdminRecipes\RecipesUpdateAdminModel.cs" />
+    <Compile Include="Entities\Recipe\AdminRecipe\CategoryRecipeDb.cs" />
+    <Compile Include="Entities\Recipe\AdminRecipe\RecipeAboutCreateAdmin.cs" />
     <Compile Include="Entities\Recipe\AdminRecipe\RecipeAdmin.cs" />
     <Compile Include="Entities\Recipe\AdminRecipe\RecipeAdminPageModel.cs" />
+    <Compile Include="Entities\Recipe\AdminRecipe\RecipeCreateAdminModel.cs" />
     <Compile Include="Entities\Recipe\AdminRecipe\RecipeDeleteAdminModel.cs" />
     <Compile Include="Entities\Recipe\AdminRecipe\RecipeUpdateAdminModel.cs" />
     <Compile Include="Entities\Recipe\RecipeAbout.cs" />
