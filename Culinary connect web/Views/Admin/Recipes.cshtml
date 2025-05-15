@@ -1,0 +1,158 @@
+﻿@model culinaryConnect.Domain.Entities.Recipe.AdminRecipes.RecipesAdminPageModel
+@{
+    ViewBag.Title = "Recipes";
+    Layout = "~/Views/Shared/layouts/_AdminLayout.cshtml";
+}
+
+<h2 class="mb-4">Recipes</h2>
+<div class="container mb-5">
+    <!-- Collapse Toggle Button -->
+    <button class="btn btn-outline-success mb-3" type="button" data-toggle="collapse" data-target="#createRecipeForm" aria-expanded="false" aria-controls="createRecipeForm">
+        + Creează o rețetă nouă
+    </button>
+
+    <!-- Collapsible Recipe Form -->
+    <div class="collapse" id="createRecipeForm">
+        <div class="card card-body shadow-sm">
+            <h4 class="mb-4 fw-semibold">Formular rețetă</h4>
+
+            @using (Html.BeginForm("CreateRecipe", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="form-group">
+                    <label>Titlu</label>
+                    <input name="RecipeCreateAdminModel.Title" type="text" class="form-control" placeholder="Ex: Supă de pui" />
+                </div>
+
+                <div class="form-group">
+                    <label>Descriere</label>
+                    <textarea name="RecipeCreateAdminModel.RecipeAbout.Description" class="form-control" rows="3" placeholder="Ex: O supă gustoasă pentru zile reci..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Timp de gătire</label>
+                    <input name="RecipeCreateAdminModel.RecipeAbout.CookingTime" type="text" class="form-control" placeholder="Ex: 45 minute" />
+                </div>
+
+                <div class="form-group">
+                    <label>Upload Image</label>
+                    <input type="file" name="RecipeImage" class="form-control-file" />
+                </div>
+
+                <!-- Ingredients -->
+                <div class="form-group">
+                    <label>Ingrediente</label>
+                    <div class="input-group mb-2">
+                        <input type="text" id="ingredientInput" class="form-control" placeholder="Adaugă ingredient" />
+                        <div class="input-group-append">
+                            <button type="button" class="btn btn-outline-secondary" onclick="addListItem('ingredientsList', 'ingredientInput')">Adaugă</button>
+                        </div>
+                    </div>
+                    <ul id="ingredientsList" class="list-group"></ul>
+                </div>
+
+                <!-- Instructions -->
+                <div class="form-group">
+                    <label>Instrucțiuni</label>
+                    <div class="input-group mb-2">
+                        <input type="text" id="instructionInput" class="form-control" placeholder="Adaugă instrucțiune" />
+                        <div class="input-group-append">
+                            <button type="button" class="btn btn-outline-secondary" onclick="addListItem('instructionsList', 'instructionInput')">Adaugă</button>
+                        </div>
+                    </div>
+                    <ul id="instructionsList" class="list-group"></ul>
+                </div>
+
+                <button type="submit" class="btn btn-success mt-3">Salvează</button>
+            }
+        </div>
+    </div>
+</div>
+
+
+@if (Model != null && Model.Recipes != null && Model.Recipes.Count > 0)
+{
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered shadow-sm">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Created Date</th>
+                    <th>Status</th>
+                    <th>Change status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var recipe in Model.Recipes)
+                {
+                    <tr>
+                        <td>@recipe.Id</td>
+                        <td>
+                            <a href="@Url.Action("recipe/" + recipe.Id)">
+                                <img src="@(!string.IsNullOrEmpty(recipe.ImagePath) ? Url.Content("~/Content/Images/recipe/" + recipe.ImagePath) : Url.Content("~/Content/Images/placeholder.png"))" alt="Recipe Image" style="width: 60px; height: 60px; object-fit: cover;" class="rounded-sm" />
+                            </a>
+                        </td>
+                        <td>@recipe.Title</td>
+                        <td>@recipe.CreatedDate</td>
+                        <td>
+                            <span class="badge @(recipe.Status == "Active" ? "badge-success" : "badge-warning")">
+                                @recipe.Status
+                            </span>
+                        </td>
+                        <td>
+                            @using (Html.BeginForm("UpdateStatusRecipe", "Admin", FormMethod.Post))
+                            {
+                                @Html.Hidden("Id", recipe.Id)
+                                <select name="NewStatus" class="form-control form-control-sm mb-2">
+                                    <option value="Pending" @(recipe.Status == "Pending" ? "selected" : "")>Pending</option>
+                                    <option value="Active" @(recipe.Status == "Active" ? "selected" : "")>Active</option>
+                                </select>
+                                <button type="submit" class="btn btn-sm btn-outline-primary w-100">Update</button>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="alert alert-info">There are no recipes to display.</div>
+}
+
+<script>
+    function addListItem(listId, inputId) {
+        const list = document.getElementById(listId);
+        const input = document.getElementById(inputId);
+        const value = input.value.trim();
+
+        if (value === '') return;
+
+        const li = document.createElement("li");
+        li.className = "list-group-item d-flex justify-content-between align-items-center";
+
+        const span = document.createElement("span");
+        span.textContent = value;
+
+        const removeBtn = document.createElement("button");
+        removeBtn.className = "btn btn-sm btn-danger";
+        removeBtn.innerHTML = "✕";
+        removeBtn.onclick = function () {
+            list.removeChild(li);
+        };
+
+        li.appendChild(span);
+        li.appendChild(removeBtn);
+
+        const hiddenInput = document.createElement("input");
+        hiddenInput.type = "hidden";
+        hiddenInput.name = listId === 'ingredientsList' ? 'RecipeCreateAdminModel.RecipeAbout.Ingredients' : 'RecipeCreateAdminModel.RecipeAbout.Instructions';
+        hiddenInput.value = value;
+        li.appendChild(hiddenInput);
+
+        list.appendChild(li);
+        input.value = '';
+    }
+</script>

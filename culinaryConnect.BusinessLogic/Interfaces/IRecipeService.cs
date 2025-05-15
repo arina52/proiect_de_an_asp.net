@@ -9,7 +9,7 @@ namespace culinaryConnect.BusinessLogic.Interfaces
 {
     public interface IRecipeService
     {
-        IEnumerable<RecipeDetails> GetAllRecipes();
+        List<RecipeDetails> GetAllRecipes();
         RecipeDetails GetRecipeById(int id);
     }
 }

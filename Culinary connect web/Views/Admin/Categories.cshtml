@@ -1,0 +1,99 @@
+﻿@model culinaryConnect.Domain.Entities.CategoryModels.AdminCategories.CategoriesPageModel
+@{
+    Layout = "~/Views/Shared/layouts/_AdminLayout.cshtml";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4 fw-bold">Administrare Categorii</h2>
+
+    <!-- Create New Category Card -->
+    <div class="card shadow-sm mb-5">
+        <div class="card-header bg-light">
+            <strong>Adăugați o categorie nouă</strong>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("AddCategory", "Admin", FormMethod.Post, new { @class = "category-form" }))
+            {
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.FormCategory.Title, "Numele categoriei")
+                            @Html.TextBoxFor(m => m.FormCategory.Title, new { @class = "form-control", placeholder = "Introduceți numele categoriei" })
+                            @Html.ValidationMessageFor(m => m.FormCategory.Title, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-end">
+                        <button type="submit" class="btn btn-success w-100">Adaugă</button>
+                    </div>
+                </div>
+            }
+
+            @if (ViewBag.ErrorMessage != null)
+            {
+                <div class="alert alert-danger mt-3">
+                    @ViewBag.ErrorMessage
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- Existing Categories List -->
+    @if (Model?.Categories != null && Model.Categories.Any())
+    {
+        <div class="card shadow-sm">
+            <div class="card-header bg-light">
+                <strong>Categorii existente</strong>
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-striped table-hover mb-0">
+                    <thead class="table-dark text-center">
+                        <tr>
+                            <th style="width: 5%;">ID</th>
+                            <th style="width: 30%;">Titlu</th>
+                            <th style="width: 50%;">Acțiuni</th>
+                            <th style="width: 15%;">Vezi Categorie</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var category in Model.Categories)
+                        {
+                            <tr class="align-middle text-center">
+                                <td>@category.Id</td>
+                                <td class="text-start ps-4">@category.Title</td>
+                                <td>
+                                    <div class="d-flex flex-wrap gap-2 justify-content-center">
+                                        <!-- Delete Form -->
+                                        @using (Html.BeginForm("DeleteCategory", "Admin", FormMethod.Post, new { onsubmit = "return confirm('Sigur doriți să ștergeți această categorie?');" }))
+                                        {
+                                            @Html.Hidden("ID", category.Id)
+                                            <button type="submit" class="btn btn-outline-danger btn-sm">
+                                                <i class="fa fa-trash"></i> Șterge
+                                            </button>
+                                        }
+
+                                        <!-- Update Form -->
+                                        @using (Html.BeginForm("UpdateCategory", "Admin", FormMethod.Post, new { onsubmit = "return confirm('Actualizați titlul acestei categorii?');", @class = "d-flex gap-1" }))
+                                        {
+                                            @Html.Hidden("ID", category.Id)
+                                            <input type="text" name="newTitle" class="form-control form-control-sm" style="width: 150px;" value="@category.Title" />
+                                            <button type="submit" class="btn btn-outline-secondary btn-sm">
+                                                <i class="fa fa-pencil"></i>
+                                            </button>
+                                        }
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("category/" + category.Id)">Vezi</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info mt-4">Nu există categorii disponibile.</div>
+    }
+</div>

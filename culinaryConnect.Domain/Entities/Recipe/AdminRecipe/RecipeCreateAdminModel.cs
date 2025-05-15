@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace culinaryConnect.Domain.Entities.Category
+namespace culinaryConnect.Domain.Entities.Recipe.AdminRecipe
 {
-    public class CategoryForm
+    public class RecipeCreateAdminModel
     {
         public string Title { get; set; }
+
+        public RecipeAboutCreateAdmin RecipeAbout { get; set; }
     }
 }
+    
