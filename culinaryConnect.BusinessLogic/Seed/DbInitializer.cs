@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
-using culinaryConnect.BusinessLogic.Models.AdminDB;
 using culinaryConnect.BusinessLogic.Data;
+using culinaryConnect.BusinessLogic.Models.UserDB;
 using culinaryConnect.BusinessLogic.Models;
 using culinaryConnect.Domain.Entities.Recipe;
 using System.Collections.Generic;
@@ -112,10 +112,11 @@ namespace culinaryConnect.BusinessLogic.Seed
     }
             });
 
-            context.Admins.Add(new AdminDB
+            context.Users.Add(new UserDB
             {
-                AdminName = "daniel",
-                AdminEmail = "daniel@gmail.com",
+                UserName = "daniel",
+                UserEmail = "daniel@gmail.com",
+                Role = Role.Admin,
                 // 123 password + 123 salt
                 PasswordHash = "932F3C1B56257CE8539AC269D7AAB42550DACF8818D075F0BDF1990562AAE3EF"
             });
