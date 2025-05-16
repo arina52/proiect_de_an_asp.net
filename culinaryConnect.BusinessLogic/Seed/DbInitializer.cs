@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
-using culinaryConnect.BusinessLogic.Models.AdminDB;
 using culinaryConnect.BusinessLogic.Data;
+using culinaryConnect.BusinessLogic.Models.UserDB;
 using culinaryConnect.BusinessLogic.Models;
 using culinaryConnect.Domain.Entities.Recipe;
 using System.Collections.Generic;
@@ -11,15 +11,6 @@ namespace culinaryConnect.BusinessLogic.Seed
     {
         protected override void Seed(CulinaryContext context)
         {
-            context.Admins.Add(new AdminDB
-            {
-                AdminName = "daniel",
-                AdminEmail = "daniel@gmail.com",
-                // 123 password + 123 salt
-                PasswordHash = "932F3C1B56257CE8539AC269D7AAB42550DACF8818D075F0BDF1990562AAE3EF"
-            });
-
-
             context.Recipes.AddRange(new List<RecipeDB>
             {
              new RecipeDB
@@ -32,12 +23,12 @@ namespace culinaryConnect.BusinessLogic.Seed
                     Ingredients = "800g dovleac curățat și tăiat cuburi###1 ceapă medie###2 căței de usturoi###1 morcov###1 cartof###1 litru supă de legume sau apă###2 linguri ulei de măsline###Sare, piper – după gust",
                     Description = "O supă cremoasă și aromată, perfectă pentru serile răcoroase de toamnă. Se prepară ușor și este plină de savoare.",
                     Instructions = @"Într-o oală mare, călește ceapa și usturoiul tocate mărunt în ulei de măsline, timp de 2-3 minute.###
-Adaugă morcovul, cartoful și dovleacul tăiate cuburi. Amestecă și lasă-le să se înmoaie ușor timp de 5 minute.###
-Toarnă supa de legume (sau apă) peste legume, acoperă și fierbe la foc mediu timp de 25-30 de minute, până toate legumele sunt moi.###
-Ia oala de pe foc și pasează totul cu un blender vertical până obții o cremă fină.###
-Potrivește gustul cu sare, piper și, dacă vrei, adaugă puțin ghimbir ras.###
-Pentru o textură mai bogată, adaugă smântâna și mai dă supa un clocot.###
-Servește cu crutoane sau semințe de dovleac prăjite deasupra."
+                    Adaugă morcovul, cartoful și dovleacul tăiate cuburi. Amestecă și lasă-le să se înmoaie ușor timp de 5 minute.###
+                    Toarnă supa de legume (sau apă) peste legume, acoperă și fierbe la foc mediu timp de 25-30 de minute, până toate legumele sunt moi.###
+                    Ia oala de pe foc și pasează totul cu un blender vertical până obții o cremă fină.###
+                    Potrivește gustul cu sare, piper și, dacă vrei, adaugă puțin ghimbir ras.###
+                    Pentru o textură mai bogată, adaugă smântâna și mai dă supa un clocot.###
+                    Servește cu crutoane sau semințe de dovleac prăjite deasupra."
                 },
                 CategoryID = 1,
                 CreatedDate = new System.DateTime(2025, 5, 5),
@@ -120,7 +111,16 @@ Servește cu crutoane sau semințe de dovleac prăjite deasupra."
         ImagePath = "recipe-6.jpg"
     }
             });
-        
+
+            context.Users.Add(new UserDB
+            {
+                UserName = "daniel",
+                UserEmail = "daniel@gmail.com",
+                Role = Role.Admin,
+                // 123 password + 123 salt
+                PasswordHash = "932F3C1B56257CE8539AC269D7AAB42550DACF8818D075F0BDF1990562AAE3EF"
+            });
+
             context.SaveChanges();
         }
     }

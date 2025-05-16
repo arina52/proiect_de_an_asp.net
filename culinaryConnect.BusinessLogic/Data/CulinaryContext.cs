@@ -1,6 +1,5 @@
 ﻿using System.Data.Entity;
 using culinaryConnect.BusinessLogic.Models.UserDB;
-using culinaryConnect.BusinessLogic.Models.AdminDB;
 using culinaryConnect.BusinessLogic.Models;
 namespace culinaryConnect.BusinessLogic.Data
 {
@@ -11,7 +10,6 @@ namespace culinaryConnect.BusinessLogic.Data
         }
 
         public DbSet<UserDB> Users { get; set; }
-        public DbSet<AdminDB> Admins { get; set; }
         public DbSet<RecipeDB> Recipes { get; set; }
         public DbSet<CategoryDB> Categories { get; set; }
 

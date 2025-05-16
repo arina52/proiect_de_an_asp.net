@@ -33,7 +33,6 @@ namespace culinaryConnect.BusinessLogic.Models
         public Status Status { get; set; }
 
         [Required]
-        // can be both user and admin
         public int AuthorID { get; set; }
     }
 }

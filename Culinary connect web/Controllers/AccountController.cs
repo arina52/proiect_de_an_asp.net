@@ -76,7 +76,7 @@ namespace Culinary_connect_web.Controllers
             }
 
             var categoryId = -1;
-            if(recipe.CategoryID != null)
+            if(recipe.CategoryID != 0)
             {
                 categoryId = recipe.CategoryID;
             }

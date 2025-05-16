@@ -5,13 +5,12 @@ using System.Web.Mvc;
 using culinaryConnect.BusinessLogic.Data;
 using culinaryConnect.BusinessLogic.Models.UserDB;
 using culinaryConnect.Domain.Entities.Admin;
-using culinaryConnect.Web.Services.AdminService;
+using culinaryConnect.BusinessLogic.Core;
 using culinaryConnect.BusinessLogic.Models;
 using culinaryConnect.Domain.Entities.User;
 using culinaryConnect.Domain.Entities.Recipe;
 using culinaryConnect.Domain.Entities.Recipe.AdminRecipes;
 using culinaryConnect.Domain.Entities.Recipe.AdminRecipe;
-using culinaryConnect.Web.Services;
 using System.Web;
 using System.IO;
 using culinaryConnect.Domain.Entities.CategoryModels.AdminCategories;
@@ -121,14 +120,14 @@ namespace Culinary_connect_web.Controllers
                 ImagePath = recipe.ImagePath,
                 Status = recipe.Status.ToString(),
             };
-
+            var adminService = new AdminService(_context);
             var recipeAuthorUser = _context.Users.FirstOrDefault(u => u.Id == recipe.AuthorID);
             if(recipeAuthorUser == null)
             {
-                var recipeAuthorAdmin = _context.Admins.FirstOrDefault(a => a.Id == recipe.AuthorID);
+                var recipeAuthorAdmin = adminService.getAdminList().FirstOrDefault(a => a.Id == recipe.AuthorID);
                 if(recipeAuthorAdmin != null)
                 {
-                    recipeAdmin.Author = recipeAuthorAdmin.AdminEmail;
+                    recipeAdmin.Author = recipeAuthorAdmin.UserEmail;
                 } else
                 {
                     recipeAdmin.Author = null;
@@ -138,7 +137,7 @@ namespace Culinary_connect_web.Controllers
                 recipeAdmin.Author = recipeAuthorUser.UserEmail;
             }
 
-            if(recipe.CategoryID != null)
+            if(recipe.CategoryID != 0)
             {
                 var recipeCategory = _context.Categories.FirstOrDefault(c => c.Id == recipe.CategoryID);
                 if(recipeCategory != null)
@@ -235,7 +234,7 @@ namespace Culinary_connect_web.Controllers
         public ActionResult Logout() {
             Session["AdminID"] = null;
             Session["AdminEmail"] = null;
-
+            Session["Role"] = null;
             return RedirectToAction("login");
         }
 
@@ -249,14 +248,14 @@ namespace Culinary_connect_web.Controllers
             }
 
 
-            var adminService = new AdminService();
+            var adminService = new AdminService(_context);
             var admin = adminService.GetByCredentials(model.AdminEmail, model.AdminPassword);
 
             if (admin != null)
             {
                 Session["AdminID"] = admin.Id;
-                Session["AdminEmail"] = admin.AdminEmail;
-
+                Session["AdminEmail"] = admin.UserEmail;
+                Session["Role"]=admin.Role.ToString();
                 return RedirectToAction("index");
             }
 
@@ -347,7 +346,7 @@ namespace Culinary_connect_web.Controllers
             }
 
             recipe.Title = editModel.Title;
-            if(editModel.CategoryDbId != null)
+            if(editModel.CategoryDbId != 0)
             {
                 recipe.CategoryID = editModel.CategoryDbId;
             }
