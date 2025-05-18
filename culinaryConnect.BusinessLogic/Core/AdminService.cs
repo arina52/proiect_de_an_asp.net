@@ -20,7 +20,7 @@ namespace culinaryConnect.BusinessLogic.Core
             _context = context;
         }
 
-        public List<UserDB> getAdminList()
+        public List<UserDB> GetAdminList()
         {
             var adminList = _context.Users
             .Where(u => u.Role == Role.Admin)
@@ -30,7 +30,7 @@ namespace culinaryConnect.BusinessLogic.Core
 
         public UserDB GetByCredentials(string email, string password)
         {
-            var Admins = getAdminList();
+            var Admins = GetAdminList();
             var salt = "123";
             var hashedPassword = Crypto.SHA256(password + salt);
             return Admins.FirstOrDefault(a => a.UserEmail == email 

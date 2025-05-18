@@ -3,7 +3,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
-
+@model Culinary_connect_web.DTO.RecipesListDTO
 
 <!-- Page Top Recipe Section Begin -->
 <section class="page-top-recipe">
@@ -11,50 +11,44 @@
         <div class="row">
             <div class="col-lg-6 order-lg-2">
                 <div class="pt-recipe-item large-item">
-                    <div class="pt-recipe-img set-bg" data-setbg=@Url.Content("~/Content/Images/recipe-3")>
-                        <i class="fa fa-plus"></i>
-                    </div>
-                    <div class="pt-recipe-text">
-                        <span>10 martie 2019</span>
-                        <h3>Cannellini Aglio e Olio cu Somon</h3>
-                    </div>
+                    @foreach (var recipe in Model.RecipeList.Take(1))
+                    {
+                        <div class="pt-recipe-img set-bg" data-setbg=@Url.Content("~/Content/Images/" + recipe.ImagePath)>
+                            <i class="fa fa-plus"></i>
+                        </div>
+                        <div class="pt-recipe-text">
+                            <span>@recipe.CreatedDate</span>
+                            <h3>@recipe.Title</h3>
+                        </div>
+                    }
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 order-lg-1">
-                <div class="pt-recipe-item">
-                    <div class="pt-recipe-img set-bg" data-setbg=@Url.Content("~/Content/Images/recipe-1.jpg")>
-                        <i class="fa fa-plus"></i>
+                @foreach (var recipe in Model.RecipeList.Skip(1).Take(2))
+                {
+                    <div class="pt-recipe-item">
+                        <div class="pt-recipe-img set-bg" data-setbg=@Url.Content("~/Content/Images/" + recipe.ImagePath)>
+                            <i class="fa fa-plus"></i>
+                        </div>
+                        <div class="pt-recipe-text">
+                            <h4>@recipe.Title</h4>
+                        </div>
                     </div>
-                    <div class="pt-recipe-text">
-                        <h4>Clătite cu zmeură și miere</h4>
-                    </div>
-                </div>
-                <div class="pt-recipe-item">
-                    <div class="pt-recipe-img set-bg" data-setbg=@Url.Content("~/Content/Images/recipe-2.jpg")>
-                        <i class="fa fa-plus"></i>
-                    </div>
-                    <div class="pt-recipe-text">
-                        <h4>Omletă pufoasă</h4>
-                    </div>
-                </div>
+                }
+
             </div>
             <div class="col-lg-3 col-md-6 order-lg-3">
-                <div class="pt-recipe-item">
-                    <div class="pt-recipe-img set-bg" data-setbg=@Url.Content("~/Content/Images/recipe-4.jpg")>
-                        <i class="fa fa-plus"></i>
+                @foreach (var recipe in Model.RecipeList.Skip(3).Take(2))
+                {
+                    <div class="pt-recipe-item">
+                        <div class="pt-recipe-img set-bg" data-setbg=@Url.Content("~/Content/Images/"+recipe.ImagePath)>
+                            <i class="fa fa-plus"></i>
+                        </div>
+                        <div class="pt-recipe-text">
+                            <h4>@recipe.Title</h4>
+                        </div>
                     </div>
-                    <div class="pt-recipe-text">
-                        <h4>Carne de pui</h4>
-                    </div>
-                </div>
-                <div class="pt-recipe-item">
-                    <div class="pt-recipe-img set-bg" data-setbg=@Url.Content("~/Content/Images/recipe-5.jpg")>
-                        <i class="fa fa-plus"></i>
-                    </div>
-                    <div class="pt-recipe-text">
-                        <h4>Tort din biscuiți cu fructe</h4>
-                    </div>
-                </div>
+                }
             </div>
         </div>
     </div>
@@ -70,110 +64,43 @@
             <i class="fa fa-plus"></i>
         </div>
         <div class="row">
-            <div class="col-lg-6">
-                <div class="top-recipe-item large-item">
-                    <div class="top-recipe-img set-bg" data-setbg=@Url.Content("~/Content/Images/top-recipe/recipe-1.jpg")>
-                        <i class="fa fa-plus"></i>
-                    </div>
-                    <div class="top-recipe-text">
-                        <div class="cat-name">Desert</div>
-                        <a href="#">
-                            <h4>Supă cremă</h4>
-                        </a>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="top-recipe-item">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="top-recipe-img set-bg" data-setbg=@Url.Content("~/Content/Images/top-recipe/recipe-2.jpg")>
-                                <i class="fa fa-plus"></i>
-                            </div>
+            @if (Model.RecipeList.Any())
+            {
+                var primaReteta = Model.RecipeList.First();
+                <div class="col-lg-6">
+                    <div class="top-recipe-item large-item">
+                        <div class="top-recipe-img set-bg" data-setbg="@Url.Content("~/Content/Images/"+ primaReteta.ImagePath)">
+                            <i class="fa fa-plus"></i>
                         </div>
-                        <div class="col-sm-8">
-                            <div class="top-recipe-text">
-                                <div class="cat-name">Vegan</div>
-                                <a href="#">
-                                    <h4>Burger vegan</h4>
-                                </a>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.
-                                </p>
-                            </div>
+                        <div class="top-recipe-text">
+                            <div class="cat-name">@primaReteta.CategoryID</div>
+                            <a href="#"><h4>@primaReteta.Title</h4></a>
+                            <p>@primaReteta.AboutRecipe.Description</p>
                         </div>
                     </div>
                 </div>
-                <div class="top-recipe-item">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="top-recipe-img set-bg" data-setbg=@Url.Content("~/Content/Images/top-recipe/recipe-3.jpg")>
-                                <i class="fa fa-plus"></i>
+                <div class="col-lg-6">
+                    @foreach (var reteta in Model.RecipeList.Skip(1))
+                    {
+                        <div class="top-recipe-item">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="top-recipe-img set-bg" data-setbg="@Url.Content("~/Content/Images/" +reteta.ImagePath)">
+                                        <i class="fa fa-plus"></i>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="top-recipe-text">
+                                        <div class="cat-name">@reteta.CategoryID</div>
+                                        <a href="#"><h4>@reteta.Title</h4></a>
+                                        <p>@reteta.AboutRecipe.Description</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-sm-8">
-                            <div class="top-recipe-text">
-                                <div class="cat-name">Carne</div>
-                                <a href="#">
-                                    <h4>Burger clasic cu cartofi pai</h4>
-                                </a>
-                                <p>
-                                    Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                                    magna aliqua. Lorem ipsum dolor sit amet, consectetur.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    }
                 </div>
-                <div class="top-recipe-item">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="top-recipe-img set-bg" data-setbg=@Url.Content("~/Content/Images/top-recipe/recipe-4.jpg")>
-                                <i class="fa fa-plus"></i>
-                            </div>
-                        </div>
-                        <div class="col-sm-8">
-                            <div class="top-recipe-text">
-                                <div class="cat-name">Desert</div>
-                                <a href="#">
-                                    <h4>Desert de casă</h4>
-                                </a>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="top-recipe-item">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="top-recipe-img set-bg" data-setbg=@Url.Content("~/Content/Images/top-recipe/recipe-5.jpg")>
-                                <i class="fa fa-plus"></i>
-                            </div>
-                        </div>
-                        <div class="col-sm-8">
-                            <div class="top-recipe-text">
-                                <div class="cat-name">Desert</div>
-                                <a href="#">
-                                    <h4>Caracatiță cu lămâie</h4>
-                                </a>
-                                <p>
-                                    Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                                    magna aliqua. Lorem ipsum dolor sit amet, consectetur.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
     </div>
 </section>

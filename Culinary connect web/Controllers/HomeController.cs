@@ -5,17 +5,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Culinary_connect_web.DTO;
+using culinaryConnect.BusinessLogic.Core;
+using culinaryConnect.BusinessLogic.Interfaces;
 
 namespace culinaryConnect.Web.Controllers
 {
     public class HomeController : Controller
     {
         private readonly CulinaryContext _context = new CulinaryContext();
+        private readonly IRecipeService _recipeService;
 
+        public HomeController()
+        {
+            _recipeService = new RecipeService(_context);
+        }
         // GET: Home
         public ActionResult Index()
         {
-            return View();
+            var recipeList = _recipeService.GetAllRecipes();
+            var recipesDTO = new RecipesListDTO
+            {
+                RecipeList = recipeList
+            };
+            return View(recipesDTO);
         }
         public ActionResult AboutMe()
         {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using culinaryConnect.Domain.Entities;
 
 namespace culinaryConnect.Domain.Entities.Recipe
 {
@@ -13,6 +14,7 @@ namespace culinaryConnect.Domain.Entities.Recipe
         public RecipeAbout AboutRecipe { get; set; }
         public int CategoryID { get; set; }
         public string ImagePath { get; set; }
-
+        public string CreatedDate { get; set; }
+        public AuthorModel Author { get; set; }
     }
 }
