@@ -33,7 +33,8 @@ namespace culinaryConnect.BusinessLogic.Seed
                 CategoryID = 1,
                 CreatedDate = new System.DateTime(2025, 5, 5),
                 AuthorID = 1,
-                ImagePath = "recipe-1.jpg"
+                ImagePath = "recipe-1.jpg",
+                Status = Status.Active
             },
                  new RecipeDB
     {
@@ -48,7 +49,9 @@ namespace culinaryConnect.BusinessLogic.Seed
         CategoryID = 2,
         CreatedDate = new DateTime(2025, 5, 9),
         AuthorID = 1,
-        ImagePath = "recipe-2.jpg"
+        ImagePath = "recipe-2.jpg",
+                     Status = Status.Active
+
     },
     new RecipeDB
     {
@@ -63,7 +66,9 @@ namespace culinaryConnect.BusinessLogic.Seed
         CategoryID = 3,
         CreatedDate = new DateTime(2025, 5, 9),
         AuthorID = 1,
-        ImagePath = "recipe-3.jpg"
+        ImagePath = "recipe-3.jpg",
+                        Status = Status.Active
+
     },
     new RecipeDB
     {
@@ -78,7 +83,9 @@ namespace culinaryConnect.BusinessLogic.Seed
         CategoryID = 4,
         CreatedDate = new DateTime(2025, 5, 9),
         AuthorID = 1,
-        ImagePath = "recipe-4.jpg"
+        ImagePath = "recipe-4.jpg",               
+        Status = Status.Active
+
     },
     new RecipeDB
     {
@@ -93,7 +100,9 @@ namespace culinaryConnect.BusinessLogic.Seed
         CategoryID = 3,
         CreatedDate = new DateTime(2025, 5, 9),
         AuthorID = 1,
-        ImagePath = "recipe-5.jpg"
+        ImagePath = "recipe-5.jpg",
+                        Status = Status.Active
+
     },
     new RecipeDB
     {
@@ -108,7 +117,9 @@ namespace culinaryConnect.BusinessLogic.Seed
         CategoryID = 2,
         CreatedDate = new DateTime(2025, 5, 9),
         AuthorID = 1,
-        ImagePath = "recipe-6.jpg"
+        ImagePath = "recipe-6.jpg",
+                        Status = Status.Active
+
     }
             });
 

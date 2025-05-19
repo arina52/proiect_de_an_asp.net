@@ -54,8 +54,9 @@
                 @foreach (var recipe in Model.RecipeList.Skip(3))
                 {
                     <div class="cfr-item">
-                        <div class="cfr-item-img set-bg" data-setbg="@Url.Content("~/Content/Images/cat-feature/big-"+recipe.Id + ".jpg")">
-                            <i class="fa fa-plus"></i>
+                    <div class="cfr-item-img set-bg"
+                         data-setbg="@Url.Content("~/Content/Images/recipe/" + recipe.ImagePath)" style="height:200px">
+                        <i class="fa fa-plus"></i>
                         </div>
                         <div class="cfr-item-text">
                             <div class="cat-name">@recipe.CategoryID</div>
@@ -76,7 +77,7 @@
                 {
                     <div class="cfr-small-item">
                         <a href="@Url.Action("Index", "Recipe", new {id=recipe.Id})">
-                            <img src=@Url.Content("~/Content/Images/cat-feature/small-" + recipe.Id +".jpg") alt="@recipe.Title">
+                            <img src=@Url.Content("~/Content/Images/recipe/" + recipe.ImagePath) style="height:75px" alt="@recipe.Title">
                         </a>
                         <div class="cfr-small-text">
                             <div class="cat-name">@recipe.CategoryID</div>

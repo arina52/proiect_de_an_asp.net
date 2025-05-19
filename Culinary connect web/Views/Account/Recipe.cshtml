@@ -1,54 +1,127 @@
-﻿@model culinaryConnect.Domain.Entities.Recipe.RecipeDetails
-@{ 
+﻿@{
     Layout = "~/Views/Shared/layouts/_EmptyLayout.cshtml";
 }
+@model culinaryConnect.Domain.Entities.Recipe.RecipesPageModel
 
-    <!-- Recipe Submission Form Section Begin -->
+<!-- Recipe Submission Form Section Begin -->
 <div class="container mt-5">
     <h2 class="text-center mb-4" style="font-weight: 700;">Trimiteți o rețetă</h2>
-    @using (Html.BeginForm("AddRecipe", "account", FormMethod.Post, new { @class = "recipe-form" }))
+    @using (Html.BeginForm("AddRecipe", "account", FormMethod.Post, new { enctype = "multipart/form-data", @class = "recipe-form" }))
     {
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Title, "Numele rețetei")
-                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "Introduceți numele rețetei" })
-                    @Html.ValidationMessageFor(m => m.Title)
+                    @Html.LabelFor(m => m.RecipeForm.Title, "Numele rețetei")
+                    @Html.TextBoxFor(m => m.RecipeForm.Title, new { @class = "form-control", placeholder = "Introduceți numele rețetei" })
+                    @Html.ValidationMessageFor(m => m.RecipeForm.Title)
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    @Html.LabelFor(m => m.CategoryID, "Categorie")
-                    @Html.DropDownListFor(m => m.CategoryID, new List<SelectListItem> {
-                    new SelectListItem { Value = "", Text = "Selectați o categorie" },
-                    new SelectListItem { Value = "Vegan", Text = "Vegan" },
-                    new SelectListItem { Value = "Non-Vegan", Text = "Non-Vegan" },
-                    new SelectListItem { Value = "Dessert", Text = "Desert" },
-                    new SelectListItem { Value = "Appetizer", Text = "Aperitiv" }
-                    }, new { @class = "form-control" })
+                    @Html.LabelFor(m => m.RecipeForm.CategoryID, "Categorie")
+                    @Html.DropDownListFor(m => m.RecipeForm.CategoryID, new SelectList(Model.Categories, "Id", "Name")
+                     , new { @class = "form-control" })
 
                 </div>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(m => m.AboutRecipe.Description, "Descriere")
-            @Html.TextAreaFor(m => m.AboutRecipe.Description, new { @class = "form-control", rows = "4", placeholder = "Introduceți descrierea rețetei" })
-            @Html.ValidationMessageFor(m => m.AboutRecipe.Description)
+            @Html.LabelFor(m => m.RecipeForm.AboutRecipe.Description, "Descriere")
+            @Html.TextAreaFor(m => m.RecipeForm.AboutRecipe.Description, new { @class = "form-control", rows = "4", placeholder = "Introduceți descrierea rețetei" })
+            @Html.ValidationMessageFor(m => m.RecipeForm.AboutRecipe.Description)
         </div>
         <div class="form-group">
-            @Html.LabelFor(m => m.AboutRecipe.CookingTime, "Timpul de gătire")
-            @Html.TextBoxFor(m => m.AboutRecipe.CookingTime, new { @class = "form-control", rows = "1", placeholder = "Introduceți timpul de gătire" })
-            @Html.ValidationMessageFor(m => m.AboutRecipe.CookingTime)
+            @Html.LabelFor(m => m.RecipeForm.AboutRecipe.Description, "Ingrediente")
+            <div class="input-group mb-2">
+                <input type="text" id="ingredientInput" class="form-control" placeholder="Adaugă ingredient" />
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-outline-secondary" onclick="addListItem('ingredientsList', 'ingredientInput')">Adaugă</button>
+                </div>
+            </div>
+            <ul id="ingredientsList" class="list-group"></ul>
         </div>
-        @*<div class="form-group">
-                <label for="recipe-image">Imaginea rețetei</label>
-                <input type="file" id="recipe-image" class="form-control-file" required>
-            </div>*@
+        <div class="form-group">
+            @Html.LabelFor(m => m.RecipeForm.AboutRecipe.Instructions, "Instructions")
+            <div class="input-group mb-2">
+                <input type="text" id="instructionInput" class="form-control" placeholder="Adaugă instrucțiune" />
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-outline-secondary" onclick="addListItem('instructionsList', 'instructionInput')">Adaugă</button>
+                </div>
+            </div>
+            <ul id="instructionsList" class="list-group"></ul>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.RecipeForm.AboutRecipe.CookingTime, "Timpul de gătire")
+            @Html.TextBoxFor(m => m.RecipeForm.AboutRecipe.CookingTime, new { @class = "form-control", rows = "1", placeholder = "Introduceți timpul de gătire" })
+            @Html.ValidationMessageFor(m => m.RecipeForm.AboutRecipe.CookingTime)
+        </div>
+
+        <div class="form-group">
+            <label> Imaginea retetei </label>
+            <input type="file" name="RecipeImage" class="form-control-file" />
+        </div>
+        <div id="hiddenFieldsContainer"></div>
+
 
         <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block">Trimiteți rețetă</button>
         </div>
     }
 </div>
-    <!-- Recipe Submission Form Section End -->
+<!-- Recipe Submission Form Section End -->
+<script>
+    function addListItem(listId, inputId) {
+        const list = document.getElementById(listId);
+        const input = document.getElementById(inputId);
+        const value = input.value.trim();
+
+        if (value === '') return;
+
+        const li = document.createElement("li");
+        li.className = "list-group-item d-flex justify-content-between align-items-center";
+
+        const span = document.createElement("span");
+        span.textContent = value;
+
+        const removeBtn = document.createElement("button");
+        removeBtn.className = "btn btn-sm btn-danger";
+        removeBtn.innerHTML = "✕";
+        removeBtn.onclick = function () {
+            list.removeChild(li);
+            updateHiddenFields();
+        };
+
+        li.appendChild(span);
+        li.appendChild(removeBtn);
+        list.appendChild(li);
+
+        input.value = '';
+        updateHiddenFields();
+    }
+
+    function updateHiddenFields() {
+        const ingredients = Array.from(document.querySelectorAll('#ingredientsList li span'))
+            .map(item => item.textContent.trim())
+            .join('###');
+
+        const instructions = Array.from(document.querySelectorAll('#instructionsList li span'))
+            .map(item => item.textContent.trim())
+            .join('###');
+
+        const container = document.getElementById("hiddenFieldsContainer");
+        container.innerHTML = '';
+
+        const hiddenIngredients = document.createElement("input");
+        hiddenIngredients.type = "hidden";
+        hiddenIngredients.name = "RecipeForm.AboutRecipe.Ingredients";
+        hiddenIngredients.value = ingredients;
+        container.appendChild(hiddenIngredients);
+
+        const hiddenInstructions = document.createElement("input");
+        hiddenInstructions.type = "hidden";
+        hiddenInstructions.name = "RecipeForm.AboutRecipe.Instructions";
+        hiddenInstructions.value = instructions;
+        container.appendChild(hiddenInstructions);
+    }
+</script>

@@ -30,7 +30,7 @@ namespace culinaryConnect.BusinessLogic.Models
         public DateTime CreatedDate { get; set; }
 
         [Required]
-        public Status Status { get; set; }
+        public Status Status { get; set; } = Status.Pending;
 
         [Required]
         public int AuthorID { get; set; }
