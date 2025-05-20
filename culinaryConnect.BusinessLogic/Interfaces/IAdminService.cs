@@ -9,7 +9,7 @@ namespace culinaryConnect.BusinessLogic.Interfaces
 {
     public interface IAdminService
     {
-        List<UserDB> getAdminList();
+        List<UserDB> GetAdminList();
         UserDB GetByCredentials(string email, string password);
     }
 }

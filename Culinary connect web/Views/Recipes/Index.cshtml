@@ -14,9 +14,11 @@
                         <a href="#"><img src="@Url.Content("~/Content/Images/recipe/" + recipe.ImagePath)" alt=""></a>
                         <div class="ri-text">
                             <div class="cat-name">@recipe.CategoryID</div>
-                            <a href="#">
+                             <a href="@Url.Action("Index", "Recipe", new {id=recipe.Id})">
                                 <h4>@recipe.Title</h4>
-                            </a>
+                             </a>
+                            
+                            <small class="text-muted">de @recipe.Author.Name pe @recipe.CreatedDate</small>
                             <p>@recipe.AboutRecipe.Description</p>
                         </div>
                     </div>
@@ -52,14 +54,17 @@
                 @foreach (var recipe in Model.RecipeList.Skip(3))
                 {
                     <div class="cfr-item">
-                        <div class="cfr-item-img set-bg" data-setbg="@Url.Content("~/Content/Images/cat-feature/big-"+recipe.Id + ".jpg")">
-                            <i class="fa fa-plus"></i>
+                    <div class="cfr-item-img set-bg"
+                         data-setbg="@Url.Content("~/Content/Images/recipe/" + recipe.ImagePath)" style="height:200px">
+                        <i class="fa fa-plus"></i>
                         </div>
                         <div class="cfr-item-text">
                             <div class="cat-name">@recipe.CategoryID</div>
-                            <a href="#">
+                            <a href="@Url.Action("Index", "Recipe", new { id = recipe.Id })">
                                 <h4>@recipe.Title</h4>
                             </a>
+                            <small class="text-muted">de @recipe.Author.Name pe @recipe.CreatedDate</small>
+
                             <p>
                                 @recipe.AboutRecipe.Description
                             </p>
@@ -71,10 +76,13 @@
                 @foreach (var recipe in Model.RecipeList)
                 {
                     <div class="cfr-small-item">
-                        <a href="#"><img src=@Url.Content("~/Content/Images/cat-feature/small-" + recipe.Id +".jpg") alt="@recipe.Title"></a>
+                        <a href="@Url.Action("Index", "Recipe", new {id=recipe.Id})">
+                            <img src=@Url.Content("~/Content/Images/recipe/" + recipe.ImagePath) style="height:75px" alt="@recipe.Title">
+                        </a>
                         <div class="cfr-small-text">
                             <div class="cat-name">@recipe.CategoryID</div>
                             <h6> @recipe.Title </h6>
+                            <small class="text-muted">de @recipe.Author.Name pe @recipe.CreatedDate</small>
                         </div>
                     </div>
                 }

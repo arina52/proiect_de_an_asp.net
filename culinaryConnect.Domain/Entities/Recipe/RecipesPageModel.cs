@@ -10,5 +10,6 @@ namespace culinaryConnect.Domain.Entities.Recipe
     {
         public RecipeDetails RecipeForm { get; set; }
         public List<RecipeDetails> RecipeList { get; set; }
+        public List<CategoryUser> Categories { get; set; }
     }
 }

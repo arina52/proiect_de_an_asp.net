@@ -28,7 +28,7 @@ namespace Culinary_connect_web.Controllers
             if (Session["AdminID"] != null) { 
                 var usersListDB = _context.Users.ToList();
 
-                var usersList = usersListDB.Select(u => new culinaryConnect.Domain.Entities.User.User
+                var usersList = usersListDB.Select(u => new User
                 {
                     Id = u.Id,
                     Email = u.UserEmail,
@@ -124,7 +124,7 @@ namespace Culinary_connect_web.Controllers
             var recipeAuthorUser = _context.Users.FirstOrDefault(u => u.Id == recipe.AuthorID);
             if(recipeAuthorUser == null)
             {
-                var recipeAuthorAdmin = adminService.getAdminList().FirstOrDefault(a => a.Id == recipe.AuthorID);
+                var recipeAuthorAdmin = adminService.GetAdminList().FirstOrDefault(a => a.Id == recipe.AuthorID);
                 if(recipeAuthorAdmin != null)
                 {
                     recipeAdmin.Author = recipeAuthorAdmin.UserEmail;

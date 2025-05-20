@@ -12,13 +12,11 @@ namespace Culinary_connect_web.Controllers
 {
     public class RecipeController : Controller
     {
-        private readonly CulinaryContext _context = new CulinaryContext();
         private readonly IRecipeService _recipeService;
         public RecipeController()
         {
-            _recipeService = new RecipeService(_context);
+            _recipeService = new RecipeService();
         }
-
 
         // GET: Recipe
         public ActionResult Index(int id)

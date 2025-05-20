@@ -4,6 +4,9 @@
             <div class="recipe-title">
                 <span>~ @Model.AboutRecipe.Ingredients.Split(new[] { "###" }, StringSplitOptions.None).Length ingrediente / @Model.AboutRecipe.CookingTime</span>
                 <h2>@Model.Title</h2>
+                <p class="text-muted">
+                    de <strong>@Model.Author.Name</strong> | publicată pe <strong>@Model.CreatedDate</strong>
+                </p>
             </div>
             <img src=@Url.Content("~/Content/Images/recipe/"+ Model.ImagePath) alt="@Model.Title" class="d-block mx-auto img-fluid" />
         </div>
