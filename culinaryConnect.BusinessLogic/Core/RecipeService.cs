@@ -15,9 +15,9 @@ namespace culinaryConnect.BusinessLogic.Core
     {
         private readonly CulinaryContext _context;
 
-        public RecipeService(CulinaryContext context)
+        public RecipeService()
         {
-            _context = context;
+            _context = new CulinaryContext();
         }
         public List<RecipeDetails> GetAllRecipes()
         {
@@ -70,6 +70,14 @@ namespace culinaryConnect.BusinessLogic.Core
                 } : null
             };
         }
+
+        public RecipeDB GetRecipeEntityById(int Id)
+        {
+            var recipe =_context.Recipes.Include("AboutRecipe").FirstOrDefault(r => r.Id == Id);
+            return recipe;
+        }
+
+        
 
     }
 }

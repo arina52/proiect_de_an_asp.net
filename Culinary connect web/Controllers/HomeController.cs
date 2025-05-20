@@ -11,14 +11,16 @@ using culinaryConnect.BusinessLogic.Interfaces;
 
 namespace culinaryConnect.Web.Controllers
 {
+
     public class HomeController : Controller
     {
-        private readonly CulinaryContext _context = new CulinaryContext();
         private readonly IRecipeService _recipeService;
+        private readonly IAcountService _accountService;
 
         public HomeController()
         {
-            _recipeService = new RecipeService(_context);
+            _recipeService = new RecipeService();
+            _accountService = new AccountService();
         }
         // GET: Home
         public ActionResult Index()
@@ -39,28 +41,12 @@ namespace culinaryConnect.Web.Controllers
         public ActionResult SubscribeNews(string email)
         {
             if (Session["UserID"] == null)
-            {
                 return RedirectToAction("index", "login");
-            }
 
-            var user = _context.Users.FirstOrDefault(u => u.UserEmail == email);
+            _accountService.SubscribeUserToNewsletter(email);
 
-            if (user == null)
-            {
-
-                var newUser = new UserDB();
-                newUser.UserEmail = email;
-                newUser.SubscribedToNews = true;
-                _context.Users.Add(newUser);
-                _context.SaveChanges();
-
-                return View();
-            }
-
-            user.SubscribedToNews = true;
-            _context.SaveChanges();
-
-            return View("index");
+            return View("index"); 
         }
+
     }
 }

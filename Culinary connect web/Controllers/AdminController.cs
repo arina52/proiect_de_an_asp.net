@@ -28,7 +28,7 @@ namespace Culinary_connect_web.Controllers
             if (Session["AdminID"] != null) { 
                 var usersListDB = _context.Users.ToList();
 
-                var usersList = usersListDB.Select(u => new culinaryConnect.Domain.Entities.User.User
+                var usersList = usersListDB.Select(u => new User
                 {
                     Id = u.Id,
                     Email = u.UserEmail,

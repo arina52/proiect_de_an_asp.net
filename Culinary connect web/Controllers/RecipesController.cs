@@ -16,10 +16,9 @@ namespace culinaryConnect.Web.Controllers
     {
 
         private readonly IRecipeService _recipeService;
-        private readonly CulinaryContext _context = new CulinaryContext();
         public RecipesController()
         {
-            _recipeService = new RecipeService(_context);
+            _recipeService = new RecipeService();
         }
 
         public ActionResult Index()

@@ -16,9 +16,8 @@ namespace Culinary_connect_web.Controllers
     public class AccountController : Controller
     {
         // GET: Account
-
-        private readonly CulinaryContext _context = new CulinaryContext();
-
+        private readonly IAcountService _accountService = new AccountService();
+        private readonly IRecipeService _recipeService = new RecipeService();
         public ActionResult Index()
         {
             if (Session["UserID"] != null)
@@ -38,7 +37,7 @@ namespace Culinary_connect_web.Controllers
         public ActionResult Recipes() {
             if (Session["UserID"] == null)
                 return RedirectToAction("index", "login");
-            IRecipeService _recipeService = new RecipeService(_context);
+            IRecipeService _recipeService = new RecipeService();
             var model = new RecipesPageModel();
             model.RecipeList = _recipeService.GetAllRecipes();
 
@@ -50,7 +49,7 @@ namespace Culinary_connect_web.Controllers
 
             if (Session["UserID"] == null)
                 return RedirectToAction("index", "login");
-            var categories = _context.Categories.ToList();
+            var categories = _accountService.GetCategoryList();
             var model = new RecipesPageModel()
             {
                 Categories = categories.Select(c => new CategoryUser
@@ -81,37 +80,17 @@ namespace Culinary_connect_web.Controllers
                 return View("recipes", model);
             }
 
-            var categoryId = -1;
-            if(recipe.CategoryID != 0)
-            {
-                categoryId = recipe.CategoryID;
-            }
-            var aboutRecipe = new RecipeAboutDB
-            {
-                Description = recipe.AboutRecipe.Description,
-                CookingTime = recipe.AboutRecipe.CookingTime,
-                Ingredients = recipe.AboutRecipe.Ingredients,
-                Instructions = recipe.AboutRecipe.Instructions
-            };
-            var newRecipe = new RecipeDB
-            {
-                Title = recipe.Title,
-                AboutRecipe = aboutRecipe,
-                CategoryID = categoryId,
-                CreatedDate = DateTime.Now,
-                AuthorID = (int)Session["UserID"]
-            };
+            string imageFileName = null;
+
             if (RecipeImage != null && RecipeImage.ContentLength > 0)
             {
-                var fileName = Path.GetFileName(RecipeImage.FileName);
-                var path = Server.MapPath("~/Content/Images/recipe/" + fileName);
+                imageFileName = Path.GetFileName(RecipeImage.FileName);
+                var path = Server.MapPath("~/Content/Images/recipe/" + imageFileName);
                 RecipeImage.SaveAs(path);
-
-                newRecipe.ImagePath = fileName;
             }
 
-            _context.Recipes.Add(newRecipe);
-            _context.SaveChanges();
+            int userId = (int)Session["UserID"];
+            _accountService.AddRecipe(model, userId, imageFileName);
 
             TempData["Success"] = "Recipe created successfully!";
             return RedirectToAction("recipes", "account");
@@ -119,23 +98,28 @@ namespace Culinary_connect_web.Controllers
 
         public ActionResult Delete(int id)
         {
-            var recipe = _context.Recipes.Include("AboutRecipe").FirstOrDefault(r => r.Id == id);
-            if (recipe == null || recipe.AuthorID != (int)Session["UserID"])
+            if (Session["UserID"] == null)
+                return RedirectToAction("index", "login");
+
+            try
+            {
+                int userId = (int)Session["UserID"];
+                _accountService.DeleteRecipe(id, userId);
+                TempData["Success"] = "Recipe deleted successfully!";
+            }
+            catch (UnauthorizedAccessException)
+            {
                 return HttpNotFound();
-
-            if (recipe.AboutRecipe != null)
-                _context.RecipesAboutDb.Remove(recipe.AboutRecipe);
-
-            _context.Recipes.Remove(recipe);
-            _context.SaveChanges();
+            }
 
             return RedirectToAction("Recipes");
         }
 
+
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            var recipe = _context.Recipes.Include("AboutRecipe").FirstOrDefault(r => r.Id == id);
+            var recipe = _recipeService.GetRecipeEntityById(id);
             if (recipe == null || recipe.AuthorID != (int)Session["UserID"])
                 return HttpNotFound();
 
@@ -153,7 +137,7 @@ namespace Culinary_connect_web.Controllers
                     CookingTime = recipe.AboutRecipe.CookingTime
                 }
             };
-            var categories = _context.Categories.ToList();
+            var categories = _accountService.GetCategoryList();
             var model = new RecipesPageModel
             {
                 RecipeForm = recipeDetails,
@@ -169,34 +153,35 @@ namespace Culinary_connect_web.Controllers
         [HttpPost]
         public ActionResult Edit(RecipesPageModel model, HttpPostedFileBase RecipeImage)
         {
+            if (Session["UserID"] == null)
+                return RedirectToAction("index", "login");
+
             if (!ModelState.IsValid)
                 return View(model);
 
-            var recipe = _context.Recipes.Include("AboutRecipe").FirstOrDefault(r => r.Id == model.RecipeForm.Id);
-            if (recipe == null || recipe.AuthorID != (int)Session["UserID"])
-                return HttpNotFound();
-
-            recipe.Title = model.RecipeForm.Title;
-            recipe.CategoryID = model.RecipeForm.CategoryID;
-            recipe.AboutRecipe.Description = model.RecipeForm.AboutRecipe.Description;
-            recipe.AboutRecipe.Instructions = model.RecipeForm.AboutRecipe.Instructions;
-            recipe.AboutRecipe.Ingredients = model.RecipeForm.AboutRecipe.Ingredients;
-            recipe.AboutRecipe.CookingTime = model.RecipeForm.AboutRecipe.CookingTime;
+            string imageFileName = null;
 
             if (RecipeImage != null && RecipeImage.ContentLength > 0)
             {
-                var fileName = Path.GetFileName(RecipeImage.FileName);
-                var path = Path.Combine(Server.MapPath("~/Content/Images/recipe/"), fileName);
+                imageFileName = Path.GetFileName(RecipeImage.FileName);
+                var path = Path.Combine(Server.MapPath("~/Content/Images/recipe/"), imageFileName);
                 RecipeImage.SaveAs(path);
-
-                recipe.ImagePath = fileName;
             }
 
-            _context.SaveChanges();
+            try
+            {
+                int userId = (int)Session["UserID"];
+                _accountService.UpdateRecipe(model, userId, imageFileName);
 
-            TempData["Success"] = "Recipe updated successfully!";
-            return RedirectToAction("Recipes", "Account");
+                TempData["Success"] = "Recipe updated successfully!";
+                return RedirectToAction("Recipes", "Account");
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return HttpNotFound();
+            }
         }
+
 
 
     }
