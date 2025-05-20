@@ -1,13 +1,52 @@
 {
   "Version": 1,
+<<<<<<< HEAD
   "WorkspaceRootPath": "D:\\uni an2\\proiect de an\\Solution1\\",
   "Documents": [],
+=======
+  "WorkspaceRootPath": "D:\\twproject\\proiect_de_an_asp.net\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7B67ECEF-9595-4255-A09A-231A52E3219A}|culinaryConnect.BusinessLogic\\culinaryConnect.BusinessLogic.csproj|d:\\twproject\\proiect_de_an_asp.net\\culinaryconnect.businesslogic\\interfaces\\isignupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B67ECEF-9595-4255-A09A-231A52E3219A}|culinaryConnect.BusinessLogic\\culinaryConnect.BusinessLogic.csproj|solutionrelative:culinaryconnect.businesslogic\\interfaces\\isignupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B67ECEF-9595-4255-A09A-231A52E3219A}|culinaryConnect.BusinessLogic\\culinaryConnect.BusinessLogic.csproj|d:\\twproject\\proiect_de_an_asp.net\\culinaryconnect.businesslogic\\core\\signupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B67ECEF-9595-4255-A09A-231A52E3219A}|culinaryConnect.BusinessLogic\\culinaryConnect.BusinessLogic.csproj|solutionrelative:culinaryconnect.businesslogic\\core\\signupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{194C8AA0-705F-45C0-B2AD-0750BB3032DE}|Culinary connect web\\culinaryConnect.Web.csproj|d:\\twproject\\proiect_de_an_asp.net\\culinary connect web\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{194C8AA0-705F-45C0-B2AD-0750BB3032DE}|Culinary connect web\\culinaryConnect.Web.csproj|solutionrelative:culinary connect web\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B67ECEF-9595-4255-A09A-231A52E3219A}|culinaryConnect.BusinessLogic\\culinaryConnect.BusinessLogic.csproj|d:\\twproject\\proiect_de_an_asp.net\\culinaryconnect.businesslogic\\interfaces\\iadminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B67ECEF-9595-4255-A09A-231A52E3219A}|culinaryConnect.BusinessLogic\\culinaryConnect.BusinessLogic.csproj|solutionrelative:culinaryconnect.businesslogic\\interfaces\\iadminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B67ECEF-9595-4255-A09A-231A52E3219A}|culinaryConnect.BusinessLogic\\culinaryConnect.BusinessLogic.csproj|d:\\twproject\\proiect_de_an_asp.net\\culinaryconnect.businesslogic\\core\\adminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B67ECEF-9595-4255-A09A-231A52E3219A}|culinaryConnect.BusinessLogic\\culinaryConnect.BusinessLogic.csproj|solutionrelative:culinaryconnect.businesslogic\\core\\adminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B67ECEF-9595-4255-A09A-231A52E3219A}|culinaryConnect.BusinessLogic\\culinaryConnect.BusinessLogic.csproj|d:\\twproject\\proiect_de_an_asp.net\\culinaryconnect.businesslogic\\core\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B67ECEF-9595-4255-A09A-231A52E3219A}|culinaryConnect.BusinessLogic\\culinaryConnect.BusinessLogic.csproj|solutionrelative:culinaryconnect.businesslogic\\core\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{194C8AA0-705F-45C0-B2AD-0750BB3032DE}|Culinary connect web\\culinaryConnect.Web.csproj|d:\\twproject\\proiect_de_an_asp.net\\culinary connect web\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{194C8AA0-705F-45C0-B2AD-0750BB3032DE}|Culinary connect web\\culinaryConnect.Web.csproj|solutionrelative:culinary connect web\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B67ECEF-9595-4255-A09A-231A52E3219A}|culinaryConnect.BusinessLogic\\culinaryConnect.BusinessLogic.csproj|d:\\twproject\\proiect_de_an_asp.net\\culinaryconnect.businesslogic\\interfaces\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B67ECEF-9595-4255-A09A-231A52E3219A}|culinaryConnect.BusinessLogic\\culinaryConnect.BusinessLogic.csproj|solutionrelative:culinaryconnect.businesslogic\\interfaces\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+>>>>>>> abf2416c46ec556850bcf6748c1cb07bb00965bd
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
+<<<<<<< HEAD
           "DockedWidth": 200,
           "SelectedChildIndex": -1,
           "Children": [
@@ -18,6 +57,157 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+=======
+          "DockedWidth": 42,
+          "SelectedChildIndex": 9,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "D:\\twproject\\proiect_de_an_asp.net\\Culinary connect web\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "Culinary connect web\\Controllers\\UserController.cs",
+              "ToolTip": "D:\\twproject\\proiect_de_an_asp.net\\Culinary connect web\\Controllers\\UserController.cs",
+              "RelativeToolTip": "Culinary connect web\\Controllers\\UserController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T13:32:09.172Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IUserService.cs",
+              "DocumentMoniker": "D:\\twproject\\proiect_de_an_asp.net\\culinaryConnect.BusinessLogic\\Interfaces\\IUserService.cs",
+              "RelativeDocumentMoniker": "culinaryConnect.BusinessLogic\\Interfaces\\IUserService.cs",
+              "ToolTip": "D:\\twproject\\proiect_de_an_asp.net\\culinaryConnect.BusinessLogic\\Interfaces\\IUserService.cs",
+              "RelativeToolTip": "culinaryConnect.BusinessLogic\\Interfaces\\IUserService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T13:32:39.371Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "D:\\twproject\\proiect_de_an_asp.net\\culinaryConnect.BusinessLogic\\Core\\UserService.cs",
+              "RelativeDocumentMoniker": "culinaryConnect.BusinessLogic\\Core\\UserService.cs",
+              "ToolTip": "D:\\twproject\\proiect_de_an_asp.net\\culinaryConnect.BusinessLogic\\Core\\UserService.cs",
+              "RelativeToolTip": "culinaryConnect.BusinessLogic\\Core\\UserService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T13:34:14.923Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IAdminService.cs",
+              "DocumentMoniker": "D:\\twproject\\proiect_de_an_asp.net\\culinaryConnect.BusinessLogic\\Interfaces\\IAdminService.cs",
+              "RelativeDocumentMoniker": "culinaryConnect.BusinessLogic\\Interfaces\\IAdminService.cs",
+              "ToolTip": "D:\\twproject\\proiect_de_an_asp.net\\culinaryConnect.BusinessLogic\\Interfaces\\IAdminService.cs",
+              "RelativeToolTip": "culinaryConnect.BusinessLogic\\Interfaces\\IAdminService.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAC4AAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T14:15:07.173Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AdminService.cs",
+              "DocumentMoniker": "D:\\twproject\\proiect_de_an_asp.net\\culinaryConnect.BusinessLogic\\Core\\AdminService.cs",
+              "RelativeDocumentMoniker": "culinaryConnect.BusinessLogic\\Core\\AdminService.cs",
+              "ToolTip": "D:\\twproject\\proiect_de_an_asp.net\\culinaryConnect.BusinessLogic\\Core\\AdminService.cs",
+              "RelativeToolTip": "culinaryConnect.BusinessLogic\\Core\\AdminService.cs",
+              "ViewState": "AgIAAHMAAAAAAAAAAAAqwJsAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T14:15:10.188Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ISignupService.cs",
+              "DocumentMoniker": "D:\\twproject\\proiect_de_an_asp.net\\culinaryConnect.BusinessLogic\\Interfaces\\ISignupService.cs",
+              "RelativeDocumentMoniker": "culinaryConnect.BusinessLogic\\Interfaces\\ISignupService.cs",
+              "ToolTip": "D:\\twproject\\proiect_de_an_asp.net\\culinaryConnect.BusinessLogic\\Interfaces\\ISignupService.cs",
+              "RelativeToolTip": "culinaryConnect.BusinessLogic\\Interfaces\\ISignupService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwA8AAABaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T15:36:07.719Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SignupService.cs",
+              "DocumentMoniker": "D:\\twproject\\proiect_de_an_asp.net\\culinaryConnect.BusinessLogic\\Core\\SignupService.cs",
+              "RelativeDocumentMoniker": "culinaryConnect.BusinessLogic\\Core\\SignupService.cs",
+              "ToolTip": "D:\\twproject\\proiect_de_an_asp.net\\culinaryConnect.BusinessLogic\\Core\\SignupService.cs",
+              "RelativeToolTip": "culinaryConnect.BusinessLogic\\Core\\SignupService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAsAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T15:35:28.484Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 42,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "D:\\twproject\\proiect_de_an_asp.net\\Culinary connect web\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "Culinary connect web\\Controllers\\AdminController.cs",
+              "ToolTip": "D:\\twproject\\proiect_de_an_asp.net\\Culinary connect web\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "Culinary connect web\\Controllers\\AdminController.cs",
+              "ViewState": "AgIAAOYBAAAAAAAAAADgvxQCAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T14:14:32.065Z",
+              "EditorCaption": ""
+>>>>>>> abf2416c46ec556850bcf6748c1cb07bb00965bd
             }
           ]
         }

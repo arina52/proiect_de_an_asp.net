@@ -3,13 +3,15 @@ using culinaryConnect.Domain.Entities.User;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Helpers;
+using culinaryConnect.BusinessLogic.Interfaces;
+using culinaryConnect.BusinessLogic.Core;
 
 namespace Culinary_connect_web.Controllers
 {
     public class LoginController : Controller
     {
 
-        private readonly CulinaryContext _context = new CulinaryContext();
+        private readonly ILoginService _loginService = new LoginService();
 
         [HttpGet]
         public ActionResult Index() { 
@@ -22,7 +24,7 @@ namespace Culinary_connect_web.Controllers
             if (ModelState.IsValid) {
                 var passwordSalted = model.UserPassword + "tralalero";
                 var hashedPassword = Crypto.SHA256(passwordSalted);
-                var user = _context.Users.FirstOrDefault(u => u.UserEmail == model.UserEmail && u.PasswordHash == hashedPassword);
+                var user = _loginService.GetUserByEmailAndPassword(model.UserEmail, hashedPassword);
             
                 if (user != null)
                 {
@@ -32,7 +34,7 @@ namespace Culinary_connect_web.Controllers
                     return RedirectToActionPermanent("index", "home");
                 } else
                 {
-                    var isThereUserWithEmail = _context.Users.FirstOrDefault(u => u.UserEmail == model.UserEmail);
+                    var isThereUserWithEmail = _loginService.GetUserByEmail(model.UserEmail);
                     if (isThereUserWithEmail != null)
                     {
                         if(isThereUserWithEmail.PasswordHash != null)
