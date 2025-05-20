@@ -4,9 +4,11 @@ using System.Linq;
 using System.Web.Mvc;
 using culinaryConnect.Domain.Entities.User;
 using culinaryConnect.BusinessLogic.Models.UserDB;
+using culinaryConnect.BusinessLogic.Interfaces;
+using culinaryConnect.BusinessLogic.Core;
 public class SignupController : Controller
 {
-    private readonly CulinaryContext _context = new CulinaryContext();
+    private readonly ISignupService _signupService = new SignupService();
 
     public ActionResult Index()
     {
@@ -26,7 +28,7 @@ public class SignupController : Controller
         var hashedPassword = Crypto.SHA256(model.UserPassword + salt);
 
         // Check if user already exists
-        var user = _context.Users.FirstOrDefault(u => u.UserEmail == model.UserEmail);
+        var user = _signupService.GetUserByEmail(model.UserEmail);
         if (user != null)
         {
             if (user.PasswordHash != null) { 
@@ -35,10 +37,7 @@ public class SignupController : Controller
             }
             else
             {
-                user.PasswordHash = hashedPassword;
-                user.UserName = model.UserEmail;
-
-                _context.SaveChanges();
+                _signupService.UpdateSemiExistingUser(user, hashedPassword, model.UserEmail);
                 TempData["Success"] = "Account created successfully!";
                 return RedirectToAction("index", "login");
             }
@@ -51,9 +50,8 @@ public class SignupController : Controller
             PasswordHash = hashedPassword
         };
 
-        _context.Users.Add(newUser);
-        _context.SaveChanges();
-
+        _signupService.AddNewUser(newUser);
+         
         TempData["Success"] = "Account created successfully!";
         return RedirectToAction("index", "login");
     }

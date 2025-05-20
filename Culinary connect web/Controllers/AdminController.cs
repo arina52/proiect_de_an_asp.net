@@ -15,25 +15,21 @@ using System.Web;
 using System.IO;
 using culinaryConnect.Domain.Entities.CategoryModels.AdminCategories;
 using culinaryConnect.Domain.Entities.CategoryModels.AdminCategory;
+using culinaryConnect.BusinessLogic.Interfaces;
 
 namespace Culinary_connect_web.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly CulinaryContext _context = new CulinaryContext();
+        private readonly IAdminService _service = new AdminService();
 
         // Pages
         public ActionResult Index()
         {
-            if (Session["AdminID"] != null) { 
-                var usersListDB = _context.Users.ToList();
+            if (Session["AdminID"] != null) {
+                var usersListDB = _service.GetAllUsers();
 
-                var usersList = usersListDB.Select(u => new User
-                {
-                    Id = u.Id,
-                    Email = u.UserEmail,
-                    Name = u.UserName
-                }).ToList();
+                var usersList = _service.ConvertDbToViewUsers(usersListDB);
 
                 var adminWrapper = new AdminWraper
                 { Users = usersList};
@@ -60,13 +56,9 @@ namespace Culinary_connect_web.Controllers
                 return RedirectToAction("login");
             }
 
-            var users = _context.Users.ToList().Select(u => new User {
-                Id = u.Id,
-                Name = u.UserName,
-                Email = u.UserEmail,
-                SubscribedNews = u.SubscribedToNews,
-            }).ToList();
-            model.Users = users;
+            var users = _service.GetAllUsers();
+            var usersList = _service.ConvertDbToViewUsersAndNews(users);
+            model.Users = usersList;
             return View(model);
         }
 
@@ -77,16 +69,10 @@ namespace Culinary_connect_web.Controllers
                 return RedirectToAction("login");
             }
 
-            var recipes = _context.Recipes.ToList().Select(r => new RecipesAdmin
-            {
-                Id = r.Id,
-                Title = r.Title,
-                Status = r.Status.ToString(),
-                ImagePath = r.ImagePath,
-                CreatedDate = r.CreatedDate.ToShortDateString(),
-            }).ToList();
+            var recipes = _service.GetAllRecipes();
+            var recipesList = _service.ConvertDbToViewsRecipesAdmin(recipes);
 
-            model.Recipes = recipes;
+            model.Recipes = recipesList;
             return View(model);
         }
 
@@ -98,7 +84,7 @@ namespace Culinary_connect_web.Controllers
                 return RedirectToAction("login");
             }
 
-            var recipe = _context.Recipes.Include("AboutRecipe").FirstOrDefault(r => r.Id == Id);
+            var recipe = _service.GetRecipeAndAbout(Id);
 
             if(recipe == null)
             {
@@ -120,11 +106,10 @@ namespace Culinary_connect_web.Controllers
                 ImagePath = recipe.ImagePath,
                 Status = recipe.Status.ToString(),
             };
-            var adminService = new AdminService(_context);
-            var recipeAuthorUser = _context.Users.FirstOrDefault(u => u.Id == recipe.AuthorID);
+            var recipeAuthorUser = _service.GetUser(recipe.AuthorID);
             if(recipeAuthorUser == null)
             {
-                var recipeAuthorAdmin = adminService.GetAdminList().FirstOrDefault(a => a.Id == recipe.AuthorID);
+                var recipeAuthorAdmin = _service.GetUser(recipe.AuthorID);
                 if(recipeAuthorAdmin != null)
                 {
                     recipeAdmin.Author = recipeAuthorAdmin.UserEmail;
@@ -139,8 +124,8 @@ namespace Culinary_connect_web.Controllers
 
             if(recipe.CategoryID != 0)
             {
-                var recipeCategory = _context.Categories.FirstOrDefault(c => c.Id == recipe.CategoryID);
-                if(recipeCategory != null)
+                var recipeCategory = _service.GetCategory(recipe.CategoryID);
+                if (recipeCategory != null)
                 {
                     recipeAdmin.Category = new CategoryRecipeDb { 
                         Id = recipeCategory.Id,
@@ -149,13 +134,10 @@ namespace Culinary_connect_web.Controllers
                 }
             } 
             // get the list of all the categories to choose from
-            var categories = _context.Categories.ToList().Select(c => new CategoryRecipeDb
-            {
-                Id = c.Id,
-                Name = c.Title,
-            }).ToList();
+            var categories = _service.GetAllCategories();
+            var categoiresList = _service.ConvertDbToCategoryRecipeDb(categories);
 
-            recipeAdmin.CategoryDbList = categories;
+            recipeAdmin.CategoryDbList = categoiresList;
 
             var model = new RecipeAdminPageModel
             {
@@ -188,18 +170,13 @@ namespace Culinary_connect_web.Controllers
             {
                 return RedirectToAction("login");
             }
-
-            var categories = _context.Categories.ToList().Select(c => new Category
-            {
-                Id = c.Id,
-                Title = c.Title,
-                RecipesID = c.Recipies
-            }).ToList();
+            var categories = _service.GetAllCategories();
+            var categoriesList = _service.ConvertDbToCategory(categories);
 
             var model = new CategoriesPageModel
             {
                 FormCategory = new CategoriesForm(),
-                Categories = categories
+                Categories = categoriesList
             };
 
             return View(model);
@@ -212,7 +189,7 @@ namespace Culinary_connect_web.Controllers
                 return RedirectToAction("login");
             }
 
-            var category = _context.Categories.FirstOrDefault(c => c.Id == id);
+            var category = _service.GetCategory(id);
             if(category == null)
             {
                 return RedirectToAction("categories");
@@ -248,8 +225,7 @@ namespace Culinary_connect_web.Controllers
             }
 
 
-            var adminService = new AdminService(_context);
-            var admin = adminService.GetByCredentials(model.AdminEmail, model.AdminPassword);
+            var admin = _service.GetUserByCredentials(model.AdminEmail, model.AdminPassword);
 
             if (admin != null)
             {
@@ -285,7 +261,7 @@ namespace Culinary_connect_web.Controllers
                 Instructions = recipeCreateModel.RecipeAbout.Instructions != null ? string.Join("###", recipeCreateModel.RecipeAbout.Instructions) : null,
             };
 
-            _context.RecipesAboutDb.Add(recipeAboutToCreate);
+            _service.AddRecipeAbout(recipeAboutToCreate);
 
             var recipeToCreate = new RecipeDB
             {
@@ -305,8 +281,7 @@ namespace Culinary_connect_web.Controllers
                 recipeToCreate.ImagePath = fileName;
             }
 
-            _context.Recipes.Add(recipeToCreate);
-            _context.SaveChanges();
+            _service.AddRecipe(recipeToCreate);
 
             return RedirectToAction("recipes");
         }
@@ -324,7 +299,7 @@ namespace Culinary_connect_web.Controllers
                 return RedirectToAction("recipes");
             }
 
-            var recipe = _context.Recipes.FirstOrDefault(r => r.Id == editModel.Id);
+            var recipe = _service.GetRecipe(editModel.Id);
             if(recipe == null)
             {
                 ViewBag.ErrorMessage = "there is no such recipe";
@@ -357,10 +332,12 @@ namespace Culinary_connect_web.Controllers
                 var path = Server.MapPath("~/Content/Images/recipe/" + fileName);
                 RecipeImage.SaveAs(path);
 
-                recipe.ImagePath = fileName;
+                _service.UpdateRecipeByImage(recipe, fileName);
+            } else
+            {
+                _service.UpdateRecipeByImage(recipe, null);
             }
 
-            _context.SaveChanges();
             return RedirectToAction("recipe", new {id = editModel.Id});
         }
 
@@ -372,14 +349,13 @@ namespace Culinary_connect_web.Controllers
             }
 
             var deleteModel = model.RecipeDelete;
-            var recipeToDelete = _context.Recipes.FirstOrDefault(r => r.Id == deleteModel.Id);
+            var recipeToDelete = _service.GetRecipe(deleteModel.Id);
             if(recipeToDelete == null)
             {
                 return RedirectToAction("recipes");
             }
 
-            _context.Recipes.Remove(recipeToDelete);
-            _context.SaveChanges();
+            _service.DeleteRecipe(recipeToDelete);
 
             return RedirectToAction("recipes");
         }
@@ -392,14 +368,10 @@ namespace Culinary_connect_web.Controllers
                 return RedirectToAction("login");
             }
 
-            var recipe = _context.Recipes.FirstOrDefault(r => r.Id == Id);
+            var recipe = _service.GetRecipe(Id);
             if (recipe != null)
             {
-                if(Enum.TryParse(NewStatus, out Status statusEnum))
-                {
-                    recipe.Status = statusEnum;
-                    _context.SaveChanges();
-                }
+                _service.UpdateRecipeStatus(recipe, NewStatus);
             }
 
             return RedirectToAction("recipes");
@@ -418,7 +390,7 @@ namespace Culinary_connect_web.Controllers
             }
 
             var userModel = model.UserRegisterModel;
-            var existingUser = _context.Users.FirstOrDefault(u => u.UserEmail == userModel.UserEmail);
+            var existingUser = _service.GetUserByEmail(userModel.UserEmail);
             if (existingUser != null)
             {
                 ViewBag.ErrorMessage = "Such a user already exists";
@@ -427,14 +399,14 @@ namespace Culinary_connect_web.Controllers
             }
 
             var userPasswordHash = Crypto.SHA256(userModel.UserPassword + "tralalero");
-            _context.Users.Add(new UserDB
+            var userToAdd = new UserDB
             {
                 UserEmail = userModel.UserEmail,
                 UserName = userModel.UserName,
-                PasswordHash = userPasswordHash,
-            });
+                PasswordHash = userPasswordHash
+            };
 
-            _context.SaveChanges();
+            _service.AddUser(userToAdd);
             model.UserRegisterModel = new UserRegisterModel();
             return RedirectToAction("Users",model);
         }
@@ -448,28 +420,18 @@ namespace Culinary_connect_web.Controllers
 
             var userModel = model.UserEditModel;
 
-            var user = _context.Users.FirstOrDefault(u => u.Id == userModel.Id);
+            var user = _service.GetUser(userModel.Id);
             if(user == null)
             {
                 ViewBag.ErrorMessage = "There is no such user" + userModel.Id;
                 model.UserEditModel = new UserEditModel();
-                model.Users = _context.Users.ToList().Select(u => new User
-                {
-                    Id = u.Id,
-                    Email = u.UserEmail,
-                    Name = u.UserName,
-                    SubscribedNews = u.SubscribedToNews
-                }).ToList();
+                var users = _service.GetAllUsers();
+                var usersList = _service.ConvertDbToViewUsersAndNews(users);
+                model.Users = usersList;
                 return View("users", model);
             }
 
-            user.UserName = userModel.Name;
-            user.UserEmail = userModel.Email;
-            if(userModel.Email.Length != 0) {
-                user.PasswordHash = Crypto.SHA256(userModel.Password + "tralalero");
-            }
-            _context.SaveChanges();
-
+            _service.UpdateUser(user, userModel.Name, userModel.Email, userModel.Password);
 
             return RedirectToAction("users");
         }
@@ -482,7 +444,7 @@ namespace Culinary_connect_web.Controllers
             }
 
             var userModel = model.UserDeleteModel;
-            var existingUser = _context.Users.FirstOrDefault(u => u.Id ==  userModel.Id);
+            var existingUser = _service.GetUser(userModel.Id);
             if(existingUser == null)
             {
                 ViewBag.ErrorMessage = "There is no such user";
@@ -490,8 +452,8 @@ namespace Culinary_connect_web.Controllers
                 return View("users",model);
             }
 
-            _context.Users.Remove(existingUser);
-            _context.SaveChanges();
+            _service.DeleteUser(existingUser);
+
             return RedirectToAction("users");
         }
 
@@ -521,8 +483,7 @@ namespace Culinary_connect_web.Controllers
             }
             var categoryDB = new CategoryDB{ Title = category.Title };
 
-            _context.Categories.Add(categoryDB);
-            _context.SaveChanges();
+            _service.AddCategory(categoryDB);
 
             model.FormCategory = new CategoriesForm();
 
@@ -538,7 +499,7 @@ namespace Culinary_connect_web.Controllers
                 return RedirectToAction("login");
             }
 
-            var category = _context.Categories.FirstOrDefault(c => c.Id == ID);
+            var category = _service.GetCategory(ID);
 
             if(category == null)
             {
@@ -546,8 +507,7 @@ namespace Culinary_connect_web.Controllers
                 return View("category");
             }
 
-            _context.Categories.Remove(category);
-            _context.SaveChanges();
+            _service.DeleteCategory(category);
 
             TempData["Success"] = "Category deleted successfully!";
             return RedirectToAction("category", "admin");
@@ -561,7 +521,7 @@ namespace Culinary_connect_web.Controllers
                 return RedirectToAction("login");
             }
 
-            var category = _context.Categories.FirstOrDefault(c => c.Id == ID);
+            var category = _service.GetCategory(ID);
 
             if (category == null)
             {
@@ -569,8 +529,7 @@ namespace Culinary_connect_web.Controllers
                 return View("category");
             }
 
-            category.Title = newTitle;
-            _context.SaveChanges();
+            _service.UpdateCategory(category, newTitle);
 
             TempData["Success"] = "Category updated successfully!";
             return RedirectToAction("category", new {id = category.Id});

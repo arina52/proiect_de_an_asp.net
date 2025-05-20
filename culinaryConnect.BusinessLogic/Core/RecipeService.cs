@@ -76,8 +76,5 @@ namespace culinaryConnect.BusinessLogic.Core
             var recipe =_context.Recipes.Include("AboutRecipe").FirstOrDefault(r => r.Id == Id);
             return recipe;
         }
-
-        
-
     }
 }

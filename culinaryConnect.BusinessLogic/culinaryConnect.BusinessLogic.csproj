@@ -71,10 +71,16 @@
   <ItemGroup>
     <Compile Include="Core\AdminService.cs" />
     <Compile Include="Core\AccountService.cs" />
+    <Compile Include="Core\LoginService.cs" />
     <Compile Include="Core\RecipeService.cs" />
+    <Compile Include="Core\SignupService.cs" />
+    <Compile Include="Core\UserService.cs" />
     <Compile Include="Data\CulinaryContext.cs" />
     <Compile Include="Interfaces\IAcountService.cs" />
     <Compile Include="Interfaces\IAdminService.cs" />
+    <Compile Include="Interfaces\ILoginService.cs" />
+    <Compile Include="Interfaces\ISignupService.cs" />
+    <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Models\CategoryDB.cs" />
     <Compile Include="Models\RecipeAboutDB.cs" />
     <Compile Include="Models\RecipeDB.cs" />
