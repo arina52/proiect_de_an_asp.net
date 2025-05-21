@@ -13,6 +13,7 @@ namespace culinaryConnect.BusinessLogic.Interfaces
         List<RecipeDetails> GetAllRecipes();
         RecipeDetails GetRecipeById(int id);
         RecipeDB GetRecipeEntityById(int Id);
+        List<RecipeDetails> GetAllActiveRecipes();
 
     }
 }

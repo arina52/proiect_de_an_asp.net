@@ -132,6 +132,33 @@ namespace culinaryConnect.BusinessLogic.Seed
                 PasswordHash = "932F3C1B56257CE8539AC269D7AAB42550DACF8818D075F0BDF1990562AAE3EF"
             });
 
+            context.Categories.AddRange(new List<CategoryDB>
+            {
+                new CategoryDB
+                {
+                    Id = 1,
+                    Title = "Supe",
+                    Recipies = new List<int>{1 }
+                },
+                new CategoryDB
+                {
+                    Id = 2,
+                    Title = "Desert",
+                    Recipies = new List<int>{2, 6 }
+                },
+                new CategoryDB
+                {
+                    Id = 3,
+                    Title = "Principale",
+                    Recipies = new List<int>{1 }
+                },
+                new CategoryDB
+                {
+                    Id = 4,
+                    Title = "Vegetariene",
+                    Recipies = new List<int>{4 }
+                }
+            });
             context.SaveChanges();
         }
     }

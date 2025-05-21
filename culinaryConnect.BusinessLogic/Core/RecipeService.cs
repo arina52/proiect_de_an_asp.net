@@ -45,6 +45,31 @@ namespace culinaryConnect.BusinessLogic.Core
             }).ToList();
         }
 
+        public List<RecipeDetails> GetAllActiveRecipes()
+        {
+            var recipes = _context.Recipes.Include("AboutRecipe").Where(r =>r.Status == Status.Active).ToList();
+            var authorIds = recipes.Select(r => r.AuthorID).Distinct().ToList();
+            var authors = _context.Users
+                .Where(u => authorIds.Contains(u.Id))
+                .Select(u => new AuthorModel { ID = u.Id, Name = u.UserName })
+                .ToList();
+            return recipes.Select(r => new RecipeDetails
+            {
+                Id = r.Id,
+                Title = r.Title,
+                CategoryID = r.CategoryID,
+                ImagePath = r.ImagePath,
+                CreatedDate = r.CreatedDate.ToShortDateString(),
+                Author = authors.FirstOrDefault(a => a.ID == r.AuthorID),
+                AboutRecipe = r.AboutRecipe != null ? new RecipeAbout
+                {
+                    Description = r.AboutRecipe.Description,
+                    CookingTime = r.AboutRecipe.CookingTime,
+                    Instructions = r.AboutRecipe.Instructions,
+                    Ingredients = r.AboutRecipe.Ingredients
+                } : null
+            }).ToList();
+        }
         public RecipeDetails GetRecipeById(int Id)
         {
             var recipeDB = _context.Recipes.Include("AboutRecipe").FirstOrDefault(r => r.Id == Id);

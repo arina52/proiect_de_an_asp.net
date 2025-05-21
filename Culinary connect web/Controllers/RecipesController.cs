@@ -23,7 +23,7 @@ namespace culinaryConnect.Web.Controllers
 
         public ActionResult Index()
         {
-            var recipeList = _recipeService.GetAllRecipes();
+            var recipeList = _recipeService.GetAllActiveRecipes();
             var recipesDTO = new RecipesListDTO
             {
                 RecipeList = recipeList

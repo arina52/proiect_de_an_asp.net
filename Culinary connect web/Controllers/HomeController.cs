@@ -1,5 +1,4 @@
-﻿using culinaryConnect.BusinessLogic.Data;
-using culinaryConnect.BusinessLogic.Models.UserDB;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +7,7 @@ using System.Web.Mvc;
 using Culinary_connect_web.DTO;
 using culinaryConnect.BusinessLogic.Core;
 using culinaryConnect.BusinessLogic.Interfaces;
+using culinaryConnect.Domain.Entities;
 
 namespace culinaryConnect.Web.Controllers
 {
@@ -25,10 +25,18 @@ namespace culinaryConnect.Web.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            var recipeList = _recipeService.GetAllRecipes();
+            var recipeList = _recipeService.GetAllActiveRecipes();
+            var categoryList = _accountService.GetCategoryList().Select(c => new CategoryUser
+            {
+                Id = c.Id,
+                Name = c.Title,
+                Recipes = recipeList.Where(r => r.CategoryID == c.Id).ToList()
+            }
+            ).ToList();
             var recipesDTO = new RecipesListDTO
             {
-                RecipeList = recipeList
+                RecipeList = recipeList,
+                Categories = categoryList
             };
             return View(recipesDTO);
         }

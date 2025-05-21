@@ -1,13 +1,11 @@
 ﻿@{
     Layout = "~/Views/Shared/layouts/_EmptyLayout.cshtml";
 
-    // Dummy user data
-    var userName = "Laur";
-    var userEmail = "laur@example.com";
-    var userPhone = "+1234567890";
-    var userInitial = userName?.FirstOrDefault().ToString().ToUpper();
+    
 }
+@model culinaryConnect.Domain.Entities.User.User
 
+@{var userInitial = Model.Name?.FirstOrDefault().ToString().ToUpper(); }
 <div class="bg-dark vh-100 d-flex justify-content-center align-items-center">
     <div class="container" style="max-width: 400px; margin: auto;">
         <div class="row card text-center mb-2 p-4">
@@ -16,9 +14,8 @@
                 @userInitial
             </div>
             <div class="mt-4">
-                <h5 class="mb-1">@userName</h5>
-                <p class="mb-1 text-muted">@userEmail</p>
-                <p class="mb-0 text-muted">@userPhone</p>
+                <h5 class="mb-1">@Model.Name</h5>
+                <p class="mb-1 text-muted">@Model.Email</p>
             </div>
         </div>
         <div class="container-fluid p-0">

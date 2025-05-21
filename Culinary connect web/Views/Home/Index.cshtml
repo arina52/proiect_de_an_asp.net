@@ -13,7 +13,7 @@
                 <div class="pt-recipe-item large-item">
                     @foreach (var recipe in Model.RecipeList.Take(1))
                     {
-                        <div class="pt-recipe-img set-bg" data-setbg=@Url.Content("~/Content/Images/" + recipe.ImagePath)>
+                        <div class="pt-recipe-img set-bg" data-setbg=@Url.Content("~/Content/Images/recipe/" + recipe.ImagePath)>
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="pt-recipe-text">
@@ -27,7 +27,7 @@
                 @foreach (var recipe in Model.RecipeList.Skip(1).Take(2))
                 {
                     <div class="pt-recipe-item">
-                        <div class="pt-recipe-img set-bg" data-setbg=@Url.Content("~/Content/Images/" + recipe.ImagePath)>
+                        <div class="pt-recipe-img set-bg" data-setbg=@Url.Content("~/Content/Images/recipe/" + recipe.ImagePath)>
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="pt-recipe-text">
@@ -41,7 +41,7 @@
                 @foreach (var recipe in Model.RecipeList.Skip(3).Take(2))
                 {
                     <div class="pt-recipe-item">
-                        <div class="pt-recipe-img set-bg" data-setbg=@Url.Content("~/Content/Images/"+recipe.ImagePath)>
+                        <div class="pt-recipe-img set-bg" data-setbg=@Url.Content("~/Content/Images/recipe/"+recipe.ImagePath)>
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="pt-recipe-text">
@@ -69,7 +69,7 @@
                 var primaReteta = Model.RecipeList.First();
                 <div class="col-lg-6">
                     <div class="top-recipe-item large-item">
-                        <div class="top-recipe-img set-bg" data-setbg="@Url.Content("~/Content/Images/"+ primaReteta.ImagePath)">
+                        <div class="top-recipe-img set-bg" data-setbg="@Url.Content("~/Content/Images/recipe/"+ primaReteta.ImagePath)">
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="top-recipe-text">
@@ -85,7 +85,7 @@
                         <div class="top-recipe-item">
                             <div class="row">
                                 <div class="col-sm-4">
-                                    <div class="top-recipe-img set-bg" data-setbg="@Url.Content("~/Content/Images/" +reteta.ImagePath)">
+                                    <div class="top-recipe-img set-bg" data-setbg="@Url.Content("~/Content/Images/recipe/" +reteta.ImagePath)">
                                         <i class="fa fa-plus"></i>
                                     </div>
                                 </div>
@@ -106,64 +106,92 @@
 </section>
 
 <!-- Categories Filter Section Begin -->
+@{
+    // Funcție utilă pentru a transforma numele categoriei în clasă CSS
+    Func<string, string> slugify = name => name.ToLower()
+        .Replace("ă", "a").Replace("â", "a").Replace("î", "i")
+        .Replace("ș", "s").Replace("ț", "t")
+        .Replace(" ", "").Replace("-", "");
+}
+<style>
+    .filter-btn-custom {
+        background-color: #FC0254;
+        color: white;
+        border: none;
+        margin: 5px;
+    }
+
+        .filter-btn-custom.active,
+        .filter-btn-custom:hover {
+            background-color: #d90146;
+        }
+</style>
+
 <div class="categories-filter-section spad">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="filter-item">
-                    <ul>
-                        <li data-filter="*">Vegetariene</li>
-                        <li data-filter=".mostpopular">Populare</li>
-                        <li data-filter=".meatlover">Carne</li>
-                        <li data-filter=".glutenfree">Fără gluten</li>
-                    </ul>
-                </div>
-            </div>
+        <!-- Butoane de filtrare -->
+        <div class="text-center mb-4">
+            <button class="filter-btn-custom active" data-filter="all">Toate</button>
+            @foreach (var category in Model.Categories)
+            {
+                var cssClass = slugify(category.Name);
+                <button class="filter-btn-custom" data-filter="@cssClass">@category.Name</button>
+            }
         </div>
-        <div class="cf-filter" id="category-filter">
-            <div class="cf-item mix all mostpopular">
-                <div class="cf-item-pic">
-                    <img src=@Url.Content("~/Content/Images/cate-filter/cate-filter-1.jpg") alt="">
-                </div>
-                <div class="cf-item-text">
-                    <h5>Brunch de duminică</h5>
-                </div>
-            </div>
-            <div class="cf-item mix all mostpopular">
-                <div class="cf-item-pic">
-                    <img src=@Url.Content("~/Content/Images/cate-filter/cate-filter-2.jpg") alt="">
-                </div>
-                <div class="cf-item-text">
-                    <h5>Brunch de duminică</h5>
-                </div>
-            </div>
-            <div class="cf-item mix all meatlover mostpopular">
-                <div class="cf-item-pic">
-                    <img src=@Url.Content("~/Content/Images/cate-filter/cate-filter-3.jpg") alt="">
-                </div>
-                <div class="cf-item-text">
-                    <h5>Brunch de duminică</h5>
-                </div>
-            </div>
-            <div class="cf-item mix all meatlover">
-                <div class="cf-item-pic glutenfree">
-                    <img src=@Url.Content("~/Content/Images/cate-filter/cate-filter-4.jpg") alt="">
-                </div>
-                <div class="cf-item-text">
-                    <h5>Brunch de duminică</h5>
-                </div>
-            </div>
-            <div class="cf-item mix all meatlover glutenfree">
-                <div class="cf-item-pic">
-                    <img src=@Url.Content("~/Content/Images/cate-filter/cate-filter-5.jpg") alt="">
-                </div>
-                <div class="cf-item-text">
-                    <h5>Brunch de duminică</h5>
-                </div>
-            </div>
+
+        <!-- Rețetele filtrabile -->
+        <div class="row" id="recipes-container">
+            @foreach (var category in Model.Categories)
+            {
+                var cssClass = slugify(category.Name);
+                if (category.Recipes != null && category.Recipes.Any())
+                {
+                    foreach (var recipe in category.Recipes)
+                    {
+                        <div class="col-md-4 mb-4 recipe-item" data-category="@cssClass">
+                            <div class="card h-100">
+                                <img src="@Url.Content("~/Content/Images/recipe/" + recipe.ImagePath)" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">@recipe.Title</h5>
+                                    <p class="card-text">Categorie: @category.Name</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            }
         </div>
     </div>
 </div>
+
+<!-- JavaScript simplu pentru filtrare -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const filterButtons = document.querySelectorAll(".filter-btn-custom");
+        const recipeItems = document.querySelectorAll(".recipe-item");
+
+        filterButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                const filter = button.getAttribute("data-filter");
+
+                recipeItems.forEach(item => {
+                    const itemCategory = item.getAttribute("data-category");
+                    if (filter === "all" || itemCategory === filter) {
+                        item.style.display = "block";
+                    } else {
+                        item.style.display = "none";
+                    }
+                });
+
+                // Stilizare activ
+                filterButtons.forEach(btn => btn.classList.remove("active"));
+                button.classList.add("active");
+            });
+        });
+    });
+</script>
+
+
 <!-- Categories Filter Section End -->
 <!-- Feature Recipe Section Begin -->
 <section class="feature-recipe">

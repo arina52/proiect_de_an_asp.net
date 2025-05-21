@@ -197,6 +197,7 @@ namespace culinaryConnect.BusinessLogic.Core
         public void DeleteRecipe(RecipeDB recipe)
         {
             _context.Recipes.Remove(recipe);
+            _context.RecipesAboutDb.Remove(recipe.AboutRecipe);
             _context.SaveChanges();
         }
 

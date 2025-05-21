@@ -9,6 +9,7 @@ using culinaryConnect.BusinessLogic.Data;
 using System.IO;
 using culinaryConnect.Domain.Entities.Recipe;
 using culinaryConnect.BusinessLogic.Models.UserDB;
+using culinaryConnect.Domain.Entities.User;
 
 namespace culinaryConnect.BusinessLogic.Core
 {
@@ -26,6 +27,16 @@ namespace culinaryConnect.BusinessLogic.Core
             return categories;
         }
 
+        public User GetUserByID(int Id)
+        {
+            var user = _context.Users.FirstOrDefault(u => u.Id == Id);
+            return new User
+            {
+                Id = user.Id,
+                Name = user.UserName,
+                Email = user.UserEmail,
+            };
+        }
         public void AddRecipe(RecipesPageModel recipeModel, int userId, string image)
         {
             var recipe = recipeModel.RecipeForm;

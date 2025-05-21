@@ -1,4 +1,5 @@
-﻿using System;
+﻿using culinaryConnect.Domain.Entities.Recipe;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace culinaryConnect.Domain.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        
+        public List<RecipeDetails> Recipes { get; set; }
+
     }
 }

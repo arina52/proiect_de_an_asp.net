@@ -20,13 +20,13 @@ namespace Culinary_connect_web.Controllers
         private readonly IRecipeService _recipeService = new RecipeService();
         public ActionResult Index()
         {
-            if (Session["UserID"] != null)
-            {
-                return View();
-            } else
-            {
+            if (Session["UserID"] == null)
                 return RedirectToAction("index", "login");
-            }
+
+            int userId = (int)Session["UserID"];
+            var user = _accountService.GetUserByID(userId);
+            return View(user);
+
         }
 
         public ActionResult Favorites()
@@ -182,7 +182,7 @@ namespace Culinary_connect_web.Controllers
             }
         }
 
-
+      
 
     }
 }
