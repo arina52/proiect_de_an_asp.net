@@ -1,62 +1,50 @@
 ﻿using culinaryConnect.BusinessLogic.Data;
-using culinaryConnect.BusinessLogic.Interfaces;
+using culinaryConnect.BusinessLogic.Models;
+using culinaryConnect.BusinessLogic.Models.UserDB;
+using culinaryConnect.Domain.Entities.CategoryModels.AdminCategory;
+using culinaryConnect.Domain.Entities.Recipe.AdminRecipe;
+using culinaryConnect.Domain.Entities.Recipe;
+using culinaryConnect.Domain.Entities.Recipe.AdminRecipes;
+using culinaryConnect.Domain.Entities.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using culinaryConnect.BusinessLogic.Models.UserDB;
-using culinaryConnect.Domain.Entities.Admin;
 using System.Web.Helpers;
-using culinaryConnect.Domain.Entities.User;
-using culinaryConnect.BusinessLogic.Models;
-using culinaryConnect.Domain.Entities.Recipe.AdminRecipes;
-using culinaryConnect.Domain.Entities.Recipe.AdminRecipe;
-using culinaryConnect.Domain.Entities.CategoryModels.AdminCategory;
-using culinaryConnect.Domain.Entities.Recipe;
 
-
-namespace culinaryConnect.BusinessLogic.Core
+namespace culinaryConnect.BusinessLogic
 {
-    public class AdminService: IAdminService
+    public class AdminApi
     {
-        private readonly CulinaryContext _context;
-        public AdminService()
-        {
-            _context = new CulinaryContext();
-        }
+        private readonly CulinaryContext _context = new CulinaryContext();
 
-        public List<UserDB> GetAllUsers() 
+        public List<UserDB> GetAllUsersFromDB()
         {
             var users = _context.Users.ToList();
             return users;
         }
-
-        public UserDB GetUser(int id)
+        public UserDB GetUserByIdFromDB(int id)
         {
             return _context.Users.FirstOrDefault(u => u.Id == id);
         }
-
-        public UserDB GetUserByEmail(string email)
+        public UserDB GetUserByEmailFromDB(string email)
         {
             return _context.Users.FirstOrDefault(u => u.UserEmail == email);
         }
-
-        public UserDB GetUserByCredentials(string email, string password)
+        public UserDB GetUserByCredentialsFromDB(string email, string password)
         {
             var salt = "123";
             var hashedPassword = Crypto.SHA256(password + salt);
             var user = _context.Users.FirstOrDefault(u => u.UserEmail == email && u.PasswordHash == hashedPassword);
             return user;
         }
-
-        public void AddUser(UserDB user)
+        public void AddUserDB(UserDB user)
         {
             _context.Users.Add(user);
             _context.SaveChanges();
         }
-
-        public void UpdateUser(UserDB user, string name, string email, string password)
+        public void UpdateUserDB(UserDB user, string name, string email, string password)
         {
             user.UserName = name;
             user.UserEmail = email;
@@ -67,14 +55,12 @@ namespace culinaryConnect.BusinessLogic.Core
 
             _context.SaveChanges();
         }
-
-        public void DeleteUser(UserDB user)
+        public void DeleteUserDB(UserDB user)
         {
             _context.Users.Remove(user);
             _context.SaveChanges();
         }
-
-        public List<User> ConvertDbToViewUsers(List<UserDB> usersDB) 
+        public List<User> ConvertDbToViewUsersAction(List<UserDB> usersDB)
         {
             var usersList = usersDB.Select(u => new User
             {
@@ -85,8 +71,7 @@ namespace culinaryConnect.BusinessLogic.Core
 
             return usersList;
         }
-
-        public List<User> ConvertDbToViewUsersAndNews(List<UserDB> usersDB)
+        public List<User> ConvertDbToViewUsersAndNewsAction(List<UserDB> usersDB)
         {
             var usersList = usersDB.Select(u => new User
             {
@@ -98,20 +83,18 @@ namespace culinaryConnect.BusinessLogic.Core
 
             return usersList;
         }
-
-        public List<RecipeDB> GetAllRecipes() 
+        public List<RecipeDB> GetAllRecipesDB()
         {
             var recipes = _context.Recipes.ToList();
             return recipes;
         }
-
-        public RecipeDB GetRecipe(int id)
+        public RecipeDB GetRecipeDB(int id)
         {
             var recipe = _context.Recipes.FirstOrDefault(r => r.Id == id);
             return recipe;
         }
 
-        public List<RecipesAdmin> ConvertDbToViewsRecipesAdmin(List<RecipeDB> recipesDB)
+        public List<RecipesAdmin> ConvertDbToViewsRecipesAdminAction(List<RecipeDB> recipesDB)
         {
             var recipes = recipesDB.Select(r => new RecipesAdmin
             {
@@ -124,42 +107,38 @@ namespace culinaryConnect.BusinessLogic.Core
 
             return recipes;
         }
-
-        public RecipeDB GetRecipeAndAbout(int id)
+        public RecipeDB GetRecipeAndAboutAction(int id)
         {
             return _context.Recipes.Include("AboutRecipe").FirstOrDefault(r => r.Id == id);
         }
-
-        public List<CategoryDB> GetAllCategories()
+        public List<CategoryDB> GetAllCategoriesDB()
         {
             var categories = _context.Categories.ToList();
             return categories;
         }
-
-        public CategoryDB GetCategory(int id)
+        public CategoryDB GetCategoryDB(int id)
         {
             return _context.Categories.FirstOrDefault(c => c.Id == id);
         }
-
-        public void AddCategory(CategoryDB category)
+        public void AddCategoryDB(CategoryDB category)
         {
             _context.Categories.Add(category);
             _context.SaveChanges();
         }
 
-        public void DeleteCategory(CategoryDB category)
+        public void DeleteCategoryDB(CategoryDB category)
         {
             _context.Categories.Remove(category);
             _context.SaveChanges();
         }
 
-        public void UpdateCategory(CategoryDB category, string title)
+        public void UpdateCategoryDB(CategoryDB category, string title)
         {
             category.Title = title;
             _context.SaveChanges();
         }
 
-        public List<CategoryRecipeDb> ConvertDbToCategoryRecipeDb(List<CategoryDB> categoriesDB)
+        public List<CategoryRecipeDb> ConvertDbToCategoryRecipeDbAction(List<CategoryDB> categoriesDB)
         {
             var categories = categoriesDB.Select(c => new CategoryRecipeDb
             {
@@ -170,7 +149,7 @@ namespace culinaryConnect.BusinessLogic.Core
             return categories;
         }
 
-        public List<Category> ConvertDbToCategory(List<CategoryDB> categoriesDB)
+        public List<Category> ConvertDbToCategoryAction(List<CategoryDB> categoriesDB)
         {
             var categories = categoriesDB.Select(c => new Category
             {
@@ -182,26 +161,26 @@ namespace culinaryConnect.BusinessLogic.Core
             return categories;
         }
 
-        public void AddRecipeAbout(RecipeAboutDB recipeAboutDB)
+        public void AddRecipeAboutDB(RecipeAboutDB recipeAboutDB)
         {
             _context.RecipesAboutDb.Add(recipeAboutDB);
             _context.SaveChanges();
         }
 
-        public void AddRecipe(RecipeDB recipe)
+        public void AddRecipeDB(RecipeDB recipe)
         {
             _context.Recipes.Add(recipe);
             _context.SaveChanges();
         }
 
-        public void DeleteRecipe(RecipeDB recipe)
+        public void DeleteRecipeDB(RecipeDB recipe)
         {
             _context.Recipes.Remove(recipe);
             _context.RecipesAboutDb.Remove(recipe.AboutRecipe);
             _context.SaveChanges();
         }
 
-        public void UpdateRecipeStatus(RecipeDB recipe, string status)
+        public void UpdateRecipeStatusAction(RecipeDB recipe, string status)
         {
             if (Enum.TryParse(status, out Status statusEnum))
             {
@@ -210,7 +189,7 @@ namespace culinaryConnect.BusinessLogic.Core
             }
         }
 
-        public void UpdateRecipeByImage(RecipeDB recipe, string fileName)
+        public void UpdateRecipeByImageAction(RecipeDB recipe, string fileName)
         {
             recipe.ImagePath = fileName;
             _context.SaveChanges();

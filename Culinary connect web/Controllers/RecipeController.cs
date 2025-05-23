@@ -1,4 +1,4 @@
-﻿using culinaryConnect.BusinessLogic.Core;
+﻿using culinaryConnect.BusinessLogic.Services;
 using culinaryConnect.BusinessLogic.Data;
 using culinaryConnect.BusinessLogic.Models;
 using culinaryConnect.Domain.Entities.Recipe;
@@ -15,7 +15,7 @@ namespace Culinary_connect_web.Controllers
         private readonly IRecipeService _recipeService;
         public RecipeController()
         {
-            _recipeService = new RecipeService();
+            _recipeService = new RecipeServiceBL();
         }
 
         // GET: Recipe

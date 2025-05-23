@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Culinary_connect_web.DTO;
-using culinaryConnect.BusinessLogic.Core;
+using culinaryConnect.BusinessLogic.Services;
 using culinaryConnect.BusinessLogic.Interfaces;
 using culinaryConnect.Domain.Entities;
 
@@ -19,8 +19,8 @@ namespace culinaryConnect.Web.Controllers
 
         public HomeController()
         {
-            _recipeService = new RecipeService();
-            _accountService = new AccountService();
+            _recipeService = new RecipeServiceBL();
+            _accountService = new AccountServiceBL();
         }
         // GET: Home
         public ActionResult Index()

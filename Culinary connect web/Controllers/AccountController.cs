@@ -8,16 +8,23 @@ using System.Web;
 using System.IO;
 using System;
 using culinaryConnect.Domain.Entities;
-using culinaryConnect.BusinessLogic.Core;
+using culinaryConnect.BusinessLogic.Services;
 using culinaryConnect.BusinessLogic.Interfaces;
+using culinaryConnect.BusinessLogic;
 
 namespace Culinary_connect_web.Controllers
 {
     public class AccountController : Controller
     {
         // GET: Account
-        private readonly IAcountService _accountService = new AccountService();
-        private readonly IRecipeService _recipeService = new RecipeService();
+        private readonly IAcountService _accountService;
+        private readonly IRecipeService _recipeService;
+        public AccountController()
+        {
+            var bl = new BusinessLogic();
+            _accountService = bl.GetAccountService();
+            _recipeService = bl.GetRecipeService();
+        }
         public ActionResult Index()
         {
             if (Session["UserID"] == null)
@@ -37,7 +44,7 @@ namespace Culinary_connect_web.Controllers
         public ActionResult Recipes() {
             if (Session["UserID"] == null)
                 return RedirectToAction("index", "login");
-            IRecipeService _recipeService = new RecipeService();
+            IRecipeService _recipeService = new RecipeServiceBL();
             var model = new RecipesPageModel();
             model.RecipeList = _recipeService.GetAllRecipes();
 

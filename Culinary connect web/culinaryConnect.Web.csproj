@@ -199,7 +199,6 @@
     <Content Include="Views\Home\AboutMe.cshtml" />
     <Content Include="Views\Shared\_LayoutHome.cshtml" />
     <Content Include="Views\Shared\_HeaderHome.cshtml" />
-    <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Shared\layouts\_EmptyLayout.cshtml" />
     <Content Include="Views\Signup\Index.cshtml" />

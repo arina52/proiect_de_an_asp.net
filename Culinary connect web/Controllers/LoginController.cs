@@ -4,14 +4,20 @@ using System.Linq;
 using System.Web.Mvc;
 using System.Web.Helpers;
 using culinaryConnect.BusinessLogic.Interfaces;
-using culinaryConnect.BusinessLogic.Core;
+using culinaryConnect.BusinessLogic.Services;
+using culinaryConnect.BusinessLogic;
 
 namespace Culinary_connect_web.Controllers
 {
     public class LoginController : Controller
     {
 
-        private readonly ILoginService _loginService = new LoginService();
+        private readonly ILoginService _loginService;
+        public LoginController()
+        {
+            var bl = new BusinessLogic();
+            _loginService = bl.GetLoginService();
+        }
 
         [HttpGet]
         public ActionResult Index() { 

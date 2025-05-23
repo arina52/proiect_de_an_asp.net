@@ -1,5 +1,5 @@
 ﻿using Culinary_connect_web.DTO;
-using culinaryConnect.BusinessLogic.Core;
+using culinaryConnect.BusinessLogic.Services;
 using culinaryConnect.BusinessLogic.Data;
 using culinaryConnect.BusinessLogic.Interfaces;
 using culinaryConnect.Domain.Entities.Recipe;
@@ -18,7 +18,7 @@ namespace culinaryConnect.Web.Controllers
         private readonly IRecipeService _recipeService;
         public RecipesController()
         {
-            _recipeService = new RecipeService();
+            _recipeService = new RecipeServiceBL();
         }
 
         public ActionResult Index()

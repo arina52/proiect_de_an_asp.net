@@ -69,12 +69,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\AdminService.cs" />
-    <Compile Include="Core\AccountService.cs" />
-    <Compile Include="Core\LoginService.cs" />
-    <Compile Include="Core\RecipeService.cs" />
-    <Compile Include="Core\SignupService.cs" />
-    <Compile Include="Core\UserService.cs" />
+    <Compile Include="AdminApi.cs" />
+    <Compile Include="BusinessLogic.cs" />
+    <Compile Include="Services\AdminServiceBL.cs" />
+    <Compile Include="Services\AccountServiceBL.cs" />
+    <Compile Include="Services\LoginServiceBL.cs" />
+    <Compile Include="Services\RecipeServiceBL.cs" />
+    <Compile Include="Services\SignupServiceBL.cs" />
+    <Compile Include="Services\UserServiceBL.cs" />
     <Compile Include="Data\CulinaryContext.cs" />
     <Compile Include="Interfaces\IAcountService.cs" />
     <Compile Include="Interfaces\IAdminService.cs" />
@@ -90,6 +92,7 @@
     <Compile Include="Interfaces\IRecipeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Seed\DbInitializer.cs" />
+    <Compile Include="UserApi.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\culinaryConnect.Domain\culinaryConnect.Domain.csproj">

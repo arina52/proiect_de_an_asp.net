@@ -5,11 +5,17 @@ using System.Web.Mvc;
 using culinaryConnect.Domain.Entities.User;
 using culinaryConnect.BusinessLogic.Models.UserDB;
 using culinaryConnect.BusinessLogic.Interfaces;
-using culinaryConnect.BusinessLogic.Core;
+using culinaryConnect.BusinessLogic.Services;
+using culinaryConnect.BusinessLogic;
 public class SignupController : Controller
 {
-    private readonly ISignupService _signupService = new SignupService();
+    private readonly ISignupService _signupService;
 
+    public SignupController()
+    {
+        var bl = new BusinessLogic();
+        _signupService = bl.GetSignupService();
+    }
     public ActionResult Index()
     {
         return View(new UserRegisterModel());
