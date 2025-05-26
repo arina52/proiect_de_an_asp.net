@@ -1,18 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\uni an2\\proiect de an\\Solution1\\",
+  "WorkspaceRootPath": "D:\\Uni\\tweb\\proiect_de_an_asp.net\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7B67ECEF-9595-4255-A09A-231A52E3219A}|culinaryConnect.BusinessLogic\\culinaryConnect.BusinessLogic.csproj|d:\\uni an2\\proiect de an\\solution1\\culinaryconnect.businesslogic\\adminapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7B67ECEF-9595-4255-A09A-231A52E3219A}|culinaryConnect.BusinessLogic\\culinaryConnect.BusinessLogic.csproj|solutionrelative:culinaryconnect.businesslogic\\adminapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Uni\\tweb\\proiect_de_an_asp.net\\culinaryConnect.BusinessLogic\\AdminApi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:culinaryConnect.BusinessLogic\\AdminApi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7B67ECEF-9595-4255-A09A-231A52E3219A}|culinaryConnect.BusinessLogic\\culinaryConnect.BusinessLogic.csproj|d:\\uni an2\\proiect de an\\solution1\\culinaryconnect.businesslogic\\services\\adminservicebl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7B67ECEF-9595-4255-A09A-231A52E3219A}|culinaryConnect.BusinessLogic\\culinaryConnect.BusinessLogic.csproj|solutionrelative:culinaryconnect.businesslogic\\services\\adminservicebl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Uni\\tweb\\proiect_de_an_asp.net\\culinaryConnect.BusinessLogic\\Services\\AdminServiceBL.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:culinaryConnect.BusinessLogic\\Services\\AdminServiceBL.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7B67ECEF-9595-4255-A09A-231A52E3219A}|culinaryConnect.BusinessLogic\\culinaryConnect.BusinessLogic.csproj|D:\\uni an2\\proiect de an\\Solution1\\culinaryconnect.businesslogic\\userapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7B67ECEF-9595-4255-A09A-231A52E3219A}|culinaryConnect.BusinessLogic\\culinaryConnect.BusinessLogic.csproj|solutionrelative:culinaryconnect.businesslogic\\userapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Uni\\tweb\\proiect_de_an_asp.net\\culinaryConnect.BusinessLogic\\UserApi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:culinaryConnect.BusinessLogic\\UserApi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -36,40 +36,36 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "AdminApi.cs",
-              "DocumentMoniker": "D:\\uni an2\\proiect de an\\Solution1\\culinaryConnect.BusinessLogic\\AdminApi.cs",
+              "DocumentMoniker": "D:\\Uni\\tweb\\proiect_de_an_asp.net\\culinaryConnect.BusinessLogic\\AdminApi.cs",
               "RelativeDocumentMoniker": "culinaryConnect.BusinessLogic\\AdminApi.cs",
-              "ToolTip": "D:\\uni an2\\proiect de an\\Solution1\\culinaryConnect.BusinessLogic\\AdminApi.cs*",
-              "RelativeToolTip": "culinaryConnect.BusinessLogic\\AdminApi.cs*",
-              "ViewState": "AgIAAD0AAAAAAAAAAAAAAFAAAAAAAAAAAAAAAA==",
+              "ToolTip": "D:\\Uni\\tweb\\proiect_de_an_asp.net\\culinaryConnect.BusinessLogic\\AdminApi.cs",
+              "RelativeToolTip": "culinaryConnect.BusinessLogic\\AdminApi.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-23T12:39:43.975Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-23T12:39:43.975Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "AdminServiceBL.cs",
-              "DocumentMoniker": "D:\\uni an2\\proiect de an\\Solution1\\culinaryConnect.BusinessLogic\\Services\\AdminServiceBL.cs",
+              "DocumentMoniker": "D:\\Uni\\tweb\\proiect_de_an_asp.net\\culinaryConnect.BusinessLogic\\Services\\AdminServiceBL.cs",
               "RelativeDocumentMoniker": "culinaryConnect.BusinessLogic\\Services\\AdminServiceBL.cs",
-              "ToolTip": "D:\\uni an2\\proiect de an\\Solution1\\culinaryConnect.BusinessLogic\\Services\\AdminServiceBL.cs",
+              "ToolTip": "D:\\Uni\\tweb\\proiect_de_an_asp.net\\culinaryConnect.BusinessLogic\\Services\\AdminServiceBL.cs",
               "RelativeToolTip": "culinaryConnect.BusinessLogic\\Services\\AdminServiceBL.cs",
               "ViewState": "AgIAADoAAAAAAAAAAAAgwEQAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-23T12:38:06.5Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-23T12:38:06.5Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "UserApi.cs",
-              "DocumentMoniker": "D:\\uni an2\\proiect de an\\Solution1\\culinaryConnect.BusinessLogic\\UserApi.cs",
+              "DocumentMoniker": "D:\\Uni\\tweb\\proiect_de_an_asp.net\\culinaryConnect.BusinessLogic\\UserApi.cs",
               "RelativeDocumentMoniker": "culinaryConnect.BusinessLogic\\UserApi.cs",
-              "ToolTip": "D:\\uni an2\\proiect de an\\Solution1\\culinaryConnect.BusinessLogic\\UserApi.cs",
+              "ToolTip": "D:\\Uni\\tweb\\proiect_de_an_asp.net\\culinaryConnect.BusinessLogic\\UserApi.cs",
               "RelativeToolTip": "culinaryConnect.BusinessLogic\\UserApi.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-23T11:04:32.899Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-23T11:04:32.899Z"
             }
           ]
         }
