@@ -5,13 +5,12 @@
         <div class="nav-menu">
             <nav class="main-menu mobile-menu">
                 <ul>
-                    <li><a href="#">Acasă</a></li>
+                    <li><a href="@Url.Action("index", "Home")">Acasă</a></li>
                     <li>
                         <a href="#">Pagini</a>
                         <ul class="sub-menu">
                             <li><a href=@Url.Action("aboutMe", "home")>Despre noi</a></li>
                             <li><a href=@Url.Action("index", "recipes")>Rețete</a></li>
-                            <li><a href="blog.html">Blog</a></li>
                         </ul>
                     </li>
                     @if (Session["UserID"] != null)
@@ -26,9 +25,7 @@
 
                 </ul>
             </nav>
-            <div class="nav-right search-switch">
-                <i class="fa fa-search"></i>
-            </div>
+            
         </div>
         <div id="mobile-menu-wrap"></div>
     </div>

@@ -13,19 +13,23 @@
                 <div class="pt-recipe-item large-item">
                     @foreach (var recipe in Model.RecipeList.Take(1))
                     {
-                        <div class="pt-recipe-img set-bg" data-setbg=@Url.Content("~/Content/Images/recipe/" + recipe.ImagePath)>
-                            <i class="fa fa-plus"></i>
-                        </div>
-                        <div class="pt-recipe-text">
-                            <span>@recipe.CreatedDate</span>
-                            <h3>@recipe.Title</h3>
-                        </div>
+                        <a href="@Url.Action("Index", "Recipe", new {id = recipe.Id})">
+                            <div class="pt-recipe-img set-bg" data-setbg=@Url.Content("~/Content/Images/recipe/" + recipe.ImagePath)>
+                                <i class="fa fa-plus"></i>
+                            </div>
+                            <div class="pt-recipe-text">
+                                <span>@recipe.CreatedDate</span>
+                                <h3>@recipe.Title</h3>
+                            </div>
+                        </a>
+                        
                     }
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 order-lg-1">
                 @foreach (var recipe in Model.RecipeList.Skip(1).Take(2))
                 {
+                    <a href="@Url.Action("Index", "Recipe", new {id=recipe.Id})">
                     <div class="pt-recipe-item">
                         <div class="pt-recipe-img set-bg" data-setbg=@Url.Content("~/Content/Images/recipe/" + recipe.ImagePath)>
                             <i class="fa fa-plus"></i>
@@ -34,20 +38,24 @@
                             <h4>@recipe.Title</h4>
                         </div>
                     </div>
+                    </a>
+                    
                 }
 
             </div>
             <div class="col-lg-3 col-md-6 order-lg-3">
                 @foreach (var recipe in Model.RecipeList.Skip(3).Take(2))
                 {
-                    <div class="pt-recipe-item">
-                        <div class="pt-recipe-img set-bg" data-setbg=@Url.Content("~/Content/Images/recipe/"+recipe.ImagePath)>
-                            <i class="fa fa-plus"></i>
+                    <a href="@Url.Action("Index", "Recipe", new {id=recipe.Id})">
+                        <div class="pt-recipe-item">
+                            <div class="pt-recipe-img set-bg" data-setbg=@Url.Content("~/Content/Images/recipe/"+recipe.ImagePath)>
+                                <i class="fa fa-plus"></i>
+                            </div>
+                            <div class="pt-recipe-text">
+                                <h4>@recipe.Title</h4>
+                            </div>
                         </div>
-                        <div class="pt-recipe-text">
-                            <h4>@recipe.Title</h4>
-                        </div>
-                    </div>
+                    </a>
                 }
             </div>
         </div>
@@ -73,7 +81,9 @@
                             <i class="fa fa-plus"></i>
                         </div>
                         <div class="top-recipe-text">
-                            <div class="cat-name">@primaReteta.CategoryID</div>
+                            @{ var category = Model.Categories.FirstOrDefault(c => c.Id == primaReteta.CategoryID);}
+
+                            <div class="cat-name">@category.Name</div>
                             <a href="#"><h4>@primaReteta.Title</h4></a>
                             <p>@primaReteta.AboutRecipe.Description</p>
                         </div>
@@ -91,7 +101,8 @@
                                 </div>
                                 <div class="col-sm-8">
                                     <div class="top-recipe-text">
-                                        <div class="cat-name">@reteta.CategoryID</div>
+                                        @{ category = Model.Categories.FirstOrDefault(c => c.Id == reteta.CategoryID);}
+                                        <div class="cat-name">@category.Name</div>
                                         <a href="#"><h4>@reteta.Title</h4></a>
                                         <p>@reteta.AboutRecipe.Description</p>
                                     </div>
@@ -107,7 +118,6 @@
 
 <!-- Categories Filter Section Begin -->
 @{
-    // Funcție utilă pentru a transforma numele categoriei în clasă CSS
     Func<string, string> slugify = name => name.ToLower()
         .Replace("ă", "a").Replace("â", "a").Replace("î", "i")
         .Replace("ș", "s").Replace("ț", "t")
@@ -164,7 +174,6 @@
     </div>
 </div>
 
-<!-- JavaScript simplu pentru filtrare -->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const filterButtons = document.querySelectorAll(".filter-btn-custom");

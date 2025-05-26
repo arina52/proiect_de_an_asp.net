@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using culinaryConnect.BusinessLogic.Interfaces;
+using culinaryConnect.BusinessLogic;
 namespace Culinary_connect_web.Controllers
 {
     public class RecipeController : Controller
@@ -15,6 +16,7 @@ namespace Culinary_connect_web.Controllers
         private readonly IRecipeService _recipeService;
         public RecipeController()
         {
+            var bl = new BusinessLogic();
             _recipeService = new RecipeServiceBL();
         }
 
