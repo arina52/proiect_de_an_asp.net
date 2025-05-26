@@ -158,7 +158,7 @@
                 {
                     foreach (var recipe in category.Recipes)
                     {
-                        <div class="col-md-4 mb-4 recipe-item" data-category="@cssClass">
+                        <a href="@Url.Action("" + recipe.Id, "recipe")" class="col-md-4 mb-4 recipe-item" data-category="@cssClass">
                             <div class="card h-100">
                                 <img src="@Url.Content("~/Content/Images/recipe/" + recipe.ImagePath)" class="card-img-top" alt="...">
                                 <div class="card-body">
@@ -166,7 +166,7 @@
                                     <p class="card-text">Categorie: @category.Name</p>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     }
                 }
             }

@@ -17,6 +17,7 @@ using culinaryConnect.Domain.Entities.CategoryModels.AdminCategories;
 using culinaryConnect.Domain.Entities.CategoryModels.AdminCategory;
 using culinaryConnect.BusinessLogic.Interfaces;
 using culinaryConnect.BusinessLogic;
+using culinaryConnect.Domain.Entities.Reports;
 
 namespace Culinary_connect_web.Controllers
 {
@@ -32,15 +33,7 @@ namespace Culinary_connect_web.Controllers
         public ActionResult Index()
         {
             if (Session["AdminID"] != null) {
-                var usersListDB = _adminService.GetAllUsers();
-
-                var usersList = _adminService.ConvertDbToViewUsers(usersListDB);
-
-                var adminWrapper = new AdminWraper
-                { Users = usersList};
-
-
-                return View(adminWrapper);
+                return RedirectToAction("users");
             }
             return RedirectToAction("login");
         }
@@ -158,14 +151,44 @@ namespace Culinary_connect_web.Controllers
             return View(model);
         }
 
-        public ActionResult Settings()
-        {
-            return View();
-        }
-
         public ActionResult Reports()
         {
-            return View();
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("login");
+            }
+
+            var usersDB = _adminService.GetAllUsers();
+            var categoriesDB = _adminService.GetAllCategories();
+            var recipesDB = _adminService.GetAllRecipes();
+
+            var users = usersDB.Select(u => new ReportsUser
+            {
+                Id = u.Id,
+                Email = u.UserEmail,
+                Name = u.UserName
+            }).ToList();
+
+            var categories = categoriesDB.Select(c => new ReportsCategory
+            {
+                Id = c.Id,
+                Name = c.Title,
+            }).ToList();
+
+            var recipes = recipesDB.Select(r => new ReportsRecipe
+            {
+                Id = r.Id,
+                Name = r.Title,
+                ImagePath = r.ImagePath
+            }).ToList();
+
+            var model = new ReportsPageModel
+            {
+                users = users,
+                categories = categories,
+                recipes = recipes,
+            };
+            return View(model);
         }
 
 
