@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Culinary Connect | by A&D</title>
-    <link rel="shortcut icon" href="~/Content/Images/181786.png" type="image/x-icon">
+    <link rel="shortcut icon" href="@Url.Content("~/Content/Images/181786.png")" type="image/x-icon">
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap" rel="stylesheet">
 
@@ -33,7 +33,6 @@
     </header>
 
     <div class="hero-search set-bg" data-setbg=@Url.Content("~/Content/Images/search-bg.jpg")>
-        @Html.Partial("_Search")
     </div>
     <main>
         @RenderBody()

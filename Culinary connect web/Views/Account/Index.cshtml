@@ -1,41 +1,35 @@
 ﻿@{
     Layout = "~/Views/Shared/layouts/_EmptyLayout.cshtml";
-
-    
 }
 @model culinaryConnect.Domain.Entities.User.User
 
-@{var userInitial = Model.Name?.FirstOrDefault().ToString().ToUpper(); }
-<div class="bg-dark vh-100 d-flex justify-content-center align-items-center">
-    <div class="container" style="max-width: 400px; margin: auto;">
-        <div class="row card text-center mb-2 p-4">
-            <div class="mx-auto rounded-circle bg-primary text-white d-flex justify-content-center align-items-center"
+@{
+    var userInitial = Model.Name?.FirstOrDefault().ToString().ToUpper();
+}
+
+<div class="bg-light vh-100 d-flex justify-content-center align-items-center">
+    <div class="card shadow-sm w-100" style="max-width: 400px;">
+        <div class="card-body text-center">
+            <div class="mx-auto rounded-circle bg-primary text-white d-flex justify-content-center align-items-center mb-3"
                  style="width: 80px; height: 80px; font-size: 2rem;">
                 @userInitial
             </div>
-            <div class="mt-4">
-                <h5 class="mb-1">@Model.Name</h5>
-                <p class="mb-1 text-muted">@Model.Email</p>
-            </div>
-        </div>
-        <div class="container-fluid p-0">
-            <div class="row mb-2 p-0">
-                <div class="col mr-2 p-0">
-                    <a href="@Url.Action("recipes", "account")" class="d-block rounded-sm bg-white w-full text-center text-black-50 py-2">Vezi retete</a>
-                </div>
-                @using (Html.BeginForm("logout", "login", FormMethod.Post))
+            <h5 class="card-title mb-1">@Model.Name</h5>
+            <p class="card-text text-muted mb-4">@Model.Email</p>
+
+            <div class="d-flex flex-column">
+                <a href="@Url.Action("recipes", "account")" class="btn btn-outline-primary btn-block mb-2">
+                    Vezi rețete
+                </a>
+                <a href="@Url.Action("favorites", "account")" class="btn btn-outline-secondary btn-block mb-2">
+                    Favorite
+                </a>
+                @using (Html.BeginForm("logout", "login", FormMethod.Post, new { @class = "d-block" }))
                 {
-                    <div class="col ml-2 p-0 ">
-                        <button type="submit" class="d-block rounded-sm bg-white w-full text-center text-black-50 py-2">Iesi din cont</button>
-                    </div>
+                    <button type="submit" class="btn btn-danger btn-block">
+                        Ieși din cont
+                    </button>
                 }
-            </div>
-            <div class="row p-0">
-                <div class="col p-0">
-                    <a href="@Url.Action("favorites", "account")" class="d-block rounded-sm bg-white w-full text-center text-black-50 py-2">
-                        Favorite
-                    </a>
-                </div>
             </div>
         </div>
     </div>
