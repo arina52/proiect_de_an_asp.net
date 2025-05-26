@@ -13,7 +13,7 @@ namespace culinaryConnect.BusinessLogic.Services
 {
     public class RecipeServiceBL : UserApi, IRecipeService
     {
-       
+
         public List<RecipeDetails> GetAllRecipes()
         {
             return GetAllRecipesFromDB();
@@ -32,5 +32,26 @@ namespace culinaryConnect.BusinessLogic.Services
         {
             return GetRecipeEntityByIdFromDB(Id);
         }
+        public void AddToFavorites(int userId, int recipeId)
+        {
+            AddRecipeToFavorites(userId, recipeId);
+        }
+        public bool IsFavorite(int userId, int recipeId)
+        {
+            return IsFavoriteRecipe(userId, recipeId);
+        }
+        public void RemoveFromFavorites(int userId, int recipeId)
+        {
+            RemoveRecipeFromFavorites(userId, recipeId);
+        }
+        public List<RecipeDetails> GetUserFavorites(int userId)
+        {
+            return GetUserFavoritesList(userId);
+        }
+        public int GetFavoriteCount(int recipeId)
+        {
+            return GetRecipeFavoriteCount(recipeId);
+        }
+
     }
 }

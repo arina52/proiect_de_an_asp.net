@@ -34,5 +34,7 @@ namespace culinaryConnect.BusinessLogic.Models
 
         [Required]
         public int AuthorID { get; set; }
+        public virtual ICollection<FavoriteRecipeDB> FavoritedByUsers { get; set; }
+
     }
 }

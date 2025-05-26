@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="AdminApi.cs" />
     <Compile Include="BusinessLogic.cs" />
+    <Compile Include="Models\FavoriteRecipeDB.cs" />
     <Compile Include="Services\AdminServiceBL.cs" />
     <Compile Include="Services\AccountServiceBL.cs" />
     <Compile Include="Services\LoginServiceBL.cs" />

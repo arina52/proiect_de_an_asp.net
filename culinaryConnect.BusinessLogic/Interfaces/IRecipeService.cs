@@ -15,5 +15,10 @@ namespace culinaryConnect.BusinessLogic.Interfaces
         RecipeDB GetRecipeEntityById(int Id);
         List<RecipeDetails> GetAllActiveRecipes();
 
+        void AddToFavorites(int userId, int recipeId);
+        void RemoveFromFavorites(int userId, int recipeId);
+        bool IsFavorite(int userId, int recipeId);
+        List<RecipeDetails> GetUserFavorites(int userId);
+        int GetFavoriteCount(int recipeId);
     }
 }

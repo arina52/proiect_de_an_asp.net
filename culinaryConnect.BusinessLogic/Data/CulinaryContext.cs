@@ -14,7 +14,7 @@ namespace culinaryConnect.BusinessLogic.Data
         public DbSet<CategoryDB> Categories { get; set; }
 
         public DbSet<RecipeAboutDB> RecipesAboutDb { get; set; }
-
+        public DbSet<FavoriteRecipeDB> FavoriteRecipes { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

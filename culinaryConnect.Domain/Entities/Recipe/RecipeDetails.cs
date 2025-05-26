@@ -16,5 +16,8 @@ namespace culinaryConnect.Domain.Entities.Recipe
         public string ImagePath { get; set; }
         public string CreatedDate { get; set; }
         public AuthorModel Author { get; set; }
+        public int FavoriteCount { get; set; } 
+        public bool IsFavorite { get; set; }
+        public DateTime DateCreated { get; set; }
     }
 }

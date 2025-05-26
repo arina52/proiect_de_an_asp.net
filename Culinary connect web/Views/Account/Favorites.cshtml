@@ -1,7 +1,42 @@
-﻿@{ 
+﻿@{
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
+@model List<culinaryConnect.Domain.Entities.Recipe.RecipeDetails>
+<div class="container mt-5">
+    <h2 class="mb-4"><strong>Rețetele mele favorite ❤️ </strong></h2>
 
-<div>
-    this are the favorites
+    @if (Model == null || !Model.Any())
+    {
+        <div class="alert alert-info">
+            Nu ai salvat încă nicio rețetă ca favorit.
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var recipe in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="recipe-item">
+                        <a href="#"><img src="@Url.Content("~/Content/Images/recipe/" + recipe.ImagePath)" alt=""></a>
+                        <div class="ri-text">
+                            <a href="@Url.Action("Index", "Recipe", new {id=recipe.Id})">
+                                <h4>@recipe.Title</h4>
+                            </a>
+
+                            <small class="text-muted">de @recipe.Author.Name pe @recipe.DateCreated.ToShortDateString()</small>
+                            <p>@recipe.AboutRecipe.Description</p>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                            <small class="text-muted">❤️ @recipe.FavoriteCount</small>
+                            <a href="@Url.Action("Index", "Recipe", new { id = recipe.Id })" class="btn btn-sm btn-primary">
+                                Vezi rețeta
+                            </a>
+                        </div>
+                    </div>
+                    
+                </div>
+            }
+        </div>
+    }
 </div>

@@ -30,5 +30,7 @@ namespace culinaryConnect.BusinessLogic.Models.UserDB
         [EnumDataType(typeof(Role))]
         public Role Role { get; set; } = Role.User;
         public bool SubscribedToNews { get; set; } = false;
+        public virtual ICollection<FavoriteRecipeDB> FavoriteRecipes { get; set; }
+
     }
 }

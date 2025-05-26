@@ -1,14 +1,26 @@
-﻿<section class="single-page-recipe spad">
+﻿@model culinaryConnect.Domain.Entities.Recipe.RecipeDetails
+
+@{
+    bool isFavorite = Model.IsFavorite;
+}
+
+<section class="single-page-recipe spad">
     <div class="recipe-top">
         <div class="container-fluid">
             <div class="recipe-title">
-                <span>~ @Model.AboutRecipe.Ingredients.Split(new[] { "###" }, StringSplitOptions.None).Length ingrediente / @Model.AboutRecipe.CookingTime</span>
+                <span>
+                    ~ @Model.AboutRecipe.Ingredients.Split(new[] { "###" }, StringSplitOptions.None).Length ingrediente /
+                    @Model.AboutRecipe.CookingTime
+                </span>
                 <h2>@Model.Title</h2>
                 <p class="text-muted">
                     de <strong>@Model.Author.Name</strong> | publicată pe <strong>@Model.CreatedDate</strong>
                 </p>
+
+ 
+
             </div>
-            <img src=@Url.Content("~/Content/Images/recipe/"+ Model.ImagePath) alt="@Model.Title" class="d-block mx-auto img-fluid" />
+            <img src="@Url.Content("~/Content/Images/recipe/" + Model.ImagePath)" alt="@Model.Title" class="d-block mx-auto img-fluid" />
         </div>
     </div>
 
@@ -18,18 +30,24 @@
             <div class="col-lg-5">
                 <div class="ingredients-item">
                     <div class="intro-item">
-                        <img src=@Url.Content("~/Content/Images/recipe/"+ Model.ImagePath) alt="Intro" />
+                        <img src="@Url.Content("~/Content/Images/recipe/" + Model.ImagePath)" alt="Intro" />
                         <h2>@Model.Title</h2>
-                        <div class="rating">
-                            <i class="fa fa-star"></i><i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i><i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="reviews">5.0 din 1 recenzie</div>
-                        <div class="recipe-time">
+                        
+                        <div class="mt-3" style="margin-bottom:2px">
+                            <form method="post" action="@Url.Action("ToggleFavorite", "Account")" class="d-inline">
+                                @Html.Hidden("recipeId", Model.Id)
+                                <button type="submit" class="btn btn-sm @(isFavorite ? "btn-danger" : "btn-secondary")">
+                                    <i class="fa fa-heart"></i>
+                                    @(isFavorite ? "Remove from Favorites" : "Add to Favorites")
+                                </button>
+                            </form>
+                            <div class="d-inline-block ml-3 px-3 py-1 bg-light border rounded shadow-sm text-dark" style="font-size: 0.9rem;">
+                                ❤️ Liked by <strong>@Model.FavoriteCount</strong> users
+                            </div>
+
+                        </div>                        <div class="recipe-time">
                             <ul>
                                 <li>Timp de pregătire: <span>@Model.AboutRecipe.CookingTime</span></li>
-                               
                             </ul>
                         </div>
                     </div>

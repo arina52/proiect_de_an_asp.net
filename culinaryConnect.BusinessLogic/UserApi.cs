@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -189,7 +190,7 @@ namespace culinaryConnect.BusinessLogic
         }
         public RecipeDetails GetRecipeByIdFromDB(int Id)
         {
-            var recipeDB = _context.Recipes.Include("AboutRecipe").FirstOrDefault(r => r.Id == Id);
+            var recipeDB = _context.Recipes.Include("AboutRecipe").Include("FavoritedByUsers").FirstOrDefault(r => r.Id == Id);
             var author = _context.Users.FirstOrDefault(u => u.Id == recipeDB.AuthorID);
 
             if (recipeDB == null) return null;
@@ -220,5 +221,74 @@ namespace culinaryConnect.BusinessLogic
             var recipe = _context.Recipes.Include("AboutRecipe").FirstOrDefault(r => r.Id == Id);
             return recipe;
         }
+        public void AddRecipeToFavorites(int userId, int recipeId)
+        {
+            var exists = _context.FavoriteRecipes
+            .Any(f => f.UserId == userId && f.RecipeId == recipeId);
+
+            if (!exists)
+            {
+                _context.FavoriteRecipes.Add(new FavoriteRecipeDB
+                {
+                    UserId = userId,
+                    RecipeId = recipeId
+                });
+                _context.SaveChanges();
+            }
+        }
+        public void RemoveRecipeFromFavorites(int userId, int recipeId)
+        {
+            var favorite = _context.FavoriteRecipes
+                .FirstOrDefault(f => f.UserId == userId && f.RecipeId == recipeId);
+
+            if (favorite != null)
+            {
+                _context.FavoriteRecipes.Remove(favorite);
+                _context.SaveChanges();
+            }
+        }
+        public bool IsFavoriteRecipe(int userId, int recipeId)
+        {
+            return _context.FavoriteRecipes
+                .Any(f => f.UserId == userId && f.RecipeId == recipeId);
+        }
+        public List<RecipeDetails> GetUserFavoritesList(int userId)
+        {
+            var favorites = _context.FavoriteRecipes
+                .Where(f => f.UserId == userId)
+                .Include(f => f.Recipe.AboutRecipe)
+                .Select(f => new RecipeDetails
+                {
+                    Id = f.Recipe.Id,
+                    Title = f.Recipe.Title,
+                    ImagePath = f.Recipe.ImagePath,
+                    AboutRecipe = new RecipeAbout
+                    {
+                        Description = f.Recipe.AboutRecipe.Description,
+                        Ingredients = f.Recipe.AboutRecipe.Ingredients,
+                        Instructions = f.Recipe.AboutRecipe.Instructions,
+                        CookingTime = f.Recipe.AboutRecipe.CookingTime
+                    },
+                    CategoryID = f.Recipe.CategoryID,
+                    DateCreated = f.Recipe.CreatedDate,
+                    Author = new AuthorModel
+                    {
+                        ID = f.Recipe.AuthorID,
+                        Name = _context.Users.FirstOrDefault(u => u.Id == f.Recipe.AuthorID).UserName,
+                    },
+                    FavoriteCount = f.Recipe.FavoritedByUsers.Count(),
+                    IsFavorite = true
+                })
+                .ToList();
+
+            return favorites;
+        }
+        public int GetRecipeFavoriteCount(int recipeId)
+        {
+            return _context.FavoriteRecipes
+                .Count(f => f.RecipeId == recipeId);
+        }
+
+
     }
 }

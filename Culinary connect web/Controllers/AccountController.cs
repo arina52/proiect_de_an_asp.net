@@ -38,8 +38,11 @@ namespace Culinary_connect_web.Controllers
 
         public ActionResult Favorites()
         {
-            return View();
+            int userId = (int)Session["UserID"];
+            var favorites = _recipeService.GetUserFavorites(userId);
+            return View(favorites);
         }
+
 
         public ActionResult Recipes() {
             if (Session["UserID"] == null)
@@ -189,7 +192,21 @@ namespace Culinary_connect_web.Controllers
             }
         }
 
-      
+        [HttpPost]
+        public ActionResult ToggleFavorite(int recipeId)
+        {
+            if (Session["UserID"]==null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            int userId = (int)Session["UserID"];
+            if (_recipeService.IsFavorite(userId, recipeId))
+                _recipeService.RemoveFromFavorites(userId, recipeId);
+            else
+                _recipeService.AddToFavorites(userId, recipeId);
+
+            return RedirectToAction("Index", "Recipe", new { id = recipeId });
+        }
 
     }
 }

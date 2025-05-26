@@ -24,6 +24,12 @@ namespace Culinary_connect_web.Controllers
         public ActionResult Index(int id)
         {
             var recipePage = _recipeService.GetRecipeById(id);
+            recipePage.FavoriteCount = _recipeService.GetFavoriteCount(recipePage.Id);
+            if (Session["UserID"] != null)
+            {
+                var userId = (int)Session["UserID"];
+                recipePage.IsFavorite = _recipeService.IsFavorite(userId, recipePage.Id);
+            }
             if (recipePage == null)
             {
                 return HttpNotFound();
