@@ -8,6 +8,7 @@ using Culinary_connect_web.DTO;
 using culinaryConnect.BusinessLogic.Services;
 using culinaryConnect.BusinessLogic.Interfaces;
 using culinaryConnect.Domain.Entities;
+using Culinary_connect_web.Filters;
 
 namespace culinaryConnect.Web.Controllers
 {
@@ -45,15 +46,14 @@ namespace culinaryConnect.Web.Controllers
             return View();
         }
 
+        [AuthorizeUser]
         [HttpPost]
         public ActionResult SubscribeNews(string email)
         {
-            if (Session["UserID"] == null)
-                return RedirectToAction("index", "login");
-
+            
             _accountService.SubscribeUserToNewsletter(email);
 
-            return View("index"); 
+            return RedirectToAction("index"); 
         }
 
     }

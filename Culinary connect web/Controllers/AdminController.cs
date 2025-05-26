@@ -18,9 +18,11 @@ using culinaryConnect.Domain.Entities.CategoryModels.AdminCategory;
 using culinaryConnect.BusinessLogic.Interfaces;
 using culinaryConnect.BusinessLogic;
 using culinaryConnect.Domain.Entities.Reports;
+using culinaryConnect.Web.Filters;
 
 namespace Culinary_connect_web.Controllers
 {
+    [AuthorizeAdmin]
     public class AdminController : Controller
     {
         private readonly IAdminService _adminService;
@@ -32,10 +34,7 @@ namespace Culinary_connect_web.Controllers
         }
         public ActionResult Index()
         {
-            if (Session["AdminID"] != null) {
-                return RedirectToAction("users");
-            }
-            return RedirectToAction("login");
+             return RedirectToAction("users");
         }
 
         public ActionResult Login()
@@ -49,11 +48,6 @@ namespace Culinary_connect_web.Controllers
 
         public ActionResult Users(UsersPageModel model)
         {
-            if (Session["AdminID"] == null)
-            {
-                return RedirectToAction("login");
-            }
-
             var users = _adminService.GetAllUsers();
             var usersList = _adminService.ConvertDbToViewUsersAndNews(users);
             model.Users = usersList;
@@ -62,11 +56,6 @@ namespace Culinary_connect_web.Controllers
 
         public ActionResult Recipes(RecipesAdminPageModel model)
         {
-            if (Session["AdminID"] == null)
-            {
-                return RedirectToAction("login");
-            }
-
             var recipes = _adminService.GetAllRecipes();
             var recipesList = _adminService.ConvertDbToViewsRecipesAdmin(recipes);
 
@@ -77,11 +66,6 @@ namespace Culinary_connect_web.Controllers
 
         public ActionResult Recipe(int Id)
         {
-            if (Session["AdminID"] == null)
-            {
-                return RedirectToAction("login");
-            }
-
             var recipe = _adminService.GetRecipeAndAbout(Id);
 
             if(recipe == null)
@@ -153,11 +137,6 @@ namespace Culinary_connect_web.Controllers
 
         public ActionResult Reports()
         {
-            if (Session["AdminID"] == null)
-            {
-                return RedirectToAction("login");
-            }
-
             var usersDB = _adminService.GetAllUsers();
             var categoriesDB = _adminService.GetAllCategories();
             var recipesDB = _adminService.GetAllRecipes();
@@ -194,10 +173,7 @@ namespace Culinary_connect_web.Controllers
 
         public ActionResult Categories()
         {
-            if (Session["AdminID"] == null)
-            {
-                return RedirectToAction("login");
-            }
+            
             var categories = _adminService.GetAllCategories();
             var categoriesList = _adminService.ConvertDbToCategory(categories);
 
@@ -212,10 +188,7 @@ namespace Culinary_connect_web.Controllers
 
         public ActionResult Category(int id)
         {
-            if (Session["AdminID"] == null)
-            {
-                return RedirectToAction("login");
-            }
+           
 
             var category = _adminService.GetCategory(id);
             if(category == null)
@@ -274,10 +247,7 @@ namespace Culinary_connect_web.Controllers
         [HttpPost]
         public ActionResult CreateRecipe(RecipesAdminPageModel model, HttpPostedFileBase RecipeImage)
         {
-            if (Session["AdminID"] == null)
-            {
-                return RedirectToAction("login");
-            }
+            
 
             var recipeCreateModel = model.RecipeCreateAdminModel;
 
@@ -316,10 +286,7 @@ namespace Culinary_connect_web.Controllers
 
         public ActionResult EditRecipe(RecipeAdminPageModel model, HttpPostedFileBase RecipeImage)
         {
-            if (Session["AdminID"] == null)
-            {
-                return RedirectToAction("login");
-            }
+            
 
             var editModel = model.RecipeUpdate;
             if(editModel == null)
@@ -371,10 +338,7 @@ namespace Culinary_connect_web.Controllers
 
         public ActionResult DeleteRecipe(RecipeAdminPageModel model)
         {
-            if (Session["AdminID"] == null)
-            {
-                return RedirectToAction("login");
-            }
+            
 
             var deleteModel = model.RecipeDelete;
             var recipeToDelete = _adminService.GetRecipe(deleteModel.Id);
@@ -391,10 +355,7 @@ namespace Culinary_connect_web.Controllers
 
         public ActionResult UpdateStatusRecipe(int Id, string NewStatus)
         {
-            if (Session["AdminID"] == null)
-            {
-                return RedirectToAction("login");
-            }
+            
 
             var recipe = _adminService.GetRecipe(Id);
             if (recipe != null)
@@ -412,10 +373,7 @@ namespace Culinary_connect_web.Controllers
         [HttpPost]
         public ActionResult CreateUser(UsersPageModel model)
         {
-            if (Session["AdminID"] == null)
-            {
-                return RedirectToAction("login");
-            }
+            
 
             var userModel = model.UserRegisterModel;
             var existingUser = _adminService.GetUserByEmail(userModel.UserEmail);
@@ -441,10 +399,7 @@ namespace Culinary_connect_web.Controllers
 
         [HttpPost]
         public ActionResult EditUser(UsersPageModel model) {
-            if (Session["AdminID"] == null)
-            {
-                return RedirectToAction("login");
-            }
+            
 
             var userModel = model.UserEditModel;
 
@@ -466,10 +421,7 @@ namespace Culinary_connect_web.Controllers
 
         [HttpPost]
         public ActionResult DeleteUser(UsersPageModel model) {
-            if (Session["AdminID"] == null)
-            {
-                return RedirectToAction("login");
-            }
+            
 
             var userModel = model.UserDeleteModel;
             var existingUser = _adminService.GetUser(userModel.Id);
@@ -492,10 +444,7 @@ namespace Culinary_connect_web.Controllers
         [HttpPost]
         public ActionResult AddCategory(CategoriesPageModel model)
         {
-            if (Session["AdminID"] == null)
-            {
-                return RedirectToAction("login");
-            }
+            
             if (!ModelState.IsValid)
             {
                 ViewBag.ErrorMessage = "Model not valid";
@@ -522,11 +471,7 @@ namespace Culinary_connect_web.Controllers
         [HttpPost]
         public ActionResult DeleteCategory(int ID)
         {
-            if (Session["AdminID"] == null)
-            {
-                return RedirectToAction("login");
-            }
-
+            
             var category = _adminService.GetCategory(ID);
 
             if(category == null)
@@ -544,11 +489,7 @@ namespace Culinary_connect_web.Controllers
         [HttpPost]
         public ActionResult UpdateCategory(int ID, string newTitle)
         {
-            if (Session["AdminID"] == null)
-            {
-                return RedirectToAction("login");
-            }
-
+            
             var category = _adminService.GetCategory(ID);
 
             if (category == null)

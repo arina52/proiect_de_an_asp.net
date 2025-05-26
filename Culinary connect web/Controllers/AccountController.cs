@@ -11,9 +11,11 @@ using culinaryConnect.Domain.Entities;
 using culinaryConnect.BusinessLogic.Services;
 using culinaryConnect.BusinessLogic.Interfaces;
 using culinaryConnect.BusinessLogic;
+using Culinary_connect_web.Filters;
 
 namespace Culinary_connect_web.Controllers
 {
+    [AuthorizeUser]
     public class AccountController : Controller
     {
         // GET: Account
@@ -27,8 +29,6 @@ namespace Culinary_connect_web.Controllers
         }
         public ActionResult Index()
         {
-            if (Session["UserID"] == null)
-                return RedirectToAction("index", "login");
 
             int userId = (int)Session["UserID"];
             var user = _accountService.GetUserByID(userId);
@@ -45,8 +45,6 @@ namespace Culinary_connect_web.Controllers
 
 
         public ActionResult Recipes() {
-            if (Session["UserID"] == null)
-                return RedirectToAction("index", "login");
             IRecipeService _recipeService = new RecipeServiceBL();
             var model = new RecipesPageModel();
             model.RecipeList = _recipeService.GetAllRecipes();
@@ -57,8 +55,6 @@ namespace Culinary_connect_web.Controllers
         public ActionResult Recipe()
         {
 
-            if (Session["UserID"] == null)
-                return RedirectToAction("index", "login");
             var categories = _accountService.GetCategoryList();
             var model = new RecipesPageModel()
             {
@@ -74,8 +70,7 @@ namespace Culinary_connect_web.Controllers
         [HttpPost]
         public ActionResult AddRecipe(RecipesPageModel model, HttpPostedFileBase RecipeImage)
         {
-            if (Session["UserID"] == null)
-                return RedirectToAction("index", "login");
+            
 
             if (!ModelState.IsValid)
             {
@@ -108,9 +103,6 @@ namespace Culinary_connect_web.Controllers
 
         public ActionResult Delete(int id)
         {
-            if (Session["UserID"] == null)
-                return RedirectToAction("index", "login");
-
             try
             {
                 int userId = (int)Session["UserID"];
@@ -163,8 +155,6 @@ namespace Culinary_connect_web.Controllers
         [HttpPost]
         public ActionResult Edit(RecipesPageModel model, HttpPostedFileBase RecipeImage)
         {
-            if (Session["UserID"] == null)
-                return RedirectToAction("index", "login");
 
             if (!ModelState.IsValid)
                 return View(model);
@@ -195,10 +185,7 @@ namespace Culinary_connect_web.Controllers
         [HttpPost]
         public ActionResult ToggleFavorite(int recipeId)
         {
-            if (Session["UserID"]==null)
-            {
-                return RedirectToAction("Index", "Login");
-            }
+           
             int userId = (int)Session["UserID"];
             if (_recipeService.IsFavorite(userId, recipeId))
                 _recipeService.RemoveFromFavorites(userId, recipeId);

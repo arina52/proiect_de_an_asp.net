@@ -36,7 +36,7 @@ namespace Culinary_connect_web.Controllers
                 {
                     Session["UserID"] = user.Id;
                     Session["UserName"] = user.UserName;
-
+                    Session["UserRole"] = user.Role.ToString();
                     return RedirectToActionPermanent("index", "home");
                 } else
                 {

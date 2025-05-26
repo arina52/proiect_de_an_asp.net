@@ -1,14 +1,3 @@
-D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\culinaryConnect.BusinessLogic.dll
-D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\culinaryConnect.BusinessLogic.pdb
-D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\culinaryConnect.Domain.dll
-D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\culinaryConnect.Helpers.dll
-D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\culinaryConnect.Domain.pdb
-D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\culinaryConnect.Helpers.pdb
-D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\obj\Debug\culinaryConnect.BusinessLogic.csproj.AssemblyReference.cache
-D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\obj\Debug\culinaryConnect.BusinessLogic.csproj.CoreCompileInputs.cache
-D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\obj\Debug\culinary.F9CE4B44.Up2Date
-D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\obj\Debug\culinaryConnect.BusinessLogic.dll
-D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\obj\Debug\culinaryConnect.BusinessLogic.pdb
 D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\bin\Debug\culinaryConnect.BusinessLogic.dll.config
 D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\bin\Debug\culinaryConnect.BusinessLogic.dll
 D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\bin\Debug\culinaryConnect.BusinessLogic.pdb
@@ -25,11 +14,6 @@ D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\o
 D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\obj\Debug\culinary.F9CE4B44.Up2Date
 D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\obj\Debug\culinaryConnect.BusinessLogic.dll
 D:\twproject\arina project\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\obj\Debug\culinaryConnect.BusinessLogic.pdb
-D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\culinaryConnect.BusinessLogic.dll.config
-D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\EntityFramework.dll
-D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\EntityFramework.SqlServer.dll
-D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\EntityFramework.xml
-D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\EntityFramework.SqlServer.xml
 D:\twproject\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\bin\Debug\culinaryConnect.BusinessLogic.dll.config
 D:\twproject\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\bin\Debug\culinaryConnect.BusinessLogic.dll
 D:\twproject\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\bin\Debug\culinaryConnect.BusinessLogic.pdb
@@ -46,17 +30,6 @@ D:\twproject\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\obj\Debug\culin
 D:\twproject\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\obj\Debug\culinary.F9CE4B44.Up2Date
 D:\twproject\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\obj\Debug\culinaryConnect.BusinessLogic.dll
 D:\twproject\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\obj\Debug\culinaryConnect.BusinessLogic.pdb
-D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\Microsoft.Web.Infrastructure.dll
-D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\System.Web.Helpers.dll
-D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\System.Web.Razor.dll
-D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\System.Web.WebPages.Deployment.dll
-D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\System.Web.WebPages.dll
-D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\System.Web.WebPages.Razor.dll
-D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\System.Web.Helpers.xml
-D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\System.Web.Razor.xml
-D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\System.Web.WebPages.xml
-D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\System.Web.WebPages.Deployment.xml
-D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\System.Web.WebPages.Razor.xml
 D:\twproject\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\bin\Debug\Microsoft.Web.Infrastructure.dll
 D:\twproject\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\bin\Debug\System.Web.Helpers.dll
 D:\twproject\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\bin\Debug\System.Web.Razor.dll
@@ -95,3 +68,30 @@ D:\Uni\tweb\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\obj\Debug\culina
 D:\Uni\tweb\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\obj\Debug\culinary.F9CE4B44.Up2Date
 D:\Uni\tweb\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\obj\Debug\culinaryConnect.BusinessLogic.dll
 D:\Uni\tweb\proiect_de_an_asp.net\culinaryConnect.BusinessLogic\obj\Debug\culinaryConnect.BusinessLogic.pdb
+D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\culinaryConnect.BusinessLogic.dll.config
+D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\culinaryConnect.BusinessLogic.dll
+D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\culinaryConnect.BusinessLogic.pdb
+D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\culinaryConnect.Domain.dll
+D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\culinaryConnect.Helpers.dll
+D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\EntityFramework.dll
+D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\EntityFramework.SqlServer.dll
+D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\System.Web.Helpers.dll
+D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\System.Web.Razor.dll
+D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\System.Web.WebPages.dll
+D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\System.Web.WebPages.Razor.dll
+D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\culinaryConnect.Domain.pdb
+D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\culinaryConnect.Helpers.pdb
+D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\EntityFramework.xml
+D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\EntityFramework.SqlServer.xml
+D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\System.Web.Helpers.xml
+D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\System.Web.Razor.xml
+D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\System.Web.WebPages.xml
+D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\bin\Debug\System.Web.WebPages.Razor.xml
+D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\obj\Debug\culinaryConnect.BusinessLogic.csproj.AssemblyReference.cache
+D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\obj\Debug\culinaryConnect.BusinessLogic.csproj.CoreCompileInputs.cache
+D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\obj\Debug\culinary.F9CE4B44.Up2Date
+D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\obj\Debug\culinaryConnect.BusinessLogic.dll
+D:\uni an2\proiect de an\Solution1\culinaryConnect.BusinessLogic\obj\Debug\culinaryConnect.BusinessLogic.pdb

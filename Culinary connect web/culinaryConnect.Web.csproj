@@ -175,6 +175,8 @@
     <Compile Include="Controllers\SignupController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DTO\RecipesListDTO.cs" />
+    <Compile Include="Filters\AuthorizeAdminAttribute.cs" />
+    <Compile Include="Filters\AuthorizeUserAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
