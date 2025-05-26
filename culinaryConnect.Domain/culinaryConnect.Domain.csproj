@@ -65,6 +65,10 @@
     <Compile Include="Entities\Recipe\Status.cs" />
     <Compile Include="Entities\Recipe\RecipeDetails.cs" />
     <Compile Include="Entities\Recipe\RecipesPageModel.cs" />
+    <Compile Include="Entities\Reports\ReportsCategory.cs" />
+    <Compile Include="Entities\Reports\ReportsPageModel.cs" />
+    <Compile Include="Entities\Reports\ReportsRecipe.cs" />
+    <Compile Include="Entities\Reports\ReportsUser.cs" />
     <Compile Include="Entities\User\User.cs" />
     <Compile Include="Entities\User\UserDeleteModel.cs" />
     <Compile Include="Entities\User\UserEditModel.cs" />

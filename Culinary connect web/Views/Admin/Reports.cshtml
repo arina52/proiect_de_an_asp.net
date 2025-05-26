@@ -1,8 +1,77 @@
-﻿
+﻿@model culinaryConnect.Domain.Entities.Reports.ReportsPageModel
 @{
     ViewBag.Title = "Reports";
     Layout = "~/Views/Shared/layouts/_AdminLayout.cshtml";
 }
 
-<h2>Reports</h2>
+<div class="container mt-5">
+    <h2 class="mb-4">Dashboard Reports</h2>
 
+    <div class="row">
+        <!-- Total Users -->
+        <div class="col-md-4 mb-4">
+            <div class="card text-white bg-primary shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Total Users</h5>
+                    <p class="card-text display-4">@Model.users.Count</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Recipes -->
+        <div class="col-md-4 mb-4">
+            <div class="card text-white bg-success shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Total Recipes</h5>
+                    <p class="card-text display-4">@Model.recipes.Count</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Categories -->
+        <div class="col-md-4 mb-4">
+            <div class="card text-white bg-info shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Total Categories</h5>
+                    <p class="card-text display-4">@Model.categories.Count</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Users List -->
+    <div class="card mb-4">
+        <div class="card-header bg-light">
+            <strong>Recent Users</strong>
+        </div>
+        <ul class="list-group list-group-flush">
+            @foreach (var user in Model.users.Take(5))
+            {
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>
+                        <strong>@user.Name</strong> <br />
+                        <small>@user.Email</small>
+                    </span>
+                </li>
+            }
+        </ul>
+    </div>
+
+    <!-- Recipes List -->
+    <div class="card mb-4">
+        <div class="card-header bg-light">
+            <strong>Recent Recipes</strong>
+        </div>
+        <ul class="list-group list-group-flush">
+            @foreach (var recipe in Model.recipes.Take(5))
+            {
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>
+                        <strong>@recipe.Name</strong>
+                    </span>
+                    <a href="@Url.Action("recipe", "Admin", new { id = recipe.Id })" class="btn btn-sm btn-outline-success">View</a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
